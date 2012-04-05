@@ -1,0 +1,274 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<tal:comment tal:replace="nothing">
+$Id: NewsletterTopic_editForm.cpt 248253 2012-02-08 13:41:46Z vincentfretin $
+</tal:comment>
+<html metal:use-macro="here/main_template/macros/master"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="en-US"
+      lang="en-US">
+
+<body>
+
+<div metal:fill-slot="main"
+     i18n:domain="plonegazette"
+     tal:define="errors options/state/getErrors;">
+
+ <h1 i18n:translate="heading_newslettertopic_edit">Edit Newsletter Topic</h1>
+
+ <form name="edit_form"
+       action=""
+       method="post"
+       enctype="multipart/form-data"
+       tal:define="visible_ids visible_ids|python: member.getProperty('visible_ids', None)"
+       tal:attributes="action current_page_url|string:${here/absolute_url}/${template/getId}">
+
+  <fieldset>
+
+  <legend i18n:translate="legend_newslettertopic_details">Newsletter Topic Details</legend>
+
+  <!-- Id Field -->
+
+  <div class="field"
+       i18n:domain="plone"
+       tal:define="error errors/id | nothing;
+                   id python:request.get('id', test(here.show_id(),here.getId(),''));"
+       tal:condition="visible_ids"
+       tal:attributes="class python:test(error, 'field error', 'field')">
+
+    <label for="id" i18n:translate="label_short_name" i18n:domain="plone">Short Name</label>
+
+    <div i18n:translate="help_shortname" i18n:domain="plone"
+         class="formHelp">
+      Short name is part of the item's web address. For accessibility reasons, do not use spaces, upper case, underscores, or special characters
+    </div>
+
+    <div tal:content="structure error">Validation error output</div>
+    <input type="text"
+           name="id"
+           id="id"
+           size="40"
+           value=""
+           tal:attributes="value id;" />
+
+  </div>
+
+  <input type="hidden"
+         name="id"
+         tal:condition="not:visible_ids"
+         tal:attributes="value python:request.get('id', here.getId())" />
+
+  <!-- Title Field -->
+
+  <div class="field"
+       tal:define="error errors/title|nothing;
+                   Title request/title | here/Title;"
+       tal:attributes="class python:test(error, 'field error', 'field')">
+
+    <label i18n:translate="label_title">Title</label>
+
+    <span class="fieldRequired" title="Required"
+          i18n:attributes="title"
+          i18n:translate="label_required">(Required)</span>
+
+    <div tal:content="structure error">Validation error output</div>
+    <input type="text"
+           name="title"
+           id="title"
+           value="#"
+           size="40"
+           tal:attributes="value Title" />
+  </div>
+
+  <!-- Description Field -->
+
+  <div class="field"
+       i18n:domain="plone"
+       tal:define="description request/description | here/Description">
+
+    <label for="description" i18n:translate="label__description">Description</label>
+
+    <div i18n:translate="help_description"
+         class="formHelp">
+      A brief description of the item
+    </div>
+
+    <textarea cols="80"
+              rows="5"
+              name="description"
+              id="description"
+              tal:content="description">
+     Description
+    </textarea>
+   </div>
+
+  <!-- meta_types  Field -->
+
+  <div class="field"
+       tal:define="available_types here/getAvailableTypes;
+                   meta_types request/meta_types | here/meta_types">
+
+    <label for="meta_types" i18n:translate="label__newslettertopic_metatypes">Meta types</label>
+
+    <div i18n:translate="help_newslettertopic_metatypes"
+         class="formHelp">
+      Select here the meta types you want to display on this topic
+    </div>
+
+    <select id="meta_types"
+            name="meta_types:list"
+            size="10"
+            multiple="multiple">
+
+      <tal:loop tal:condition="meta_types" tal:repeat="type_tuple available_types">
+        <option tal:define="meta_type python:type_tuple[0];
+                            portal_type python:type_tuple[1];"
+                tal:attributes="value meta_type;
+                                selected python:test(meta_type in meta_types, 'selected', None)"
+                tal:content="portal_type" />
+      </tal:loop>
+
+      <tal:loop tal:condition="not:meta_types" tal:repeat="type_tuple available_types">
+        <option tal:define="meta_type python:type_tuple[0];
+                            portal_type python:type_tuple[1];"
+                tal:attributes="value meta_type"
+                tal:content="portal_type" />
+      </tal:loop>
+
+    </select>
+   </div>
+
+  <!-- subjects  Field -->
+
+  <div class="field"
+       tal:define="subjects request/subjects | here/subjects">
+
+    <label for="subjects" i18n:translate="label__newslettertopic_subjects">Subject(s)</label>
+
+    <div i18n:translate="help_newslettertopic_subjects"
+         class="formHelp">
+      Put here one or more subjects, only one by line.
+    </div>
+
+    <textarea id="subjects"
+              name="subjects:lines"
+              rows="11"
+              cols="15"
+              wrap="off"
+              tal:content="python:'\n'.join(subjects)" />
+
+   </div>
+
+  <!-- sort_on Field -->
+
+  <div class="field"
+       tal:define="sort_on request/sort_on | here/sort_on;">
+
+    <label i18n:translate="label_newslettertopic_sorton">Sort on</label>
+
+    <div i18n:translate="help_newslettertopic_sorton"
+         class="formHelp">
+      Select here a criteria to sort the object list.
+    </div>
+
+    <select name="sort_on" id="sort_on"
+            tal:define="indexes python:['', 'id', 'created', 'Date', 'effective', 'end', 'modified', 'start']">
+      <option tal:repeat="sort_criteria indexes"
+              tal:attributes="value sort_criteria;
+                              selected python:test(sort_criteria == sort_on, 'selected', None)"
+              tal:content="sort_criteria" />
+    </select>
+
+  </div>
+
+  <!-- reverse Field -->
+
+  <div class="field"
+       tal:define="reverse request/reverse | here/reverse;">
+
+    <label i18n:translate="label_newslettertopic_reverse">Reverse</label>
+
+    <div i18n:translate="help_newslettertopic_reverse"
+         class="formHelp">
+      Check this box if you want to reverse order.
+    </div>
+
+    <input type="checkbox" name="reverse"
+           tal:attributes="checked python:test(reverse, 1, 0)" />
+
+  </div>
+
+  <!-- Review state field -->
+
+  <div class="field"
+       tal:define="only_review_state request/only_review_state | here/only_review_state;">
+
+    <label for="review_state" i18n:translate="label_newslettertopic_reviewstate">Review state</label>
+    <div i18n:translate="help_newslettertopic_reviewstate"
+         class="formHelp">
+      Display objects only with this workflow state.
+    </div>
+
+    <input type="text" name="only_review_state" id="only_review_state"
+           tal:attributes="value only_review_state;"
+           size="40" />
+  </div>
+
+  <!-- Max number Field -->
+
+  <div class="field"
+       tal:define="error errors/max_objects | nothing;
+                   max_objects request/max_objects | here/max_objects;"
+       tal:attributes="class python:test(error, 'field error', 'field')">
+
+    <label for="max_objects" i18n:translate="label_newslettertopic_maxobjects">Maximum number of objects</label>
+    <div tal:content="structure error" />
+    <input type="text"
+           name="max_objects"
+           id="max_objects"
+           size="40"
+           tal:attributes="value max_objects" />
+  </div>
+
+  <!-- Submitting machinery -->
+
+  <div class="formControls"
+       i18n:domain="plone"
+       tal:define="process_creation request/process_creation|nothing">
+
+
+    <input class="context"
+           type="submit"
+           name="form.button.Save"
+           value="Save"
+           i18n:attributes="value" />
+
+    <input class="standalone"
+           type="submit"
+           name="form.button.Cancel"
+           value="Cancel"
+           i18n:attributes="value" />
+
+  </div>
+
+  <input type="hidden" name="form.submitted" value="1" />
+
+ </fieldset>
+
+ </form>
+
+ <tal:byline
+   tal:define="byline_macro context/document_byline/macros/byline|nothing">
+   <tal:plone3 tal:condition="byline_macro">
+     <div metal:use-macro="byline_macro">
+      Get the byline - contains details about author and modification date
+     </div>
+   </tal:plone3>
+   <tal:plone4 condition="not:byline_macro"
+        replace="structure provider:plone.belowcontenttitle" />
+ </tal:byline>
+
+</div>
+
+</body>
+</html>

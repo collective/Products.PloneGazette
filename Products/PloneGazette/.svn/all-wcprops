@@ -1,0 +1,191 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/collective/!svn/ver/248276/PloneGazette/trunk
+END
+TODO.txt
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/collective/!svn/ver/54744/PloneGazette/trunk/TODO.txt
+END
+configure.zcml
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/collective/!svn/ver/247690/PloneGazette/trunk/configure.zcml
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/collective/!svn/ver/248031/PloneGazette/trunk/__init__.py
+END
+Section.py
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/collective/!svn/ver/247605/PloneGazette/trunk/Section.py
+END
+skins.zcml
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/collective/!svn/ver/247690/PloneGazette/trunk/skins.zcml
+END
+config.py
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/collective/!svn/ver/54744/PloneGazette/trunk/config.py
+END
+CREDITS
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/collective/!svn/ver/248031/PloneGazette/trunk/CREDITS
+END
+UPGRADE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/collective/!svn/ver/100108/PloneGazette/trunk/UPGRADE.txt
+END
+adapters.zcml
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/collective/!svn/ver/247593/PloneGazette/trunk/adapters.zcml
+END
+setuphandlers.py
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/collective/!svn/ver/247606/PloneGazette/trunk/setuphandlers.py
+END
+NewsletterRichReference.py
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/collective/!svn/ver/247606/PloneGazette/trunk/NewsletterRichReference.py
+END
+interfaces.py
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/collective/!svn/ver/247606/PloneGazette/trunk/interfaces.py
+END
+PNLPermissions.py
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/collective/!svn/ver/50069/PloneGazette/trunk/PNLPermissions.py
+END
+patches.py
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/collective/!svn/ver/247606/PloneGazette/trunk/patches.py
+END
+HISTORY.txt
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/collective/!svn/ver/248276/PloneGazette/trunk/HISTORY.txt
+END
+migration.py
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/collective/!svn/ver/247594/PloneGazette/trunk/migration.py
+END
+LICENCE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/collective/!svn/ver/20520/PloneGazette/trunk/LICENCE.txt
+END
+NewsletterTopic.py
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/collective/!svn/ver/247606/PloneGazette/trunk/NewsletterTopic.py
+END
+Newsletter.py
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/collective/!svn/ver/248033/PloneGazette/trunk/Newsletter.py
+END
+utils.py
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/collective/!svn/ver/54744/PloneGazette/trunk/utils.py
+END
+adapters.py
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/collective/!svn/ver/247593/PloneGazette/trunk/adapters.py
+END
+Subscriber.py
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/collective/!svn/ver/247606/PloneGazette/trunk/Subscriber.py
+END
+roadmap.txt
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/collective/!svn/ver/20659/PloneGazette/trunk/roadmap.txt
+END
+catalog.py
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/collective/!svn/ver/247606/PloneGazette/trunk/catalog.py
+END
+PNLUtils.py
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/collective/!svn/ver/54384/PloneGazette/trunk/PNLUtils.py
+END
+NewsletterReference.py
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/collective/!svn/ver/247606/PloneGazette/trunk/NewsletterReference.py
+END
+version.txt
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/collective/!svn/ver/248272/PloneGazette/trunk/version.txt
+END
+NewsletterBTree.py
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/collective/!svn/ver/247606/PloneGazette/trunk/NewsletterBTree.py
+END
+NewsletterTheme.py
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/collective/!svn/ver/247605/PloneGazette/trunk/NewsletterTheme.py
+END
+README.txt
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/collective/!svn/ver/248276/PloneGazette/trunk/README.txt
+END
+PNLBase.py
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/collective/!svn/ver/247606/PloneGazette/trunk/PNLBase.py
+END

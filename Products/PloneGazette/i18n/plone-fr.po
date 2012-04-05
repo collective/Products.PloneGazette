@@ -1,0 +1,58 @@
+# #
+# # Gettext Message File for PloneGazette.
+# # Pilot Systems <info@pilotsystems.net>, 2004
+# #
+# # $Id: plone-fr.po 247591 2011-12-28 18:12:56Z vincentfretin $
+# #
+msgid ""
+msgstr ""
+"Project-Id-Version: PloneGazette 1.0\n"
+"POT-Creation-Date: 2004-03-04 14:03+CET\n"
+"PO-Revision-Date: 2011-12-28 18:55+0100\n"
+"Last-Translator: Vincent Fretin <vincent.fretin@gmail.com>\n"
+"Language-Team: Pilot Systems <info@pilotsystems.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: latin1 utf-8\n"
+"Domain: plone\n"
+"Language-code: fr\n"
+"Language-name: French\n"
+"X-Is-Fallback-For: fr-be fr-ca fr-lu fr-mc fr-ch\n"
+
+msgid "Folder Listing"
+msgstr "Contenu"
+
+msgid "Folder for storing subscribers only"
+msgstr "Dossier pour stocker uniquement des abonnés."
+
+msgid "Informations"
+msgstr "Informations"
+
+msgid "Newsletter"
+msgstr "Newsletter"
+
+msgid "Newsletter Large Folder"
+msgstr "Dossier contenant les abonnés"
+
+msgid "NewsletterReference"
+msgstr "Newsletter Référence"
+
+msgid "NewsletterTheme"
+msgstr "Newsletter Thème"
+
+msgid "Section"
+msgstr "Section"
+
+msgid "Send"
+msgstr "Envoyer"
+
+msgid "Subscribe"
+msgstr "S'abonner"
+
+msgid "Subscriber"
+msgstr "Abonné"
+

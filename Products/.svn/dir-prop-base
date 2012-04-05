@@ -1,0 +1,6 @@
+K 13
+svn:externals
+V 69
+PloneGazette https://svn.plone.org/svn/collective/PloneGazette/trunk
+
+END

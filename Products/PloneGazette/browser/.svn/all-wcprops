@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/collective/!svn/ver/247606/PloneGazette/trunk/browser
+END
+configure.zcml
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/collective/!svn/ver/247593/PloneGazette/trunk/browser/configure.zcml
+END
+newsletterbtree.py
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/collective/!svn/ver/247606/PloneGazette/trunk/browser/newsletterbtree.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/collective/!svn/ver/54744/PloneGazette/trunk/browser/__init__.py
+END
+interfaces.py
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/collective/!svn/ver/247606/PloneGazette/trunk/browser/interfaces.py
+END

@@ -1,0 +1,72 @@
+# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# SOME DESCRIPTIVE TITLE.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2011-12-28 17:35+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: plonegazette\n"
+
+#: ../NewsletterTheme.py:386
+msgid "Email could not be sent. Error message is: ${error}"
+msgstr ""
+
+#: ../skins/PloneGazette/validate_newsletter_edit.vpy:14
+msgid "Input is required but no input given"
+msgstr ""
+
+#: ../skins/PloneGazette/NewsletterTheme_edit.cpy:38
+msgid "Newsletter Theme changes saved."
+msgstr ""
+
+#: ../skins/PloneGazette/NewsletterTopic_edit.cpy:26
+msgid "Newsletter Topic changes saved."
+msgstr ""
+
+#: ../skins/PloneGazette/Newsletter_edit.cpy:30
+msgid "Newsletter changes saved."
+msgstr ""
+
+#: ../skins/PloneGazette/validate_newslettertheme_edit.vpy:56
+msgid "Please correct the indicated errors."
+msgstr ""
+
+#: ../skins/PloneGazette/validate_newsletter_edit.vpy:23
+msgid "Please provide a valid date"
+msgstr ""
+
+#: ../skins/PloneGazette/Section_edit.cpy:23
+msgid "Section changes saved."
+msgstr ""
+
+#: ../skins/PloneGazette/Subscriber_edit.cpy:22
+msgid "Subscriber changes saved."
+msgstr ""
+
+#: ../skins/PloneGazette/validate_newslettertopic_edit.vpy:18
+msgid "You must enter here an integer"
+msgstr ""
+
+#: ../skins/PloneGazette/validate_newslettertheme_edit.vpy:53
+msgid "You must first create a large plone folder"
+msgstr ""
+
+msgid "Our newsletter"
+msgstr ""
+
+msgid "Our newsletters"
+msgstr ""
+
+#: ../Newsletter.py:589
+msgid "SMTP server related errors"
+msgstr ""

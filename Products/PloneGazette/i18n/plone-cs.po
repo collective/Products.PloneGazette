@@ -1,0 +1,52 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PloneGazette\n"
+"POT-Creation-Date: 2004-03-04 14:03+CET\n"
+"PO-Revision-Date: 2007-02-19 14:10+0100\n"
+"Last-Translator: Radim Novotny <novotny.radim@gmail.com>\n"
+"Language-Team: Czech <www.surecase.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: plone\n"
+"Language-name: Czech\n"
+"Language-code: cs\n"
+"Preferred-encodings: utf-8 latin2\n"
+
+msgid "Folder Listing"
+msgstr "Obsah"
+
+msgid "Folder for storing subscribers only"
+msgstr ""
+
+msgid "Informations"
+msgstr "Informace"
+
+msgid "Newsletter"
+msgstr "Zpravodaj"
+
+msgid "Newsletter Large Folder"
+msgstr ""
+
+msgid "NewsletterReference"
+msgstr "Reference"
+
+msgid "NewsletterTheme"
+msgstr "Zpravodaj"
+
+msgid "Section"
+msgstr "Sekce"
+
+msgid "Send"
+msgstr ""
+
+msgid "Subscribe"
+msgstr "Přihlásit"
+
+msgid "Subscriber"
+msgstr "Odběratel"
+

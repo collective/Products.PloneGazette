@@ -1,0 +1,55 @@
+# Gettext Message File for PloneGazette.
+# Tiziano Fogliata <tfposta@gmail.com>, 2004
+msgid ""
+msgstr ""
+"Project-Id-Version: PloneGazette 1.0\n"
+"POT-Creation-Date: 2004-03-04 14:03+CET\n"
+"PO-Revision-Date: 2004-08-18 14:03+CET\n"
+"Last-Translator: Tiziano Fogliata <tfposta@gmail.com>\n"
+"Language-Team: Jerome Sandarnaud <jerome.sandarnaud@pilotsystems.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: plone\n"
+"Language-code: it\n"
+"Language-name: Italian\n"
+"Preferred-encodings: utf-8 latin1\n"
+"X-Is-Fallback-For: it-ch\n"
+
+msgid "Folder Listing"
+msgstr "Lista delle cartelle"
+
+msgid "Folder for storing subscribers only"
+msgstr ""
+
+msgid "Informations"
+msgstr "Informazioni"
+
+msgid "Newsletter"
+msgstr "Newsletter"
+
+msgid "Newsletter Large Folder"
+msgstr ""
+
+msgid "NewsletterReference"
+msgstr "Riferimenti della Newsletter"
+
+msgid "NewsletterTheme"
+msgstr "Tema della Newsletter"
+
+msgid "Section"
+msgstr "Sezione"
+
+msgid "Send"
+msgstr ""
+
+msgid "Subscribe"
+msgstr "Iscriviti"
+
+msgid "Subscriber"
+msgstr "Iscritto"
+

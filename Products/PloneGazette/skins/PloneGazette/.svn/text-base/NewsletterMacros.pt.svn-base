@@ -1,0 +1,42 @@
+<div metal:define-macro="newsletter_dynamic_content"
+     i18n:domain="plonegazette">
+
+ <tal:block tal:condition="objects">
+
+  <tal:objects tal:repeat="object objects">
+
+    <h2 tal:content="object/title_or_id" />
+
+    <p class="documentDescription"
+       tal:content="object/Description" />
+
+    <div class="documentImage" tal:condition="object/imagetag|nothing">
+        <img tal:replace="structure object/imagetag" />
+    </div>
+    
+    <ul tal:define="sub_objects object/getObjects"
+        tal:condition="sub_objects">
+
+      <li tal:repeat="sub_object sub_objects">
+        <strong tal:content="sub_object/title_or_id" /><br />
+        <span tal:replace="sub_object/Description" /><br />
+
+        <!-- **** Came from the "view" template or not ***** -->
+        <tal:block tal:condition="exists:view">
+          <a tal:attributes="href sub_object/absolute_url" i18n:translate="label_readmore">Read more</a>
+        </tal:block>
+        <tal:block tal:condition="not:exists:view">
+          <a tal:condition="options/html" tal:attributes="href sub_object/absolute_url" i18n:translate="label_readmore">Read more</a>
+          <tal:block tal:condition="not:options/html">
+            <span i18n:translate="label_readmore" tal:omit-tag="">Read more</span>: <span tal:replace="sub_object/absolute_url" />
+          </tal:block>
+        </tal:block>
+      </li>
+
+     </ul>
+
+  </tal:objects>
+
+ </tal:block>
+
+</div>

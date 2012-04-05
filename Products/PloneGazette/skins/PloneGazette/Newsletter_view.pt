@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<tal:comment tal:replace="nothing">
+$Id: Newsletter_view.pt 247588 2011-12-28 17:34:06Z vincentfretin $
+</tal:comment>
+<html metal:use-macro="here/main_template/macros/master"
+      xmlns="http://www.w3.org/1999/xhtml" 
+      xml:lang="en-US"
+      lang="en-US">
+<body>
+
+<div metal:fill-slot="main"
+     i18n:domain="plonegazette"
+     tal:define="objects here/getObjects;
+                 len_text python:len(context.text);
+                 dateEmitted python:context.dateEmitted and context.toLocalizedTime(context.dateEmitted);
+                 view python:1">
+
+<div tal:condition="python:objects and context.renderedDynamicContent() and checkPermission('PNL Change Newsletter', context)" class="portalMessage" i18n:translate="text_newsletter_rendered">
+     This newsletter has been sent at <span tal:replace="dateEmitted" i18n:name="date">1.1.2000</span>. Content of this newsletter has been stored to preserve 
+     correct HTML version in the newsletter archive. If you want to re-render HTML version of the newsletter, 
+     you have to send the newsletter again. Test tab always display/send fresh version of the newsletter.
+ </div>
+
+ <h1 tal:content="here/title_or_id" class="documentFirstHeading">
+    Title or id
+ </h1>
+ <br />
+ <div tal:condition="dateEmitted"
+      tal:content="dateEmitted">
+  2003/10/25
+ </div>
+
+ <p class="documentDescription" tal:content="here/description | nothing">Description</p>
+
+ <div class="stx"
+      tal:condition="len_text"
+      tal:attributes="class python:test(here.Format() in ('text/structured', 'text/x-rst',), 'stx', 'plain')">
+   <div tal:replace="structure python:here.CookedBody(stx_level=2)" />
+ </div>
+
+  <tal:block tal:define="dynamicContent context/renderedDynamicContent">
+     <tal:sent tal:condition="dynamicContent" tal:replace="structure dynamicContent" />
+     <tal:notsent tal:condition="not:dynamicContent">
+        <metal:block metal:use-macro="here/NewsletterMacros/macros/newsletter_dynamic_content">
+           Dynamic content
+        </metal:block>
+     </tal:notsent>
+  </tal:block>   
+
+
+</div>
+
+</body>
+</html>

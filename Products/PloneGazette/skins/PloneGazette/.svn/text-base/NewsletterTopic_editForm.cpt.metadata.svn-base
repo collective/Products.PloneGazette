@@ -1,0 +1,11 @@
+[default]
+title=edit form
+
+[validators]
+validators=validate_id,validate_newslettertopic_edit
+validators..Cancel=
+
+[actions]
+action.success=traverse_to:string:NewsletterTopic_edit
+action.success..Cancel=redirect_to_action:string:view
+action.failure=traverse_to:string:NewsletterTopic_editForm

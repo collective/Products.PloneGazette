@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<tal:comment tal:replace="nothing">
+$Id: NewsletterTopic_view.pt 20517 2004-08-22 15:58:42Z zope $
+</tal:comment>
+<html metal:use-macro="here/main_template/macros/master"
+      xmlns="http://www.w3.org/1999/xhtml" 
+      xml:lang="en-US"
+      lang="en-US">
+<body>
+
+<div metal:fill-slot="main"
+     i18n:domain="plonegazette"
+     tal:define="results here/getObjects;
+                 b_start string:0;b_start request/b_start | b_start;
+                 Batch python:modules['Products.CMFPlone'].Batch;
+                 global batch python:Batch(results, 20, int(b_start), orphan=1)">
+
+ <h1 tal:content="here/title_or_id" />
+
+ <p class="documentDescription"
+    tal:content="here/Description" />
+
+ <div metal:use-macro="here/batch_macros/macros/navigation" />
+
+ <table class="listing" 
+        tal:condition="batch">
+
+   <thead>
+     <tr>
+       <th>&nbsp;<tal:block i18n:translate="heading_title">Title</tal:block>&nbsp;</th>
+       <th>&nbsp;<tal:block i18n:translate="heading_type">Type</tal:block>&nbsp;</th>
+       <th>&nbsp;<tal:block i18n:translate="heading_last_modified">Last modified</tal:block>&nbsp;</th>
+       <th>&nbsp;<tal:block i18n:translate="heading_description">Description</tal:block>&nbsp;</th>
+     </tr>
+   </thead>
+   <tbody>
+     <tal:loop tal:repeat="match batch">
+       <tr tal:define="oddrow repeat/match/odd"
+           tal:attributes="class python:test(oddrow, 'even', 'odd')">
+         <td>
+           <img tal:attributes="src match/getIcon" />
+           <a tal:attributes="href match/absolute_url"
+              tal:content="match/title_or_id" />
+         </td>
+         <td tal:content="match/portal_type" />
+         <td tal:content="python:here.toLocalizedTime(match.modified(), 1)" />
+         <td tal:content="match/Description" />
+       </tr>
+     </tal:loop>
+   </tbody>
+ </table>
+
+ <div metal:use-macro="here/batch_macros/macros/navigation" />
+ 
+</div>
+</body>
+</html>

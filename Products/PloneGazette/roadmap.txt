@@ -1,0 +1,42 @@
+This is a preliminary roadmap, open to discussion, of course.
+
+Version 2.0
+
+ - Plone 2.1 Compatibility
+
+ - ATization
+
+ - Bug fixes
+
+Version 2.1
+
+ - Pluggable  subscription module,  allowing to  store  subscribers in
+   SQL, LDAP, ... (partially implemented already)
+
+ - Better administration  panel: ability to search  in subscribers, to
+   export the list in CSV, ...
+
+Version 2.2
+
+ - Pluggable mailsending, but it is  really required ?  We can already
+   use  any  MailHost-like   object,  be  it  MailHost,  MaildropHost,
+   SecureMailHost, ...   So making  another mail sending  module would
+   just mean implementing a new MailHost-like wrapper.
+
+ - Pluggable html-to-text rasterizer
+
+ - Integrating automated content generation with Plone 2.1 
+
+Version 2.3 (or 3.0 ?)
+
+ - Ability to connect to a POP/POPS account and fetch delivery failures answers
+
+ - Pluggable mail generation (custom mail for users)
+
+ - Subscriber configuration
+
+Architecture note
+
+ Plone Gazette  should work  at least  on Plone 2.1,  since it  is the
+ production version, and the one  we sell to customers. Usage of Zope3
+ features should be limited to what is available on Plone2.1/Zope2.8.

@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<tal:comment tal:replace="nothing">
+$Id: newsletter_mua_formatter.pt 247584 2011-12-28 16:27:10Z vincentfretin $
+
+Customizing this template
+=========================
+
+* CSS stylesheet: Embed the stylesheet in that template, don't refer to an external stylesheet.
+* Avoid javasripts: the various MUAs don't handle javascripts, most users disable javascripts for security issues.
+* Images and hyperlinks MUST have an absolute URL.
+* Customize tal code : don't forget to modify "Newsletter_view.pt" too.
+* Use of images in the template :
+{img src="#"
+     tal:condition="ishtml"
+     tal:replace="structure here/some_image_object" /}
+{whatever tal:condition="not: ishtml"}
+ An alternate text
+{/whatever}
+</tal:comment>
+
+<html i18n:domain="plonegazette"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="en-US"
+      lang="en-US"
+      tal:define="ishtml options/html;
+                  force options/force;
+                  charset here/portal_properties/site_properties/default_charset | string:utf-8">
+ <style type="text/css">
+ /* Insert your stylesheet here */
+ </style>
+
+ <head>
+  <meta http-equiv="Content-Type"
+        content="text/html;charset=utf-8"
+        tal:attributes="content string:text/html;;charset=${charset}" />
+ </head>
+
+ <body tal:define="newsletter python:getattr(here, options['id']);
+                   objects newsletter/getObjects">
+                   
+  <div tal:attributes="style options/newsletterStyle">
+
+    <div tal:replace="structure options/newsletterHeader" />
+
+    <div tal:define="description options/description" style="font-weight : bold"
+         tal:condition="description"
+         tal:content="description" />
+
+    <div tal:replace="structure options/body">
+      The body...
+    </div>
+
+    <tal:block tal:define="dynamicContent python:newsletter.renderedDynamicContent(force)">
+      <tal:sent tal:condition="dynamicContent" tal:replace="structure dynamicContent" />
+      <tal:notsent tal:condition="not:dynamicContent">
+        <metal:block metal:use-macro="here/NewsletterMacros/macros/newsletter_dynamic_content">
+          Dynamic content
+        </metal:block>
+      </tal:notsent>
+    </tal:block>
+  
+    <div tal:replace="structure options/newsletterFooter" />
+  </div>
+ </body>
+</html>

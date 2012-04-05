@@ -1,0 +1,68 @@
+<html metal:use-macro="here/main_template/macros/master">
+<body>
+<div metal:fill-slot="main"
+     i18n:domain="plonegazette" 
+     tal:define="active python:request.get('active', '');
+                 newsletters python:here.getNewsletters();
+                 newsletters python:sequence.sort(newsletters, (('dateEmitted', 'cmp', 'desc'),));">
+
+  <h1 class="documentFirstHeading" tal:content="here/title">Title</h1>
+  <br />
+  <tal:block tal:condition="active">
+  <tal:block tal:define="subscriber python:here.getSubscriberById(active);
+                         email subscriber/Title;
+                         format request/format | here/default_format;
+                         activate python:subscriber.edit(format=format, active=1, email=email)">
+      <div class="portalMessage"><strong><span i18n:translate="text_subscription_activated" tal:omit-tag="">Your newsletter subscription is activated. You will receive <span tal:replace="format" i18n:name="format" /> newsletters.</span></strong></div>
+  </tal:block>
+  </tal:block>
+  
+  <p class="documentDescription"
+       tal:define="pps python:modules['Products.PythonScripts.standard']"
+       tal:condition="here/description"
+       tal:content="python: pps.newline_to_br(here.description)">
+   Description of the NewsletterCentral
+  </p>
+  <br />
+  <h2 i18n:translate="heading_archives">Archives</h2>
+  <p class="discreet"
+       tal:condition="not: newsletters"
+       i18n:translate="no_newsletters_message">
+   There are no newsletters at the moment. Please come back later.
+  </p>
+
+ <div tal:condition="newsletters">
+  <table class="listing">
+    <thead>
+      <tr>
+        <th i18n:translate="heading_date" class="nosort">Date</th>
+        <th i18n:translate="heading_title" class="nosort">Title</th>
+      </tr>
+    </thead>
+    
+   <tbody>    
+   <tr class="#"
+       tal:repeat="item newsletters"
+       tal:attributes="class python:test(repeat['item'].even(), 'even', 'odd')">
+     <td tal:on-error="nothing"
+         tal:define="conv_time nocall:context/toLocalizedTime;
+                     emitted item/dateEmitted"
+         tal:content="python:emitted and conv_time(emitted)">
+      2002-10-21
+     </td>
+ 
+    <td>
+     <a href="#"
+        tal:content="item/title_or_id"
+        tal:attributes="href string:${item/absolute_url}/view">
+       A newsletter title
+      </a>
+     </td>
+   </tr>
+   </tbody>
+  </table>
+ </div>
+
+</div>
+</body>
+</html>

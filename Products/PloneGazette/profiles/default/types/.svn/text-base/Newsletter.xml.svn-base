@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<object name="Newsletter" meta_type="Factory-based Type Information"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n" i18n:domain="plone">
+ <property name="title"></property>
+ <property
+    name="description">A newletter (has no sense oudside a NewsletterTheme object)</property>
+ <property name="content_icon">Newsletter.gif</property>
+ <property name="content_meta_type">Newsletter</property>
+ <property name="product">PloneGazette</property>
+ <property name="factory">addNewsletter</property>
+ <property name="immediate_view">folder_listing</property>
+ <property name="global_allow">False</property>
+ <property name="filter_content_types">True</property>
+ <property name="allowed_content_types">
+  <element value="Section"/>
+  <element value="Topic"/>
+  <element value="NewsletterReference"/>
+  <element value="NewsletterRichReference"/>
+ </property>
+ <property name="allow_discussion">False</property>
+ <alias from="(Default)" to="Newsletter_view"/>
+ <alias from="edit" to="base_edit"/>
+ <alias from="properties" to="base_metadata"/>
+ <alias from="sharing" to="folder_localrole_form"/>
+ <alias from="view" to="Newsletter_view"/>
+ <action title="View" action_id="view" category="object" condition_expr=""
+    url_expr="string:${object_url}/Newsletter_view" visible="True">
+  <permission value="View"/>
+ </action>
+ <action title="Edit" action_id="edit" category="object" condition_expr=""
+    url_expr="string:${object_url}/Newsletter_editForm" visible="True">
+  <permission value="PNL Change Newsletter"/>
+ </action>
+ <action title="Test" action_id="test" category="object" condition_expr=""
+    url_expr="string:${object_url}/Newsletter_testForm" visible="True">
+  <permission value="PNL Change Newsletter"/>
+ </action>
+ <action title="Send" action_id="send" category="object" condition_expr=""
+    url_expr="string:${object_url}/Newsletter_sendForm" visible="True"
+    i18n:attributes="title">
+  <permission value="PNL Change Newsletter"/>
+ </action>
+</object>

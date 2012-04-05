@@ -1,0 +1,55 @@
+# Gettext Message File for PloneGazette.
+# Klaus Raasch <raasch@xinit.de>, 2004
+msgid ""
+msgstr ""
+"Project-Id-Version: PloneGazette 1.0\n"
+"POT-Creation-Date: 2004-03-04 14:03+CET\n"
+"PO-Revision-Date: 2004-08-18 23:03+Westeuropäische Normalzeit\n"
+"Last-Translator: Klaus Raasch <raasch@xinit.de>\n"
+"Language-Team: de <raasch@xinit.de>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: plone\n"
+"Language-code: de\n"
+"Language-name: Deutsch\n"
+"Preferred-encodings: latin1 utf-8\n"
+"X-Is-Fallback-For: de-at de-li de-lu de-ch de-de\n"
+
+msgid "Folder Listing"
+msgstr "Inhalte"
+
+msgid "Folder for storing subscribers only"
+msgstr ""
+
+msgid "Informations"
+msgstr "Informationen"
+
+msgid "Newsletter"
+msgstr "Newsletter"
+
+msgid "Newsletter Large Folder"
+msgstr ""
+
+msgid "NewsletterReference"
+msgstr "Newsletter Referenzen"
+
+msgid "NewsletterTheme"
+msgstr "Newsletter Theme"
+
+msgid "Section"
+msgstr "Auswahl"
+
+msgid "Send"
+msgstr ""
+
+msgid "Subscribe"
+msgstr "Abonnieren"
+
+msgid "Subscriber"
+msgstr "Abonnenten"
+

@@ -1,0 +1,5 @@
+<tal:block tal:define="objects here/getObjects">
+    <metal:block metal:use-macro="here/NewsletterMacros/macros/newsletter_dynamic_content">
+        Dynamic content
+     </metal:block>
+</tal:block>

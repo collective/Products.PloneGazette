@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<tal:comment tal:replace="nothing">
+$Id: Section_view.pt 247588 2011-12-28 17:34:06Z vincentfretin $
+</tal:comment>
+<html metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plonegazette"
+      xmlns="http://www.w3.org/1999/xhtml" 
+      xml:lang="en-US"
+      lang="en-US">
+<body>
+
+<div metal:fill-slot="main"
+     tal:define="objects here/getObjects;
+                 view python:1">
+
+  <h1 tal:content="here/title_or_id" />
+ 
+  <p tal:content="here/Description"
+     class="documentDescription" />
+
+
+  <table class="listing"
+         tal:condition="objects">
+    <tr>
+      <th>&nbsp;<tal:title i18n:translate="heading_title">Title</tal:title>&nbsp;</th>
+      <th>&nbsp;<tal:type i18n:translate="heading_type">Type</tal:type>&nbsp;</th>
+      <th>&nbsp;<tal:description i18n:translate="heading_description">Description</tal:description>&nbsp;</th>
+    </tr>
+    <tr tal:repeat="item objects">
+      <td><a tal:attributes="href item/absolute_url"
+             tal:content="item/title_or_id" /></td>
+      <td tal:content="item/meta_type" />
+      <td tal:content="item/Description" />
+    </tr>
+  </table>
+
+</div>
+</body>
+</html>

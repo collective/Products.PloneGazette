@@ -1,0 +1,57 @@
+# #
+# # Gettext Message File for PloneGazette.
+# # Pilot Systems <info@pilotsystems.net>, 2004
+# #
+# # $Id: plone-ro.po 247591 2011-12-28 18:12:56Z vincentfretin $
+# #
+msgid ""
+msgstr ""
+"Project-Id-Version: PloneGazette 1.0\n"
+"POT-Creation-Date: 2004-03-04 14:03+CET\n"
+"PO-Revision-Date: 2005-01-02 03:49+0200\n"
+"Last-Translator: Tiberiu Ichim <tibi@life.org.ro>\n"
+"Language-Team: Pilot Systems <info@pilotsystems.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-2\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: latin1 utf-8\n"
+"Domain: plone\n"
+"Language-code: ro\n"
+"Language-name: Romanian\n"
+
+msgid "Folder Listing"
+msgstr "Continut Folder"
+
+msgid "Folder for storing subscribers only"
+msgstr ""
+
+msgid "Informations"
+msgstr "Informatii"
+
+msgid "Newsletter"
+msgstr "Buletin Electronic"
+
+msgid "Newsletter Large Folder"
+msgstr ""
+
+msgid "NewsletterReference"
+msgstr "Referinta Buletin Electronic"
+
+msgid "NewsletterTheme"
+msgstr "Tema Buletin Electronic"
+
+msgid "Section"
+msgstr "Sectiune"
+
+msgid "Send"
+msgstr ""
+
+msgid "Subscribe"
+msgstr "Inscrie-te"
+
+msgid "Subscriber"
+msgstr "Abonat"
+

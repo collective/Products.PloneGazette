@@ -1,0 +1,55 @@
+# Gettext Message File for PloneGazette.
+# Sandarnaud Jerome <jerome.sandarnaud@pilotsystems.net>, 2004
+msgid ""
+msgstr ""
+"Project-Id-Version: PloneGazette 1.0\n"
+"POT-Creation-Date: 2004-03-04 14:03+CET\n"
+"PO-Revision-Date: 2007-02-23 15:09+CET\n"
+"Last-Translator: Mark van Lent <m.vanlent@zestsoftware.nl>\n"
+"Language-Team: Mark van Lent <m.vanlent@zestsoftware.nl>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: plone\n"
+"Language-code: nl\n"
+"Language-name: Dutch\n"
+"Preferred-encodings: latin1 utf-8\n"
+"X-Is-Fallback-For: nl-be\n"
+
+msgid "Folder Listing"
+msgstr "Inhoud"
+
+msgid "Folder for storing subscribers only"
+msgstr ""
+
+msgid "Informations"
+msgstr "Informatie"
+
+msgid "Newsletter"
+msgstr "Nieuwsbrief"
+
+msgid "Newsletter Large Folder"
+msgstr ""
+
+msgid "NewsletterReference"
+msgstr "Nieuwsbriefreferentie"
+
+msgid "NewsletterTheme"
+msgstr "Nieuwsbriefthema"
+
+msgid "Section"
+msgstr "Sectie"
+
+msgid "Send"
+msgstr ""
+
+msgid "Subscribe"
+msgstr "Abonneren"
+
+msgid "Subscriber"
+msgstr "Abonnee"
+

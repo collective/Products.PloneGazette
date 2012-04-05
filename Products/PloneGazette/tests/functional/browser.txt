@@ -1,0 +1,18 @@
+Log in as the portal owner::
+
+    >>> from plone.app.testing import TEST_USER_NAME, TEST_USER_PASSWORD
+    >>> browser.login(TEST_USER_NAME, TEST_USER_PASSWORD)
+
+Continue your test::
+
+    >>> browser.open(portal_url)
+
+Add NewsletterTheme::
+
+    >>> browser.getLink('NewsletterTheme').click()
+
+    >>> browser.getControl(name="title").value = 'Test Newsletter Theme'
+    >>> browser.getControl(name="testEmail").value = 'test@email.com'
+    >>> browser.getControl(name="authorEmail").value = 'author@email.com'
+    >>> browser.getControl(name="form.button.Save").click()
+  

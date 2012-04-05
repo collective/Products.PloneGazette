@@ -1,0 +1,44 @@
+<configure
+   xmlns="http://namespaces.zope.org/zope"
+   xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+   xmlns:five="http://namespaces.zope.org/five"
+   xmlns:browser="http://namespaces.zope.org/browser"
+   xmlns:zcml="http://namespaces.zope.org/zcml"
+   i18n_domain="plonegazette">
+
+  <include package="Products.CMFCore" file="permissions.zcml"
+      xmlns:zcml="http://namespaces.zope.org/zcml"
+      zcml:condition="have plone-41" />
+
+  <include zcml:condition="installed plone.app.discussion" file="adapters.zcml" />
+
+  <include package=".browser" />
+  <include file="skins.zcml" />
+
+  <genericsetup:registerProfile
+      name="default"
+      title="PloneGazette"
+      directory="profiles/default"
+      description=""
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+  <genericsetup:upgradeStep
+      title="Upgrade PloneGazette"
+      description="Upgrades Subscriber's workflow"
+      source="3.1.0"
+      destination="3.1.1"
+      handler=".migration.migrateTo311"
+      profile="Products.PloneGazette:default"
+      />
+
+  <genericsetup:upgradeStep
+      title="Upgrade PloneGazette"
+      description="Upgrades Subscriber's workflow"
+      source="3.1.1"
+      destination="3.2"
+      handler=".migration.migrateTo32"
+      profile="Products.PloneGazette:default"
+      />
+
+</configure>

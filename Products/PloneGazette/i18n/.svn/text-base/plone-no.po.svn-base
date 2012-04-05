@@ -1,0 +1,54 @@
+# Gettext Message File for PloneGazette.
+# Geir Bækholt <baekholt@plonesolutions.com>, 2007
+msgid ""
+msgstr ""
+"Project-Id-Version: PloneGazette 1.0\n"
+"POT-Creation-Date: 2004-03-04 14:03+CET\n"
+"PO-Revision-Date: 2007-02-07 14:03+CET\n"
+"Last-Translator: Geir Bækholt <baekholt@plonesolutions.com>\n"
+"Language-Team: Jerome Sandarnaud <jerome.sandarnaud@pilotsystems.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: plone\n"
+"Language-code: no\n"
+"Language-name: Norwegian\n"
+"Preferred-encodings: utf-8\n"
+
+msgid "Folder Listing"
+msgstr "Mappe"
+
+msgid "Folder for storing subscribers only"
+msgstr ""
+
+msgid "Informations"
+msgstr "Abonnenter"
+
+msgid "Newsletter"
+msgstr "Nyhetsbrev"
+
+msgid "Newsletter Large Folder"
+msgstr ""
+
+msgid "NewsletterReference"
+msgstr "Nyhetsbrev-peker"
+
+msgid "NewsletterTheme"
+msgstr "Nyhetsbrev-mappe"
+
+msgid "Section"
+msgstr "Seksjon"
+
+msgid "Send"
+msgstr ""
+
+msgid "Subscribe"
+msgstr "Abonnér"
+
+msgid "Subscriber"
+msgstr "Abonnent"
+
