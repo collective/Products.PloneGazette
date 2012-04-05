@@ -13,7 +13,7 @@ long_description = desc + '\n\nCHANGES\n=======\n\n' +  changes
 
 setup(
     name='Products.PloneGazette',
-    version='3.2',
+    version='3.2-b0ad14afc',
     author='Pilot Systems, Nidelven IT LTD and others',
     author_email='',
     maintainer='Morten W. Petersen',
