@@ -35,7 +35,6 @@ setup(
     namespace_packages=['Products'],
     install_requires=[
         'hexagonit.testing',
-        # 'plone.browserlayer',
         'setuptools',
         'zope.i18nmessageid',
     ],
