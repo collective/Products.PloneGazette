@@ -592,6 +592,16 @@ msgstr "Aktivointiviestin pohja"
 msgid "label_activation_status"
 msgstr "Aktivoinnin tila"
 
+#. Default: "Delete subscriber"
+#: ../skins/PloneGazette/subscribers_infos.pt:143
+msgid "label_delete"
+msgstr "Poista tilaaja"
+
+#. Default: "delete"
+#: ../skins/PloneGazette/subscribers_infos.pt:158
+msgid "link_delete_subscriber"
+msgstr "poista"
+
 # <label i18n:translate="label_active">Account activation</label>
 #. Default: "Account activation"
 #: ../skins/PloneGazette/Subscriber_editForm.cpt:87
