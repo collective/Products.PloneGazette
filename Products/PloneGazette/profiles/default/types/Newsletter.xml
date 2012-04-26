@@ -13,7 +13,6 @@
  <property name="filter_content_types">True</property>
  <property name="allowed_content_types">
   <element value="Section"/>
-  <element value="Topic"/>
   <element value="NewsletterReference"/>
   <element value="NewsletterRichReference"/>
  </property>
