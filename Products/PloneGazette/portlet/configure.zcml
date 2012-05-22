@@ -1,0 +1,23 @@
+<configure
+  i18n_domain="plonegazette"
+  xmlns:plone="http://namespaces.plone.org/plone"
+  xmlns="http://namespaces.zope.org/zope"
+  >
+
+  <!-- Subscribe Newsletter Portlet -->
+  <permission
+    id="Products.PloneGazette.SubscribeNewsletterPortlet"
+    title="Portlets: Manage Subscribe Newsletter portlet"
+    />
+
+  <plone:portlet
+    addview="Products.PloneGazette.portlet.subscribe.AddForm"
+    assignment="Products.PloneGazette.portlet.subscribe.Assignment"
+    edit_permission="Products.PloneGazette.SubscribeNewsletterPortlet"
+    interface="Products.PloneGazette.portlet.subscribe.ISubscribeNewsletterPortlet"
+    name="portlets.SubscribeNewsletter"
+    renderer="Products.PloneGazette.portlet.subscribe.Renderer"
+    view_permission="zope2.View"
+    />
+
+</configure>

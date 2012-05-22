@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<portlets
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  i18n:domain="plonegazette"
+  >
+
+  <portlet
+    addview="portlets.SubscribeNewsletter"
+    title="Subscribe Newsletter Portlet"
+    description=""
+    i18n:attributes="
+      title;
+      description;
+    "
+    >
+    <for interface="plone.app.portlets.interfaces.IColumn" />
+  </portlet>
+
+</portlets>

@@ -1,10 +1,9 @@
-from hexagonit.testing.browser import Browser
 from Products.PloneGazette.tests.base import FUNCTIONAL_TESTING
+from hexagonit.testing.browser import Browser
 from plone.app.testing import TEST_USER_ID
 from plone.app.testing import setRoles
 from plone.testing import layered
 from zope.testing import renormalizing
-from Products.CMFCore.utils import getToolByName
 
 import doctest
 import manuel.codeblock
@@ -72,4 +71,5 @@ def DocFileSuite(testfile, flags=FLAGS, setUp=setUp, layer=FUNCTIONAL_TESTING):
 def test_suite():
     return unittest.TestSuite([
         DocFileSuite('functional/browser.txt'),
+        DocFileSuite('functional/portlet.txt'),
         ])
