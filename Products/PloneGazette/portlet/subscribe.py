@@ -1,16 +1,16 @@
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from Products.PloneGazette import PloneGazetteFactory as _
-from plone.app.portlets.portlets import base
-from plone.portlets.interfaces import IPortletDataProvider
-from zope.formlib import form
-from zope.interface import implements
-from zope.schema import TextLine
+from Acquisition import aq_inner
 from Products.CMFPlone.utils import getToolByName
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from Products.PloneGazette import PloneGazetteFactory as _
+from Products.PloneGazette.interfaces import INewsletterTheme
 from plone.app.form.widgets.uberselectionwidget import UberSelectionWidget
+from plone.app.portlets.portlets import base
 from plone.app.portlets.portlets import base
 from plone.app.vocabularies.catalog import SearchableTextSourceBinder
 from plone.portlets.interfaces import IPortletDataProvider
+from plone.portlets.interfaces import IPortletDataProvider
+from plone.registry.interfaces import IRegistry
 from plone.z3cform.layout import FormWrapper
 from z3c.form import button
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
@@ -18,14 +18,18 @@ from z3c.form.field import Fields
 from z3c.form.form import Form
 from zope import schema
 from zope.component import getMultiAdapter
+from zope.component import getUtility
+from zope.formlib import form
 from zope.formlib import form
 from zope.interface import Interface
 from zope.interface import implements
-from zope.site.hooks import getSite
-from plone.registry.interfaces import IRegistry
-from zope.component import getUtility
+from zope.interface import implements
+from zope.schema import Choice
+from zope.schema import TextLine
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
+from zope.site.hooks import getSite
+
 
 
 class ISubscribeNewsletterPortlet(IPortletDataProvider):
@@ -59,11 +63,31 @@ class PortletFormView(FormWrapper):
     index = ViewPageTemplateFile("formwrapper.pt")
 
 
+formats = SimpleVocabulary(
+    [
+        SimpleTerm(
+            title=_(u"HTML"),
+            value=u"HTML",
+        ),
+        SimpleTerm(
+            title=_(u"Text"),
+            value=u"Text",
+        ),
+    ]
+)
+
+
 class ISubscribeNewsletterForm(Interface):
 
     email = TextLine(
         title=_(u"E-mail address"),
         required=True,
+    )
+
+    format = Choice(
+        title=_(u"Format"),
+        required=True,
+        vocabulary=formats,
     )
 
 
@@ -87,12 +111,26 @@ class SubscribeNewsletterForm(Form):
 
         self.data = data
 
+    def newslettertheme(self):
+        """Returns brain of NewsletterTheme."""
+        catalog = getToolByName(self.context, 'portal_catalog')
+        brains = catalog(
+            {
+                'object_provides': INewsletterTheme.__identifier__,
+            }
+        )
+        if brains:
+            return brains[0]
+
+
     def updateWidgets(self):
         super(self.__class__, self).updateWidgets()
 
         self.widgets['email'].size = 20
+        newslettertheme = self.newslettertheme()
+        self.widgets['format'].field.default = newslettertheme.getObject().default_format
 
-    @button.buttonAndHandler(_('Search Events'), name='search')
+    @button.buttonAndHandler(_('Subscribe'), name='subscribe')
     def search(self, action):
         """ Form button hander. """
 
@@ -108,7 +146,7 @@ class Renderer(base.Renderer):
 
     def __init__(self, *args):
         self.assignment = args[-1]
-        base.Renderer.__init__(self, *args)
+        super(self.__class__, self).__init__(*args)
         self.form_wrapper = self.createForm()
 
     def createForm(self):
@@ -117,9 +155,9 @@ class Renderer(base.Renderer):
         @return: z3c.form wrapped for Plone 3 view
         """
 
-        context = self.context.aq_inner
+        context = aq_inner(self.context)
 
-        returnURL = self.context.absolute_url()
+        returnURL = context.absolute_url()
 
         # Create a compact version of the contact form
         # (not all fields visible)
@@ -134,7 +172,7 @@ class Renderer(base.Renderer):
 
     @property
     def available(self):
-        return True
+        return self.form_wrapper.form_instance.newslettertheme()
 
     def title(self):
         return self.data.name or self.data.title()

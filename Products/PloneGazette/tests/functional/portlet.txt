@@ -17,4 +17,20 @@ Go to add portlet.SubscribeNewsletter::
     >>> 'Our newsletter' in browser.contents
     True
 
+The portlet should not be available::
+
     >>> browser.open(portal_url)
+    >>> 'Our newsletter' in browser.contents
+    False
+
+Add NewsletterTheme to make the portlet available::
+
+    >>> browser.open('/createObject?type_name=NewsletterTheme')
+    >>> browser.getControl(name="title").value = 'NewsletterTheme01'
+    >>> browser.getControl(name="default_format").value = ['Text']
+    >>> browser.getControl(name="testEmail").value = 'test@test.mail'
+    >>> browser.getControl(name="authorEmail").value = 'author@test.mail'
+    >>> browser.getControl(name="form.button.Save").click()
+
+    >>> 'Our newsletter' in browser.contents
+    True

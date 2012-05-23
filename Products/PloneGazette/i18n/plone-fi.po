@@ -58,3 +58,9 @@ msgstr "Lähetä"
 
 msgid "Cancel"
 msgstr "Peruuta"
+
+msgid "Properties"
+msgstr "Ominaisuudet"
+
+msgid "Folder for storing subscribers only"
+msgstr "."

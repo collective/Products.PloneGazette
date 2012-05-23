@@ -950,3 +950,8 @@ msgstr "Lataa csv-tiedosto tuodaksesi tilaajia"
 #: ../skins/PloneGazette/NewsletterTheme_unsubscribed.pt:20
 msgid "unsubscribe_success_message"
 msgstr "Tilauksesi uutiskirjeeseen on peruttu."
+
+#. Default: "Test newsletter has been sent."
+#: ../skins/PloneGazette/Newsletter_testForm.pt:20
+msgid "text_test_send_ok"
+msgstr "Testi uutiskirje on lähetetty"

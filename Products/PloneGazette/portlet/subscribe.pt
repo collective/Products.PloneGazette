@@ -4,7 +4,9 @@
       <span class="portletTopLeft"></span>
       <span class="tile"
          tal:content="view/title"
-         >Title</a>
+         >
+         Title
+      </span>
       <span class="portletTopRight"></span>
     </dt>
     <dd class="portletItem">
