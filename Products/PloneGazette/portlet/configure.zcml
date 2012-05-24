@@ -14,6 +14,7 @@
     addview="Products.PloneGazette.portlet.subscribe.AddForm"
     assignment="Products.PloneGazette.portlet.subscribe.Assignment"
     edit_permission="Products.PloneGazette.SubscribeNewsletterPortlet"
+    editview="Products.PloneGazette.portlet.subscribe.EditForm"
     interface="Products.PloneGazette.portlet.subscribe.ISubscribeNewsletterPortlet"
     name="portlets.SubscribeNewsletter"
     renderer="Products.PloneGazette.portlet.subscribe.Renderer"

@@ -1,14 +1,25 @@
 <configure
- xmlns="http://namespaces.zope.org/zope"
+ i18n_domain="plonegazette"
  xmlns:browser="http://namespaces.zope.org/browser"
- i18n_domain="plonegazette">
+ xmlns="http://namespaces.zope.org/zope"
+ >
 
   <browser:page
-      for="..interfaces.INewsletterBTree"
-      name="newsletterbtree_view"
-      template="templates/newsletterbtree_view.pt"
-      class=".newsletterbtree.NewsletterBTreeView"
-      allowed_interface=".interfaces.INewsletterBTreeView"
-      permission="zope2.View" />
+    allowed_interface=".interfaces.INewsletterBTreeView"
+    class=".newsletterbtree.NewsletterBTreeView"
+    for="..interfaces.INewsletterBTree"
+    name="newsletterbtree_view"
+    permission="zope2.View"
+    template="templates/newsletterbtree_view.pt"
+    />
+
+  <browser:page
+    attribute="register_newsletter"
+    class=".miscellaneous.Miscellaneous"
+    for="*"
+    layer=".interfaces.IPloneGazetteLayer"
+    name="register-newsletter"
+    permission="zope2.View"
+    />
 
 </configure>

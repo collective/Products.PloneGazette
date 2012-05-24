@@ -1,0 +1,6 @@
+<layers>
+  <layer
+    interface="Products.PloneGazette.browser.interfaces.IPloneGazetteLayer"
+    name="PloneGazette"
+    />
+</layers>

@@ -1,14 +1,11 @@
 from Acquisition import aq_inner
 from Products.CMFPlone.utils import getToolByName
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.PloneGazette import PloneGazetteFactory as _
 from Products.PloneGazette.interfaces import INewsletterTheme
 from plone.app.form.widgets.uberselectionwidget import UberSelectionWidget
 from plone.app.portlets.portlets import base
-from plone.app.portlets.portlets import base
 from plone.app.vocabularies.catalog import SearchableTextSourceBinder
-from plone.portlets.interfaces import IPortletDataProvider
 from plone.portlets.interfaces import IPortletDataProvider
 from plone.registry.interfaces import IRegistry
 from plone.z3cform.layout import FormWrapper
@@ -20,16 +17,13 @@ from zope import schema
 from zope.component import getMultiAdapter
 from zope.component import getUtility
 from zope.formlib import form
-from zope.formlib import form
 from zope.interface import Interface
-from zope.interface import implements
 from zope.interface import implements
 from zope.schema import Choice
 from zope.schema import TextLine
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
 from zope.site.hooks import getSite
-
 
 
 class ISubscribeNewsletterPortlet(IPortletDataProvider):
@@ -42,14 +36,26 @@ class ISubscribeNewsletterPortlet(IPortletDataProvider):
         required=False,
     )
 
+    newsletters = schema.Choice(
+        title=_(u"Newsletters"),
+        description=_(u"Find the newsletter theme."),
+        required=False,
+        source=SearchableTextSourceBinder(
+            {'object_provides': INewsletterTheme.__identifier__},
+            default_query='path:',
+        ),
+    )
+
 
 class Assignment(base.Assignment):
     implements(ISubscribeNewsletterPortlet)
 
     name = u""
+    newsletters = None
 
-    def __init__(self, name=u""):
+    def __init__(self, name=u"", newsletters=None):
         self.name = name
+        self.newsletters = newsletters
 
     def title(self):
         return self.name or _(u'Our newsletter')
@@ -130,6 +136,17 @@ class SubscribeNewsletterForm(Form):
         newslettertheme = self.newslettertheme()
         self.widgets['format'].field.default = newslettertheme.getObject().default_format
 
+    @property
+    def action(self):
+        """ Rewrite HTTP POST action.
+
+        If the form is rendered embedded on the others pages we
+        make sure the form is posted through the same view always,
+        instead of making HTTP POST to the page where the form was rendered.
+        """
+        return self.context.absolute_url() + "/@@register-newsletter"
+
+
     @button.buttonAndHandler(_('Subscribe'), name='subscribe')
     def search(self, action):
         """ Form button hander. """
@@ -170,9 +187,12 @@ class Renderer(base.Renderer):
         return view
 
 
+    def newsletters(self):
+        return self.form_wrapper.form_instance.newslettertheme()
+
     @property
     def available(self):
-        return self.form_wrapper.form_instance.newslettertheme()
+        return self.newsletters()
 
     def title(self):
         return self.data.name or self.data.title()

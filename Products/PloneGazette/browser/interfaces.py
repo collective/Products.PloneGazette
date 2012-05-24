@@ -9,3 +9,7 @@ class INewsletterBTreeView(Interface):
 
     def parent_url():
         """ returns parent url """
+
+
+class IPloneGazetteLayer(Interface):
+    """Marker interface for browserlayer."""

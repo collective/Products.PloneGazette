@@ -5,7 +5,7 @@ Log in as the portal owner::
 
 Go to add portlet.SubscribeNewsletter::
 
-    >>> browser.open('@@manage-portlets')
+    >>> browser.open('/@@manage-portlets')
 
     >>> 'Our newsletter' in browser.contents
     False
@@ -27,6 +27,7 @@ Add NewsletterTheme to make the portlet available::
 
     >>> browser.open('/createObject?type_name=NewsletterTheme')
     >>> browser.getControl(name="title").value = 'NewsletterTheme01'
+    >>> browser.getControl(name="description").value = 'Description of NewsletterTheme01'
     >>> browser.getControl(name="default_format").value = ['Text']
     >>> browser.getControl(name="testEmail").value = 'test@test.mail'
     >>> browser.getControl(name="authorEmail").value = 'author@test.mail'
@@ -34,3 +35,35 @@ Add NewsletterTheme to make the portlet available::
 
     >>> 'Our newsletter' in browser.contents
     True
+
+    >>> print browser.bycss('.portletFooter')
+    --- 1 ---
+    <dd class="portletFooter">
+    <span class="portletBottomLeft"></span>
+    <a alt="Description of NewsletterTheme01" href="http://nohost/plone/newslettertheme01" title="NewsletterTheme01">Visit our archives</a>
+    <span class="portletBottomRight"></span>
+    </dd>
+
+Add one more NewsletterTheme::
+
+    >>> browser.open('/createObject?type_name=NewsletterTheme')
+    >>> browser.getControl(name="title").value = 'NewsletterTheme02'
+    >>> browser.getControl(name="description").value = 'Description of NewsletterTheme02'
+    >>> browser.getControl(name="default_format").value = ['HTML']
+    >>> browser.getControl(name="testEmail").value = 'test2@test.mail'
+    >>> browser.getControl(name="authorEmail").value = 'author2@test.mail'
+    >>> browser.getControl(name="form.button.Save").click()
+
+Go to edit portlet::
+
+    >>> browser.open('/++contextportlets++plone.leftcolumn/bound-method-assignment-title-of-assignment-at/edit?referer=http%3A//nohost/plone/%40%40manage-portlets')
+
+    >>> browser.getControl(name="form.newsletters.query.selection").value = ["/newslettertheme02"]
+
+    # >>> browser.getControl(name="form.newsletters.query.apply").click()
+
+    >>> browser.getControl(name="form.actions.save").click()
+
+    >>> browser.open('/++contextportlets++plone.leftcolumn/bound-method-assignment-title-of-assignment-at/edit?referer=http%3A//nohost/plone/%40%40manage-portlets')
+
+    >>> browser.openBrowser()
