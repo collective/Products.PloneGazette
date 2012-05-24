@@ -15,7 +15,7 @@ $Id: Subscriber_view.pt 50190 2007-09-25 17:24:18Z naro $
 
  <h1 i18n:translate="heading_your_account">
   Your subscriber account for
-  <span i18n:name="title" tal:content="here/title_or_id">machin@truc.com</span>
+  <span i18n:name="title" tal:content="here/Title">machin@truc.com</span>
  </h1>
 
  <ul>
