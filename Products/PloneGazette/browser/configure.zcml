@@ -22,4 +22,13 @@
     permission="zope2.View"
     />
 
+  <browser:page
+    attribute="unsubscribe"
+    class=".miscellaneous.Miscellaneous"
+    for="*"
+    layer=".interfaces.IPloneGazetteLayer"
+    name="unsubscribe"
+    permission="zope2.View"
+    />
+
 </configure>

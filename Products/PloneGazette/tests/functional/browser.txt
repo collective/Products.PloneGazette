@@ -3,16 +3,44 @@ Log in as the portal owner::
     >>> from plone.app.testing import TEST_USER_NAME, TEST_USER_PASSWORD
     >>> browser.login(TEST_USER_NAME, TEST_USER_PASSWORD)
 
-Continue your test::
-
-    >>> browser.open(portal_url)
-
 Add NewsletterTheme::
 
-    >>> browser.getLink('NewsletterTheme').click()
+    >>> browser.open('/createObject?type_name=NewsletterTheme')
 
     >>> browser.getControl(name="title").value = 'Test Newsletter Theme'
     >>> browser.getControl(name="testEmail").value = 'test@email.com'
     >>> browser.getControl(name="authorEmail").value = 'author@email.com'
     >>> browser.getControl(name="form.button.Save").click()
-  
+
+Add Subscriber::
+
+    >>> browser.getLink('Subscriber').click()
+    >>> browser.getControl(name="email").value = "aaaaa"
+    >>> browser.getControl(name="form.button.Save").click()
+
+    >>> 'This is not a valid mail address' in browser.contents
+    True
+
+    >>> browser.getControl(name="email").value = "test01@test.mail"
+    >>> browser.getControl(name="form.button.Save").click()
+
+    >>> print browser.bycss('#content')
+    --- 1 ---
+    <div id="content">
+    <div>
+    <h1>Your subscriber account for test01@test.mail</h1>
+    <ul><li>Your newsletter subscription is <strong>not activated</strong>.</li>
+    <li>You will receive <strong>HTML</strong> newsletters.</li>
+    </ul></div>
+    </div>
+
+Unsubscribe::
+
+    >>> browser.getLink('Unsubscribe').click()
+    >>> print browser.bycss('.portalMessage')
+    --- 1 ---
+    <dl class="portalMessage info" id="kssPortalMessage" style="display:none"><dt>Info</dt>
+    <dd></dd>
+    </dl>
+    --- 2 ---
+    <div class="portalMessage">You have been successfully unsubscribed from this newsletter.</div>
