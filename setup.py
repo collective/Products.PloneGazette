@@ -35,7 +35,6 @@ setup(
     namespace_packages=['Products'],
     install_requires=[
         'hexagonit.testing',
-        'html2text',
         'setuptools',
         'zope.i18nmessageid',
     ],
@@ -45,4 +44,4 @@ setup(
     [z3c.autoinclude.plugin]
     target = plone
     """,
-    )
+)
