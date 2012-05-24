@@ -1,6 +1,10 @@
 <?xml version="1.0"?>
-<object name="NewsletterBTree" meta_type="Factory-based Type Information"
-   xmlns:i18n="http://xml.zope.org/namespaces/i18n" i18n:domain="plone">
+<object
+  i18n:domain="plonegazette"
+  meta_type="Factory-based Type Information"
+  name="NewsletterBTree"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  >
  <property name="title" i18n:attributes="title">Newsletter Large Folder</property>
  <property
     name="description" i18n:attributes="title">Folder for storing subscribers only</property>

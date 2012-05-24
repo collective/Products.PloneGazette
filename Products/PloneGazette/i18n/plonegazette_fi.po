@@ -955,3 +955,30 @@ msgstr "Tilauksesi uutiskirjeeseen on peruttu."
 #: ../skins/PloneGazette/Newsletter_testForm.pt:20
 msgid "text_test_send_ok"
 msgstr "Testi uutiskirje on lähetetty"
+
+msgid "Manage your newsletters with this"
+msgstr "Uutiskirjekansio"
+
+msgid "Manage your newsletters with this"
+msgstr "Uutiskirje"
+
+msgid "A newletter subscriber (has no sense oudside a NewsletterTheme object)"
+msgstr "Uutiskirjeiden tilaaja"
+
+msgid "Folder for storing subscribers only"
+msgstr "Kansio, johon säilytetään tilaajat."
+
+msgid "Newsletter Large Folder"
+msgstr "Tilaajakansio"
+
+msgid "Newsletter"
+msgstr "Uutiskirje"
+
+msgid "A newletter (has no sense oudside a NewsletterTheme object)"
+msgstr "Uutiskirje"
+
+msgid "Subscriber"
+msgstr "Tilaaja"
+
+msgid ""
+msgstr ""

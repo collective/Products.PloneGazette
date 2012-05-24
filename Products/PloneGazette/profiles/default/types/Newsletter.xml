@@ -1,7 +1,11 @@
 <?xml version="1.0"?>
-<object name="Newsletter" meta_type="Factory-based Type Information"
-  xmlns:i18n="http://xml.zope.org/namespaces/i18n" i18n:domain="plone">
- <property name="title"></property>
+<object
+  i18n:domain="plonegazette"
+  meta_type="Factory-based Type Information"
+  name="Newsletter"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  >
+ <property name="title">Newsletter</property>
  <property
     name="description">A newletter (has no sense oudside a NewsletterTheme object)</property>
  <property name="content_icon">Newsletter.gif</property>

@@ -29,9 +29,6 @@ msgstr "Uutiskirje"
 msgid "NewsletterTheme"
 msgstr "Uutiskirjekansio"
 
-msgid "Newsletter Large Folder"
-msgstr "Tilaajakansio"
-
 msgid "Newsletter Reference"
 msgstr "Uutiskirjeviite"
 
@@ -61,6 +58,3 @@ msgstr "Peruuta"
 
 msgid "Properties"
 msgstr "Ominaisuudet"
-
-msgid "Folder for storing subscribers only"
-msgstr "."
