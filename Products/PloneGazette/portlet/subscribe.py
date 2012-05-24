@@ -3,19 +3,15 @@ from Products.CMFPlone.utils import getToolByName
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.PloneGazette import PloneGazetteFactory as _
 from Products.PloneGazette.interfaces import INewsletterTheme
-from plone.app.form.widgets.uberselectionwidget import UberSelectionWidget
 from plone.app.portlets.portlets import base
 from plone.app.vocabularies.catalog import SearchableTextSourceBinder
 from plone.portlets.interfaces import IPortletDataProvider
-from plone.registry.interfaces import IRegistry
 from plone.z3cform.layout import FormWrapper
 from z3c.form import button
-from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from z3c.form.field import Fields
 from z3c.form.form import Form
 from zope import schema
 from zope.component import getMultiAdapter
-from zope.component import getUtility
 from zope.formlib import form
 from zope.interface import Interface
 from zope.interface import implements
@@ -23,7 +19,6 @@ from zope.schema import Choice
 from zope.schema import TextLine
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
-from zope.site.hooks import getSite
 
 
 class ISubscribeNewsletterPortlet(IPortletDataProvider):
@@ -119,12 +114,29 @@ class SubscribeNewsletterForm(Form):
 
     def newslettertheme(self):
         """Returns brain of NewsletterTheme."""
+        path = self.data.newsletters
+        query = {
+            'object_provides': INewsletterTheme.__identifier__,
+        }
+        if path:
+            portal_state = getMultiAdapter(
+                (self.context, self.request),
+                name="plone_portal_state"
+            )
+            path = '{0}{1}'.format(
+                portal_state.navigation_root_path(),
+                path
+            )
+            query.update(
+                {
+                    'path': {
+                        'depth': 0,
+                        'query': path,
+                    }
+                }
+            )
         catalog = getToolByName(self.context, 'portal_catalog')
-        brains = catalog(
-            {
-                'object_provides': INewsletterTheme.__identifier__,
-            }
-        )
+        brains = catalog(query)
         if brains:
             return brains[0]
 
@@ -144,7 +156,12 @@ class SubscribeNewsletterForm(Form):
         make sure the form is posted through the same view always,
         instead of making HTTP POST to the page where the form was rendered.
         """
-        return self.context.absolute_url() + "/@@register-newsletter"
+        path = self.newslettertheme().getPath()
+        # return self.context.absolute_url() + "/@@register-newsletter"
+        return '{0}/@@register-newsletter?path={1}'.format(
+            self.context.absolute_url(),
+            path
+        )
 
 
     @button.buttonAndHandler(_('Subscribe'), name='subscribe')

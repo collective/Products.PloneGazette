@@ -980,5 +980,8 @@ msgstr "Uutiskirje"
 msgid "Subscriber"
 msgstr "Tilaaja"
 
-msgid ""
-msgstr ""
+msgid "Format"
+msgstr "Uutiskirjeen muoto"
+
+msgid "E-mail address"
+msgstr "Sähköpostiosoite"

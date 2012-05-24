@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<rolemap>
+  <permissions>
+    <permission name="Portlets: Manage Subscribe Newsletter portlet"
+                acquire="True">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+      <role name="Editor" />
+    </permission>
+  </permissions>
+</rolemap>

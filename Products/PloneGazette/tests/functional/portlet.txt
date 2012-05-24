@@ -44,6 +44,9 @@ Add NewsletterTheme to make the portlet available::
     <span class="portletBottomRight"></span>
     </dd>
 
+    >>> 'path=/plone/newslettertheme01' in browser.contents
+    True
+
 Add one more NewsletterTheme::
 
     >>> browser.open('/createObject?type_name=NewsletterTheme')
@@ -60,10 +63,19 @@ Go to edit portlet::
 
     >>> browser.getControl(name="form.newsletters.query.selection").value = ["/newslettertheme02"]
 
-    # >>> browser.getControl(name="form.newsletters.query.apply").click()
+    >>> browser.getControl(name="form.newsletters.query.apply").click()
 
     >>> browser.getControl(name="form.actions.save").click()
 
-    >>> browser.open('/++contextportlets++plone.leftcolumn/bound-method-assignment-title-of-assignment-at/edit?referer=http%3A//nohost/plone/%40%40manage-portlets')
+    >>> browser.open(portal_url)
 
-    >>> browser.openBrowser()
+    >>> print browser.bycss('.portletFooter')
+    --- 1 ---
+    <dd class="portletFooter">
+    <span class="portletBottomLeft"></span>
+    <a alt="Description of NewsletterTheme02" href="http://nohost/plone/newslettertheme02" title="NewsletterTheme02">Visit our archives</a>
+    <span class="portletBottomRight"></span>
+    </dd>  
+
+    >>> 'path=/plone/newslettertheme02' in browser.contents
+    True

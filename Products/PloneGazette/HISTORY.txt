@@ -1,3 +1,9 @@
+X.X (2012-XX-XX)
+================
+
+- Subscribe Newsletter Portlet added.
+  [taito]
+
 3.2 - (2012-02-09)
 ================
 

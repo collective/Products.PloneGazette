@@ -9,7 +9,7 @@ desc = open(readme_file).read().strip()
 changes_file = os.path.join('Products', 'PloneGazette', 'HISTORY.txt')
 changes = open(changes_file).read().strip()
 
-long_description = desc + '\n\nCHANGES\n=======\n\n' +  changes 
+long_description = desc + '\n\nCHANGES\n=======\n\n' +  changes
 
 setup(
     name='Products.PloneGazette',
@@ -29,7 +29,8 @@ setup(
     url='http://plone.org/products/plonegazette',
     description='A complete Newsletter product for Plone.',
     long_description=long_description,
-    packages=['Products', 'Products.PloneGazette'],
+    # packages=['Products', 'Products.PloneGazette'],
+    packages=find_packages(exclude=['ez_setup']),
     include_package_data = True,
     zip_safe=False,
     namespace_packages=['Products'],
