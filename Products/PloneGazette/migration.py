@@ -1,7 +1,9 @@
 from Products.CMFCore.WorkflowCore import WorkflowException
 from plone.app.workflow.remap import remap_workflow
+from Products.CMFCore.utils import getToolByName
 
 import logging
+
 logger = logging.getLogger('PloneGazette.migration')
 
 
