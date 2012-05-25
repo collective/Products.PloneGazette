@@ -1,6 +1,5 @@
- 
-
-PloneGazette - Upgrade notes
+Upgrade
+-------
 
   Upgrade to 3.1.1
 
@@ -24,8 +23,9 @@ PloneGazette - Upgrade notes
       This upgrade operation may take some time if there is a lot of
       subscribers. There is no progress indication, but messages in the event 
       log:
-        INFO PloneGazette.migration Remapping Subscriber workflow
-        INFO PloneGazette.migration Subscriber workflow remapped
+
+      - INFO PloneGazette.migration Remapping Subscriber workflow
+      - INFO PloneGazette.migration Subscriber workflow remapped
 
 
   Upgrade from PloneGazette 2.x to PloneGazette 3.0

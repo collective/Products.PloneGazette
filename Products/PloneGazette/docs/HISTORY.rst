@@ -1,3 +1,6 @@
+Changelog
+---------
+
 X.X (2012-XX-XX)
 ================
 
@@ -5,7 +8,7 @@ X.X (2012-XX-XX)
   [taito]
 
 3.2 - (2012-02-09)
-================
+==================
 
   - Added backwards-compatible patch for Plone 4.1.3, TinyMCE 1.2.9
     which fixes error messages when editing a Newsletter.

@@ -4,12 +4,20 @@ from setuptools import setup
 import os
 
 
-readme_file= os.path.join('Products', 'PloneGazette', 'README.txt')
-desc = open(readme_file).read().strip()
-changes_file = os.path.join('Products', 'PloneGazette', 'HISTORY.txt')
-changes = open(changes_file).read().strip()
+# readme_file= os.path.join('Products', 'PloneGazette', 'README.txt')
+# desc = open(readme_file).read().strip()
+# changes_file = os.path.join('Products', 'PloneGazette', 'HISTORY.txt')
+# changes = open(changes_file).read().strip()
 
-long_description = desc + '\n\nCHANGES\n=======\n\n' +  changes
+# long_description = desc + '\n\nCHANGES\n=======\n\n' +  changes
+
+long_description = (
+    open(os.path.join("Products", "PloneGazette", "docs", "README.rst")).read() + "\n" +
+    open(os.path.join("Products", "PloneGazette", "docs", "INSTALL.rst")).read() + "\n" +
+    open(os.path.join("Products", "PloneGazette", "docs", "UPGRADE.rst")).read() + "\n" +
+    open(os.path.join("Products", "PloneGazette", "docs", "HISTORY.rst")).read()
+)
+
 
 setup(
     name='Products.PloneGazette',

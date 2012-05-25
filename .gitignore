@@ -1,4 +1,3 @@
-hexagonit/usernotifications/docs/_build/*
 *.egg-info
 *.mo
 *.pyc
@@ -6,5 +5,5 @@ hexagonit/usernotifications/docs/_build/*
 *~
 .DS_Store
 .long-description.html
+Products/PloneGazette/docs/_build/*
 dist
-setup.cfg
