@@ -7,5 +7,6 @@
     <type portal_type="NewsletterBTree" />
     <type portal_type="NewsletterTheme" />
     <type portal_type="Newsletter" />
+    <type portal_type="Subscriber" />
   </factorytypes>
 </object>

@@ -45,4 +45,13 @@
       profile="Products.PloneGazette:default"
       />
 
+  <genericsetup:upgradeStep
+    description=""
+    destination="3.3"
+    handler=".migration.upgrade_32_to_33"
+    profile="Products.PloneGazette:default"
+    source="3.2"
+    title="Import factorytool.xml"
+    />
+
 </configure>
