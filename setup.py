@@ -30,7 +30,6 @@ setup(
     url='http://plone.org/products/plonegazette',
     description='A complete Newsletter product for Plone.',
     long_description=long_description,
-    # packages=['Products', 'Products.PloneGazette'],
     packages=find_packages(exclude=['ez_setup']),
     include_package_data = True,
     zip_safe=False,
