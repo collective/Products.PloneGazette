@@ -65,6 +65,7 @@ from Products.PloneGazette.interfaces import INewsletter
 
 from zope.interface import implements
 
+from Products.PloneGazette import PloneGazetteFactory as _
 
 
 logger = logging.getLogger('PloneGazette')
@@ -459,6 +460,8 @@ class Newsletter(SkinnedFolder, OrderedContainer, DefaultDublinCoreImpl, PNLCont
             if footer_url is None:
                 # fixup URL references
                 text = lynx_file_url.sub('%(url)s', text)
+            text = unicode(text).replace('References', self.translate(_(u'References')))
+            text = str(text)
         else:
             text = transform_tool.convertToData('text/plain', html)
 

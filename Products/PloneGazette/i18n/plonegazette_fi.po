@@ -985,3 +985,6 @@ msgstr "Uutiskirjeen muoto"
 
 msgid "E-mail address"
 msgstr "Sähköpostiosoite"
+
+msgid "References"
+msgstr "Referenssi"
