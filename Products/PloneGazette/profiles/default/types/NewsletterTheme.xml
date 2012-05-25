@@ -21,7 +21,8 @@
  </property>
  <property name="allow_discussion">False</property>
  <alias from="(Default)" to="NewsletterTheme_view"/>
- <alias from="edit" to="base_edit"/>
+ <!-- <alias from="edit" to="base_edit"/> -->
+ <alias from="edit" to="NewsletterTheme_editForm"/>
  <alias from="properties" to="base_metadata"/>
  <alias from="sharing" to="folder_localrole_form"/>
  <alias from="view" to="NewsletterTheme_view"/>

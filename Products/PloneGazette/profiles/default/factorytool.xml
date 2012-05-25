@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<object
+  name="portal_factory"
+  mata_type="Plone Factory Tool"
+  >
+  <factorytypes>
+    <type portal_type="NewsletterBTree" />
+    <type portal_type="NewsletterTheme" />
+    <type portal_type="Newsletter" />
+  </factorytypes>
+</object>
