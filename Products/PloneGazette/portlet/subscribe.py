@@ -45,9 +45,6 @@ class ISubscribeNewsletterPortlet(IPortletDataProvider):
 class Assignment(base.Assignment):
     implements(ISubscribeNewsletterPortlet)
 
-    name = u""
-    newsletters = None
-
     def __init__(self, name=u"", newsletters=None):
         self.name = name
         self.newsletters = newsletters
@@ -157,7 +154,6 @@ class SubscribeNewsletterForm(Form):
         instead of making HTTP POST to the page where the form was rendered.
         """
         path = self.newslettertheme().getPath()
-        # return self.context.absolute_url() + "/@@register-newsletter"
         return '{0}/@@register-newsletter?path={1}'.format(
             self.context.absolute_url(),
             path
@@ -221,8 +217,11 @@ class AddForm(base.AddForm):
     label = _(u"Add Subscribe Newsletter Portlet")
     description = _(u"This portlet displays Subscribe Newsletter Portlet.")
 
+    def __init__(self, context, request):
+        super(AddForm, self).__init__(context, request)
+
     def create(self, data):
-        return Assignment(name=data.get('name', u""))
+        return Assignment(**data)
 
 
 class EditForm(base.EditForm):

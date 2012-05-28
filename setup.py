@@ -35,6 +35,7 @@ setup(
     zip_safe=False,
     namespace_packages=['Products'],
     install_requires=[
+        'hexagonit.portletstyle',
         'hexagonit.testing',
         'setuptools',
         'zope.i18nmessageid',

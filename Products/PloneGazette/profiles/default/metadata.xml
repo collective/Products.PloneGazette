@@ -1,4 +1,7 @@
 <?xml version="1.0"?>
 <metadata>
   <version>3.3</version>
+  <dependencies>
+    <dependency>profile-hexagonit.portletstyle:default</dependency>
+  </dependencies>
 </metadata>

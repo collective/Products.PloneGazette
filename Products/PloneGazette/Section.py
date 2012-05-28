@@ -18,7 +18,8 @@ try:
     hasZopeOrderedSupport=1
 except ImportError:
     hasZopeOrderedSupport=0
-from Products.CMFPlone.interfaces.OrderedContainer import IOrderedContainer
+# from Products.CMFPlone.interfaces.OrderedContainer import IOrderedContainer
+from OFS.interfaces import IOrderedContainer
 
 from Products.PloneGazette.interfaces import ISection
 

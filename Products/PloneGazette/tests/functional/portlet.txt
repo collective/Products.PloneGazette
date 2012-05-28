@@ -12,6 +12,8 @@ Go to add portlet.SubscribeNewsletter::
 
     >>> browser.open('/++contextportlets++plone.leftcolumn/+/portlets.SubscribeNewsletter')
 
+    >>> browser.openBrowser()
+
     >>> browser.getControl(name="form.actions.save").click()
 
     >>> 'Our newsletter' in browser.contents
