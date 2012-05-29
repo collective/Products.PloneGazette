@@ -10,7 +10,7 @@
     description=""
     i18n:attributes="
       title;
-      description;
+      description
     "
     >
     <for interface="plone.app.portlets.interfaces.IColumn" />

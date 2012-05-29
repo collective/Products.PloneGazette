@@ -988,3 +988,33 @@ msgstr "Sähköpostiosoite"
 
 msgid "References"
 msgstr "Referenssi"
+
+msgid "Subscribe Newsletter Portlet"
+msgstr "Uutiskirjeen tilaus"
+
+msgid "Add Subscribe Newsletter Portlet"
+msgstr "Lisää Uutiskirjeen tilaus-portlet"
+
+msgid "Edit Subscribe Newsletter Portlet"
+msgstr "Muokkaa Uutiskirjeen tilaus-portlet"
+
+msgid "This portlet displays Subscribe Newsletter Portlet."
+msgstr "Tämä portlet näyttää Uutiskirjeen tilaus-lomakkeen"
+
+msgid "Name of Portlet"
+msgstr "Portletin otsikko"
+
+msgid "Newsletters"
+msgstr "Uutiskirjeet"
+
+msgid "Find the newsletter theme."
+msgstr "Valitse uutiskirje-kansio"
+
+msgid "Selected"
+msgstr "Valittu"
+
+msgid "Nothing"
+msgstr "Ei mitään"
+
+msgid "Apply"
+msgstr "Valitse"

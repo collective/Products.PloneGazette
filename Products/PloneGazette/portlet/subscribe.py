@@ -93,7 +93,7 @@ class SubscribeNewsletterForm(Form):
 
     fields = Fields(ISubscribeNewsletterForm)
     ignoreContext = True
-    label = _(u"Search Event")
+    label = _(u"")
 
     def __init__(self, context, request, returnURLHint=None, full=True, data=None):
         """
