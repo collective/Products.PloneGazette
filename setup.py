@@ -14,7 +14,7 @@ long_description = (
 
 setup(
     name='Products.PloneGazette',
-    version='3.2-a735ce43c13',
+    version='3.2-b96ed745dcba',
     author='Pilot Systems, Nidelven IT LTD and others',
     author_email='',
     maintainer='Morten W. Petersen',
