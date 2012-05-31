@@ -1009,12 +1009,3 @@ msgstr "Uutiskirjeet"
 
 msgid "Find the newsletter theme."
 msgstr "Valitse uutiskirje-kansio"
-
-msgid "Selected"
-msgstr "Valittu"
-
-msgid "Nothing"
-msgstr "Ei mitään"
-
-msgid "Apply"
-msgstr "Valitse"
