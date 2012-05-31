@@ -461,8 +461,7 @@ class Newsletter(SkinnedFolder, OrderedContainer, DefaultDublinCoreImpl, PNLCont
             if footer_url is None:
                 # fixup URL references
                 text = lynx_file_url.sub('%(url)s', text)
-            text = unicode(text).replace('References', self.translate(_(u'References')))
-            text = str(text)
+            text = safe_unicode(text).replace('References', self.translate(_(u'References')))
         else:
             text = transform_tool.convertToData('text/plain', html)
 

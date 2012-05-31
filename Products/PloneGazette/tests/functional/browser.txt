@@ -7,10 +7,12 @@ Add NewsletterTheme::
 
     >>> browser.open('/createObject?type_name=NewsletterTheme')
 
-    >>> browser.getControl(name="title").value = 'Test Newsletter Theme'
+    >>> browser.getControl(name="title").value = 'NewsletterTheme01'
     >>> browser.getControl(name="testEmail").value = 'test@email.com'
     >>> browser.getControl(name="authorEmail").value = 'author@email.com'
     >>> browser.getControl(name="form.button.Save").click()
+
+    # >>>  theme_url = browser.url
 
 Add Subscriber::
 
@@ -44,3 +46,29 @@ Unsubscribe::
     </dl>
     --- 2 ---
     <div class="portalMessage">You have been successfully unsubscribed from this newsletter.</div>
+
+Create Newsletter::
+
+    >>> browser.open('/newslettertheme01/createObject?type_name=Newsletter')
+    >>> browser.getControl(name="title").value = 'Äää'
+    >>> browser.getControl(name="description").value = 'Ööö'
+    >>> browser.getControl(name="text").value = '<p>Ååå</p>'
+    >>> browser.getControl(name="form.button.Save").click()
+
+Check preview of HTML newsletter::
+
+    >>> browser.getLink('Test').click()
+    >>> test_url = browser.url
+
+    >>> browser.getLink('HTML newsletter').click()
+    >>> 'Äää' in browser.contents
+    True
+
+Check preview of plaon text newsletter::
+
+    >>> browser.open(test_url)
+
+    >>> browser.getLink('plain text newsletter').click()
+
+    >>> browser.openBrowser()
+
