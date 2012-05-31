@@ -309,7 +309,9 @@ msgstr "Lähetä uutiskirje"
 #. Default: "Subscribe to this newsletter"
 #: ../skins/PloneGazette/NewsletterTheme_subscribeForm.pt:21
 msgid "heading_subscriber_edit"
-msgstr "Muokkaa tilaajatietoja"
+#msgstr "Muokkaa tilaajatietoja"
+# Work around
+msgstr "Kiitos tilauksesta"
 
 # <th i18n:tranbslate="heading_subscribers">Subscribers</th>
 #. Default: "Subscribers"

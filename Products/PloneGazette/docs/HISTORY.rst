@@ -6,6 +6,8 @@ X.X (2012-XX-XX)
 
 - Subscribe Newsletter Portlet added.
   [taito]
+- UnicodeDecodeError while previewing plain text newsletter fixed.
+  [taito]
 
 3.2 - (2012-02-09)
 ==================
