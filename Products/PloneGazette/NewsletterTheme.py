@@ -662,16 +662,19 @@ class NewsletterTheme(SkinnedFolder.SkinnedFolder, DefaultDublinCoreImpl, PNLCon
         self._csv_import_log = ''
 
         filename = file_upload.filename
-        filedatas = file_upload.read()
-        var_directory = self.Control_Panel.getCLIENT_HOME()
+        # filedatas = file_upload.read()
+        # var_directory = self.Control_Panel.getCLIENT_HOME()
 
-        dialect = csv.excel
+        # dialect = csv.excel
 
-        # first, create a temp file on file system
-        self._createTempFile(var_directory, filename, filedatas)
+        # # first, create a temp file on file system
+        # self._createTempFile(var_directory, filename, filedatas)
+
 
         # open temp csv file
-        reader = csv.DictReader(open('%s/%s' % (var_directory, filename)), ['email', 'active', 'format'], dialect=dialect)
+        # reader = csv.DictReader(open('%s/%s' % (var_directory, filename)), ['email', 'active', 'format'], dialect=dialect)
+
+        reader = csv.DictReader(file_upload, ['email', 'active', 'format'])
 
         # get target folder for subscribers object, or create it if not exist
         subscriber_folder = self.getSubscriberFolder()
@@ -730,8 +733,8 @@ class NewsletterTheme(SkinnedFolder.SkinnedFolder, DefaultDublinCoreImpl, PNLCon
                     k += 1
                     self._subscribersCount += 1
 
-        # remove temp csv file
-        os.remove('%s/%s' % (var_directory, filename))
+        # # remove temp csv file
+        # os.remove('%s/%s' % (var_directory, filename))
 
         self._logCSVImportResult(not_valid, already_used)
 

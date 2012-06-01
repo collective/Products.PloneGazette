@@ -11,3 +11,66 @@ Add NewsletterTheme::
     >>> browser.getControl(name="testEmail").value = 'test@email.com'
     >>> browser.getControl(name="authorEmail").value = 'author@email.com'
     >>> browser.getControl(name="form.button.Save").click()
+
+Add Add Subscriber Folder::
+
+    >>> browser.open('/newslettertheme01/createObject?type_name=NewsletterBTree')
+
+    >>> browser.getControl(name="title").value = 'SubscriberFolder'
+    >>> browser.getControl(name="form.button.save").click()
+
+    >>> browser.open('/newslettertheme01/subscribers')
+    Traceback (most recent call last):
+    ...
+    HTTPError: HTTP Error 404: Not Found
+
+Import csv file::
+
+    >>> data = {'filename': 'data.csv', 'content-type': 'text/csv', 'data': open(data_path)}
+    >>> browser.post("/newslettertheme01/NewsletterTheme_import", {'file_upload': data})
+
+    >>> browser.open('/newslettertheme01/subscriberfolder')
+    >>> print browser.bycss('.listing')
+    --- 1 ---
+    <table class="listing"><tr><th>E-mail</th>
+    <th>Format</th>
+    <th>Account activation</th>
+    <th>Delete subscriber</th>
+    </tr><tr class="odd"><td>
+    <a href="http://nohost/plone/newslettertheme01/subscribers/.../Subscriber_editForm">zzz@zzz.zz</a>
+    </td>
+    <td>Text</td>
+    <td>
+    <span>*</span>
+    </td>
+    <td>
+    <a href="http://nohost/plone/newslettertheme01/subscribers/.../unSubscribe?subscriber_id=...">delete</a>
+    </td>
+    </tr><tr class="even"><td>
+    <a href="http://nohost/plone/newslettertheme01/subscribers/.../Subscriber_editForm">yyy@yyy.yy</a>
+    </td>
+    <td>HTML</td>
+    <td>
+    <span>*</span>
+    </td>
+    <td>
+    <a href="http://nohost/plone/newslettertheme01/subscribers/.../unSubscribe?subscriber_id=...">delete</a>
+    </td>
+    </tr><tr class="odd"><td>
+    <a href="http://nohost/plone/newslettertheme01/subscribers/.../Subscriber_editForm">xxx@xxx.xx</a>
+    </td>
+    <td>HTML</td>
+    <td>
+    </td>
+    <td>
+    <a href="http://nohost/plone/newslettertheme01/subscribers/.../unSubscribe?subscriber_id=...">delete</a>
+    </td>
+    </tr></table>
+
+    # >>> browser.open('/newslettertheme01/subscribers')
+    # Traceback (most recent call last):
+    # ...
+    # HTTPError: HTTP Error 404: Not Found
+
+
+    # >>> browser.openBrowser()

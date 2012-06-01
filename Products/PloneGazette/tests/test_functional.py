@@ -40,7 +40,10 @@ def setUp(self):
 
     setRoles(portal, TEST_USER_ID, ['Manager'])
 
+    # root_dir = tempfile.mkdtemp()
+
     data_path = '/'.join(__file__.split('/')[:-1] + ['files', 'data.csv'])
+    self.globs['data_path'] = data_path
     self.globs['data_file'] = open(data_path)
 
     transaction.commit()
