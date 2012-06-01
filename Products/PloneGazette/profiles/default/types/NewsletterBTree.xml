@@ -5,9 +5,8 @@
   name="NewsletterBTree"
   xmlns:i18n="http://xml.zope.org/namespaces/i18n"
   >
- <property name="title" i18n:attributes="title">Newsletter Large Folder</property>
- <property
-    name="description" i18n:attributes="title">Folder for storing subscribers only</property>
+ <property name="title" i18n:translate="">Newsletter Large Folder</property>
+ <property name="description" i18n:translate="">Folder for storing subscribers only</property>
  <property name="content_icon">folder_icon.gif</property>
  <property name="content_meta_type">NewsletterBTree</property>
  <property name="product">PloneGazette</property>

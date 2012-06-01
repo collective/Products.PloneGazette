@@ -12,8 +12,6 @@ Add NewsletterTheme::
     >>> browser.getControl(name="authorEmail").value = 'author@email.com'
     >>> browser.getControl(name="form.button.Save").click()
 
-    # >>>  theme_url = browser.url
-
 Add Subscriber::
 
     >>> browser.getLink('Subscriber').click()
@@ -64,11 +62,8 @@ Check preview of HTML newsletter::
     >>> 'Äää' in browser.contents
     True
 
-Check preview of plaon text newsletter::
+Check preview of plain text newsletter::
 
     >>> browser.open(test_url)
 
     >>> browser.getLink('plain text newsletter').click()
-
-    >>> browser.openBrowser()
-

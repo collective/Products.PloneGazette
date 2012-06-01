@@ -1,0 +1,38 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PloneGazette 1.0\n"
+"POT-Creation-Date: 2011-12-28 17:55+0000\n"
+"PO-Revision-Date: 2004-08-18 20:00+CET\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: plone\n"
+"Language-code: es\n"
+"Language-name: Español\n"
+"Preferred-encodings: latin1 utf-8\n"
+"X-Is-Fallback-For: es-ar es-bo es-cl es-co es-cr es-do es-ec es-sv es-gt es-hn es-mx es-ni es-pa es-py es-pe es-pr es-us es-uy es-ve\n"
+
+msgid "Folder Listing"
+msgstr ""
+
+msgid "Import"
+msgstr ""
+
+msgid "Informations"
+msgstr ""
+
+msgid "Properties"
+msgstr ""
+
+msgid "Subscribe"
+msgstr ""
+
+msgid "Subscribe Newsletter Portlet"
+msgstr ""
+
+msgid "Test"
+msgstr ""

@@ -48,7 +48,7 @@ class Assignment(base.Assignment):
     def __init__(self, *args, **kwargs):
         ## For make patching easy.
         super(self.__class__, self).__init__(*args, **kwargs)
-        self.name = kwargs.get('name', '')
+        self.name = kwargs.get('name', u'')
         self.newsletters = kwargs.get('newsletters', None)
 
     def title(self):
@@ -221,6 +221,7 @@ class AddForm(base.AddForm):
 
     def __init__(self, context, request):
         super(AddForm, self).__init__(context, request)
+
 
     def create(self, data):
         return Assignment(**data)
