@@ -45,11 +45,9 @@ class ISubscribeNewsletterPortlet(IPortletDataProvider):
 class Assignment(base.Assignment):
     implements(ISubscribeNewsletterPortlet)
 
-    def __init__(self, *args, **kwargs):
-        ## For make patching easy.
-        super(self.__class__, self).__init__(*args, **kwargs)
-        self.name = kwargs.get('name', u'')
-        self.newsletters = kwargs.get('newsletters', None)
+    def __init__(self, name=u'', newsletters=None):
+        self.name = name
+        self.newsletters = newsletters
 
     def title(self):
         return self.name or _(u'Our newsletter')

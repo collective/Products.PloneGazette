@@ -8,6 +8,8 @@ X.X (2012-XX-XX)
   [taito]
 - UnicodeDecodeError while previewing plain text newsletter fixed.
   [taito]
+- Locales related files moved to locales directory.
+  [taito]
 
 3.2 - (2012-02-09)
 ==================
