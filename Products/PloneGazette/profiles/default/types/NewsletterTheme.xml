@@ -46,22 +46,33 @@
     <permission value="View"/>
   </action>
   <action
-    title="Informations"
     action_id="infos"
     category="object"
     condition_expr=""
+    title="Informations"
     url_expr="string:${object_url}/subscribers_infos"
     visible="True"
     >
     <permission value="PNL Change Newsletter Theme"/>
   </action>
-  <action title="Edit" action_id="edit" category="object" condition_expr=""
-  url_expr="string:${object_url}/NewsletterTheme_editForm" visible="True">
-  <permission value="PNL Change Newsletter Theme"/>
+  <action
+    action_id="edit"
+    category="object"
+    condition_expr=""
+    title="Edit"
+    url_expr="string:${object_url}/NewsletterTheme_editForm"
+    visible="True"
+    >
+    <permission value="PNL Change Newsletter Theme"/>
   </action>
-  <action title="Import" action_id="NewsletterTheme_importForm"
-  category="object" condition_expr=""
-  url_expr="string:${object_url}/NewsletterTheme_importForm" visible="True">
-  <permission value="PNL Change Newsletter Theme"/>
+  <action
+    action_id="NewsletterTheme_importForm"
+    category="object"
+    condition_expr=""
+    title="Import"
+    url_expr="string:${object_url}/NewsletterTheme_importForm"
+    visible="True"
+    >
+    <permission value="PNL Change Newsletter Theme"/>
   </action>
 </object>

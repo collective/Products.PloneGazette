@@ -162,7 +162,7 @@ msgstr "Lähetä uutiskirje"
 #: ./portlet/subscribe.py:165
 #: ./skins/PloneGazette/portlet_gazette.pt:71
 msgid "Subscribe"
-msgstr "Lisää tilaaja"
+msgstr "Tilaa"
 
 #: ./profiles/default/types/Subscriber.xml
 msgid "Subscriber"
@@ -221,7 +221,6 @@ msgstr "Kaikki"
 
 #. Default: "Archives"
 #: ./skins/PloneGazette/NewsletterTheme_view.pt:36
-#, fuzzy
 msgid "heading_archives"
 msgstr "Arkisto"
 
@@ -974,7 +973,6 @@ msgstr "Voit tuoda tilaajia csv-muotoisesta tiedostosta. Tiedostossa tulee olla 
 
 #. Default: "Your newsletter subscription is <strong>activated</strong>."
 #: ./skins/PloneGazette/Subscriber_view.pt:22
-#, fuzzy
 msgid "text_newsletter_activated"
 msgstr "Uutiskirjeen tilauksesi on <b>aktivoitu</b>."
 
@@ -985,7 +983,6 @@ msgstr "Saat uutiskirjeen ${format}-muodossa."
 
 #. Default: "Your newsletter subscription is <strong>not activated</strong>."
 #: ./skins/PloneGazette/Subscriber_view.pt:23
-#, fuzzy
 msgid "text_newsletter_not_activated"
 msgstr "Uutiskirjeen tilauksesi on <b>ei ole aktivoitu</b>."
 

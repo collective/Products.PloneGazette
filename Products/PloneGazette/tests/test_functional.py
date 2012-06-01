@@ -40,6 +40,9 @@ def setUp(self):
 
     setRoles(portal, TEST_USER_ID, ['Manager'])
 
+    data_path = '/'.join(__file__.split('/')[:-1] + ['files', 'data.csv'])
+    self.globs['data_file'] = open(data_path)
+
     transaction.commit()
 
 
@@ -71,5 +74,6 @@ def DocFileSuite(testfile, flags=FLAGS, setUp=setUp, layer=FUNCTIONAL_TESTING):
 def test_suite():
     return unittest.TestSuite([
         DocFileSuite('functional/browser.txt'),
+        DocFileSuite('functional/import.txt'),
         DocFileSuite('functional/portlet.txt'),
         ])
