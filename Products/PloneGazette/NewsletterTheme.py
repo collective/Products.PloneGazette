@@ -662,18 +662,6 @@ class NewsletterTheme(SkinnedFolder.SkinnedFolder, DefaultDublinCoreImpl, PNLCon
         self._csv_import_log = ''
 
         filename = file_upload.filename
-        # filedatas = file_upload.read()
-        # var_directory = self.Control_Panel.getCLIENT_HOME()
-
-        # dialect = csv.excel
-
-        # # first, create a temp file on file system
-        # self._createTempFile(var_directory, filename, filedatas)
-
-
-        # open temp csv file
-        # reader = csv.DictReader(open('%s/%s' % (var_directory, filename)), ['email', 'active', 'format'], dialect=dialect)
-
         reader = csv.DictReader(file_upload, ['email', 'active', 'format'])
 
         # get target folder for subscribers object, or create it if not exist
@@ -687,7 +675,6 @@ class NewsletterTheme(SkinnedFolder.SkinnedFolder, DefaultDublinCoreImpl, PNLCon
         first_row = reader.next()
         if first_row['email']!='email':
             return "You must add headers to the csv file : email, active, format ('email' at least)"
-
 
         # for each row, create a subscriber object
         default_format = self.default_format
@@ -733,9 +720,6 @@ class NewsletterTheme(SkinnedFolder.SkinnedFolder, DefaultDublinCoreImpl, PNLCon
                     k += 1
                     self._subscribersCount += 1
 
-        # # remove temp csv file
-        # os.remove('%s/%s' % (var_directory, filename))
-
         self._logCSVImportResult(not_valid, already_used)
 
         msg = ''
@@ -747,7 +731,10 @@ class NewsletterTheme(SkinnedFolder.SkinnedFolder, DefaultDublinCoreImpl, PNLCon
         if len(not_valid):
             msg += '%s emails were not valid. ' % len(not_valid)
 
-        return msg
+        properties = getToolByName(self, 'portal_properties')
+        site_properties = getattr(properties, 'site_properties')
+        charset = site_properties.getProperty('default_charset', 'utf-8')
+        return msg.encode(charset)
 
     security.declareProtected(ChangeNewsletterTheme, 'getCSVImportLogs')
     def getCSVImportLogs(self):
