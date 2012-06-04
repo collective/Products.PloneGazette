@@ -1,4 +1,3 @@
-from Products.CMFCore.utils import getToolByName
 from Products.PloneGazette.tests.base import IntegrationTestCase
 from plone.app.testing import TEST_USER_ID
 from plone.app.testing import setRoles
