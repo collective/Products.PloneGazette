@@ -821,6 +821,10 @@ class NewsletterTheme(SkinnedFolder.SkinnedFolder, DefaultDublinCoreImpl, PNLCon
             return batch
         return contents
 
+    def _email_charset(self):
+        portal = getToolByName(self, 'portal_url').getPortalObject()
+        return portal.getProperty('email_charset', 'utf-8')
+
 
 # Class instanciation
 InitializeClass(NewsletterTheme)
