@@ -316,10 +316,18 @@ class NewsletterTheme(SkinnedFolder.SkinnedFolder, DefaultDublinCoreImpl, PNLCon
             REQUEST = self.REQUEST
         errors = {}
         data = {}
-        # charset = self.ploneCharset()
         charset = getUtility(ISiteRoot).getProperty('email_charset', 'utf-8')
         if REQUEST.form.has_key('email'):
             # Form submitted
+
+            # props = getToolByName(self, 'portal_properties').primacontrol_properties
+            # if props.getProperty('gazette_spam_prevention', False) \
+            #        and (REQUEST.get('message') != '' or REQUEST.get('title') != ''):
+            #     log.warn('HONEYPOT FILLED. SUBSCRIBE REJECTED')
+            #     data['email'] = ''
+            #     data['format'] = self.default_format
+            #     return data, errors
+
             emailaddress = REQUEST.form.get('email', '').strip()
             data['email'] = emailaddress
 

@@ -17,6 +17,34 @@ class TestCase(IntegrationTestCase):
         from plone.browserlayer import utils
         self.failUnless(IPloneGazetteLayer in utils.registered_layers())
 
+    def test_registry__spam_prevention__value(self):
+        from zope.component import getUtility
+        from plone.registry.interfaces import IRegistry
+        registry = getUtility(IRegistry)
+        self.assertFalse(registry['Products.PloneGazette.spam_prevention'])
+
+    def test_registry__spam_prevention__field__instance(self):
+        from zope.component import getUtility
+        from plone.registry.interfaces import IRegistry
+        record = getUtility(IRegistry).records.get('Products.PloneGazette.spam_prevention')
+        from plone.registry.field import Bool
+        self.assertTrue(isinstance(record.field, Bool))
+
+    def test_registry__spam_prevention__field__title(self):
+        from zope.component import getUtility
+        from plone.registry.interfaces import IRegistry
+        record = getUtility(IRegistry).records.get('Products.PloneGazette.spam_prevention')
+        self.assertEqual(record.field.title, u'Spam Prevention')
+
+    def test_registry__spam_prevention__field__description(self):
+        from zope.component import getUtility
+        from plone.registry.interfaces import IRegistry
+        record = getUtility(IRegistry).records.get('Products.PloneGazette.spam_prevention')
+        self.assertEqual(
+            record.field.description,
+            u'Spam Prevention for PloneGazette.'
+        )
+
     def test_rolemap__Manage_Subscribe_Newsletter_portlet__rolesOfPermission(self):
         permission = "Portlets: Manage Subscribe Newsletter portlet"
         roles = [
@@ -52,3 +80,14 @@ class TestCase(IntegrationTestCase):
         from Products.PloneGazette.browser.interfaces import IPloneGazetteLayer
         from plone.browserlayer import utils
         self.failIf(IPloneGazetteLayer in utils.registered_layers())
+
+    def test_uninstall__registry__spam_prevention(self):
+        installer = getToolByName(self.portal, 'portal_quickinstaller')
+        installer.uninstallProducts(['PloneGazette'])
+        from zope.component import getUtility
+        from plone.registry.interfaces import IRegistry
+        registry = getUtility(IRegistry)
+        self.assertRaises(
+            KeyError,
+            lambda: registry['Products.PloneGazette.spam_prevention']
+        )

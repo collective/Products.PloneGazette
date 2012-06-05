@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<registry>
+  <record name="Products.PloneGazette.spam_prevention">
+    <field type="plone.registry.field.Bool">
+      <title>Spam Prevention</title>
+      <description>Spam Prevention for PloneGazette.</description>
+    </field>
+    <value>False</value>
+  </record>
+</registry>

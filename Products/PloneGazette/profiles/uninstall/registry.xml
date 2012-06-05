@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<registry>
+  <record name="Products.PloneGazette.spam_prevention" delete="true" />
+</registry>
