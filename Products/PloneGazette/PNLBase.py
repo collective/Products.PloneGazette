@@ -1,17 +1,5 @@
-#
-# $Id: PNLBase.py 247606 2011-12-29 12:18:10Z vincentfretin $
-#
-
-"""Basic services for most content classes"""
-
-__version__ = "$Revision: 247606 $" [11:-2]
-
 from AccessControl import ClassSecurityInfo
-try:
-    from AccessControl.class_init import InitializeClass
-except ImportError:
-    from Globals import InitializeClass
-
+from AccessControl.class_init import InitializeClass
 from Products.CMFCore.utils import getToolByName
 
 

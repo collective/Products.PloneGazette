@@ -1,12 +1,6 @@
 from AccessControl import ClassSecurityInfo
-try:
-    from AccessControl.class_init import InitializeClass
-except ImportError:
-    from Globals import InitializeClass
-
-from Products.Archetypes.public import *
+from AccessControl.class_init import InitializeClass
 from Products.CMFCore.CatalogTool import CatalogTool
-
 from Products.PloneGazette.config import  PG_CATALOG
 
 

@@ -1,20 +1,16 @@
 from AccessControl import ClassSecurityInfo
 from AccessControl.class_init import InitializeClass
-from zope.interface import implements
-
-# CMF/Plone imports
-from Products.CMFCore.permissions import View
-from Products.CMFDefault.DublinCore import DefaultDublinCoreImpl
+from PNLBase import PNLContentBase
+from PNLPermissions import ChangeSubscriber
+from PNLUtils import checkMailAddress
 from Products.CMFCore.PortalContent import PortalContent
 from Products.CMFCore.interfaces import IContentish
+from Products.CMFCore.permissions import View
 from Products.CMFCore.utils import getToolByName
-
-# Product specific imports
-from PNLPermissions import *
-from PNLUtils import checkMailAddress
-from PNLBase import PNLContentBase
+from Products.CMFDefault.DublinCore import DefaultDublinCoreImpl
 from Products.PloneGazette.config import PG_CATALOG
 from Products.PloneGazette.interfaces import ISubscriber
+from zope.interface import implements
 
 #################
 ## The factory ##

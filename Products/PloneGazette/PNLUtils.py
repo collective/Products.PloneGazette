@@ -1,8 +1,6 @@
 """Misc utilities"""
 from AccessControl import SpecialUsers
 
-import re
-
 
 def checkMailAddress(obj, someAddr):
     """Checks the validity of a mail address"""

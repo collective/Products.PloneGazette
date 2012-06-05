@@ -1,11 +1,13 @@
 from AccessControl import ClassSecurityInfo
-from PNLBase import PNLContentBase
-from PNLPermissions import *
-from Products.Archetypes.atapi import BaseBTreeFolder, BaseBTreeFolderSchema
+from Products.Archetypes.atapi import BaseBTreeFolder
+from Products.Archetypes.atapi import BaseBTreeFolderSchema
+from Products.Archetypes.atapi import BaseFolder
 from Products.Archetypes.atapi import registerType
 from Products.CMFCore.permissions import ListFolderContents
+from Products.PloneGazette.PNLBase import PNLContentBase
+from Products.PloneGazette.PNLPermissions import ChangeNewsletterTheme
+from Products.PloneGazette.config import PROJECTNAME
 from Products.PloneGazette.interfaces import INewsletterBTree
-from config import PROJECTNAME
 from zope.interface import implements
 
 

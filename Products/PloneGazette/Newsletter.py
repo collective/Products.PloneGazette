@@ -1,76 +1,42 @@
-#
-# $Id: Newsletter.py 248033 2012-01-28 15:13:00Z morphex $
-#
-
-"""Newsletter class"""
-
-# Python core imports
-
-import re
-
-import traceback
-import cStringIO
-import email.Message
-import email.Utils
-from email.Header import Header
-
-# Zope core imports
-import transaction
-from zope.i18n import translate
-try:
-    from AccessControl.class_init import InitializeClass
-except ImportError:
-    from Globals import InitializeClass
 from AccessControl import ClassSecurityInfo
 from AccessControl.SpecialUsers import nobody
+from AccessControl.class_init import InitializeClass
 from AccessControl.requestmethod import postonly
 from DateTime import DateTime
 from DocumentTemplate.DT_Util import html_quote
 from OFS import Folder
-from zope.component import getUtility
-import logging
-
-# CMF/Plone imports
+from OFS.interfaces import IOrderedContainer
+from PNLBase import PNLContentBase
+from PNLPermissions import ChangeNewsletter
+from PNLPermissions import ChangeNewsletterTheme
 from Products.CMFCore.interfaces import ISiteRoot
 from Products.CMFCore.permissions import ListFolderContents
-from Products.CMFCore.permissions import View, ModifyPortalContent
+from Products.CMFCore.permissions import ModifyPortalContent
+from Products.CMFCore.permissions import View
 from Products.CMFCore.utils import getToolByName
 from Products.CMFDefault.DublinCore import DefaultDublinCoreImpl
 from Products.CMFDefault.SkinnedFolder import SkinnedFolder
 from Products.CMFPlone.PloneFolder import OrderedContainer
 from Products.CMFPlone.utils import safe_unicode
-try:
-    from zope.structuredtext import stx2html as format_stx
-except ImportError:
-    from Products.CMFCore.utils import format_stx
-
-try:
-    from OFS.IOrderSupport import IOrderedContainer as IZopeOrderedContainer
-    hasZopeOrderedSupport = 1
-except ImportError:
-    hasZopeOrderedSupport = 0
-# from Products.CMFPlone.interfaces.OrderedContainer import IOrderedContainer
-from OFS.interfaces import IOrderedContainer
-
-# Application level imports
-
-from PNLPermissions import *
-from PNLBase import PNLContentBase
-
-
-# Additional imports for converting relative to absolute links
-from elementtree import HTMLTreeBuilder
-from elementtree import ElementTree
-from urlparse import urlparse
-import StringIO
-
-from Products.PloneGazette.interfaces import INewsletter
-
-from zope.interface import implements
-
-# from Products.PloneGazette import PloneGazetteFactory as _
-
 from Products.PloneGazette import _
+from Products.PloneGazette.interfaces import INewsletter
+from elementtree import ElementTree
+from elementtree import HTMLTreeBuilder
+from email.Header import Header
+from urlparse import urlparse
+from zope.component import getUtility
+from zope.i18n import translate
+from zope.interface import implements
+from zope.structuredtext import stx2html as format_stx
+
+import StringIO
+import cStringIO
+import email.Message
+import email.Utils
+import logging
+import re
+import traceback
+import transaction
 
 logger = logging.getLogger('PloneGazette')
 
@@ -99,10 +65,10 @@ lynx_file_url = re.compile(r'file://localhost[^%]+%\(url\)s')
 class Newsletter(SkinnedFolder, OrderedContainer, DefaultDublinCoreImpl, PNLContentBase):
     """Newsletter class"""
 
-    if hasZopeOrderedSupport:
-        __implements__ = (IOrderedContainer, IZopeOrderedContainer)
-    else:
-        __implements__ = (IOrderedContainer,)
+    # if hasZopeOrderedSupport:
+    #     __implements__ = (IOrderedContainer, IZopeOrderedContainer)
+    # else:
+    __implements__ = (IOrderedContainer,)
 
     ########################################
     ## Registration info for portal_types ##
@@ -232,7 +198,7 @@ class Newsletter(SkinnedFolder, OrderedContainer, DefaultDublinCoreImpl, PNLCont
         """
         edit(self, text = '') => object modification method
         """
-        level = self._stx_level
+        # level = self._stx_level
         # Change attributes
         if title:
             self.title = title

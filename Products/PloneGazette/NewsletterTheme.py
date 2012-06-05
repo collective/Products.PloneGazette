@@ -1,39 +1,9 @@
-#
-# $Id: NewsletterTheme.py 247605 2011-12-29 12:13:28Z vincentfretin $
-#
-
-"""NewsletterCentral class"""
-
-# Standard Python imports
-import string
-import random
-import csv
-import os
-
-import email.Message
-import email.Utils
-from email.Header import Header
-
-# Zope core imports
-from zope.interface import implements
-from zope.i18n import translate
-import transaction
-try:
-    from AccessControl.class_init import InitializeClass
-except ImportError:
-    from Globals import InitializeClass
-from AccessControl import getSecurityManager, ClassSecurityInfo
-from AccessControl.SecurityManagement import newSecurityManager, setSecurityManager
+from AccessControl import ClassSecurityInfo
+from AccessControl import getSecurityManager
+from AccessControl.SecurityManagement import newSecurityManager
+from AccessControl.SecurityManagement import setSecurityManager
+from AccessControl.class_init import InitializeClass
 from OFS import Folder
-from Products.PageTemplates import Expressions
-try:
-    from zope.tales.tales import CompilerError
-except ImportError:
-    from Products.PageTemplates.TALES import CompilerError
-from zope.component import getUtility
-
-
-# CMF/Plone imports
 from Products.CMFCore.CMFCatalogAware import CMFCatalogAware
 from Products.CMFCore.interfaces import ISiteRoot
 from Products.CMFCore.permissions import ListFolderContents
@@ -43,17 +13,28 @@ from Products.CMFDefault import SkinnedFolder
 from Products.CMFDefault.DublinCore import DefaultDublinCoreImpl
 from Products.CMFPlone.utils import base_hasattr, safe_unicode
 from Products.CMFPlone.utils import getSiteEncoding
-
-# Product specific imports
-from PNLPermissions import *
-from PNLUtils import ownerOfObject
-from PNLUtils import checkMailAddress
-from PNLBase import PNLContentBase
+from Products.PageTemplates import Expressions
+from Products.PloneGazette import _
+from Products.PloneGazette.PNLBase import PNLContentBase
+from Products.PloneGazette.PNLPermissions import ChangeNewsletterTheme
+from Products.PloneGazette.PNLUtils import checkMailAddress
+from Products.PloneGazette.PNLUtils import ownerOfObject
 from Products.PloneGazette.catalog import manage_addSubscribersCatalog
 from Products.PloneGazette.config import PG_CATALOG
 from Products.PloneGazette.interfaces import INewsletterTheme
+from email.Header import Header
+from zope.component import getUtility
+from zope.i18n import translate
+from zope.interface import implements
+from zope.tales.tales import CompilerError
 
-from Products.PloneGazette import _
+import csv
+import email.Message
+import email.Utils
+import os
+import random
+import string
+import transaction
 
 
 DEFAULT_ACTIVATION_SUBJECT = """Please activate your newsletter account"""
@@ -497,7 +478,6 @@ class NewsletterTheme(SkinnedFolder.SkinnedFolder, DefaultDublinCoreImpl, PNLCon
     security.declarePublic('sendmail')
     def sendmail(self, mailfrom, mailto, mailBody, subject=None):
         """"""
-        portal = getToolByName(self, 'portal_url').getPortalObject()
         mailhost_id = os.environ.get('PLONEGAZETTE_MAILHOST_ID', 'MailHost')
         mail_host = getattr(self, mailhost_id)
         send = getattr(mail_host, 'secureSend', None)
@@ -666,7 +646,6 @@ class NewsletterTheme(SkinnedFolder.SkinnedFolder, DefaultDublinCoreImpl, PNLCon
         # Reset old log
         self._csv_import_log = ''
 
-        filename = file_upload.filename
         reader = csv.DictReader(file_upload, ['email', 'active', 'format'])
 
         # get target folder for subscribers object, or create it if not exist
