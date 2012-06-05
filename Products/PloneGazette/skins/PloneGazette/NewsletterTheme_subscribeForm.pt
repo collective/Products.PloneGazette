@@ -79,6 +79,11 @@ $Id: NewsletterTheme_subscribeForm.pt 247584 2011-12-28 16:27:10Z vincentfretin 
 
   </div>
 
+  <tal:spamprevention condition="context/spam_prevention|nothing">
+    <input class="turhaSeOis" type="text" name="title" value="" />
+    <textarea class="turhaSeOis" rows="2" cols="20" name="message"></textarea>
+  </tal:spamprevention>
+
   <!-- HTML mode Field -->
 
   <div class="field">

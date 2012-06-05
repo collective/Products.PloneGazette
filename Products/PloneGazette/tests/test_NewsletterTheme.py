@@ -41,3 +41,15 @@ class TestNewsletterTheme(IntegrationTestCase):
             theme.subscribeFormProcess(),
             ({'email': '', 'format': 'HTML'}, {})
         )
+
+    def test_spam_prevention__False(self):
+        theme = self.createNewsletterTheme()
+        self.assertFalse(theme.spam_prevention())
+
+    def test_spam_prevention__True(self):
+        from zope.component import getUtility
+        from plone.registry.interfaces import IRegistry
+        registry = getUtility(IRegistry)
+        registry['Products.PloneGazette.spam_prevention'] = True
+        theme = self.createNewsletterTheme()
+        self.assertTrue(theme.spam_prevention())
