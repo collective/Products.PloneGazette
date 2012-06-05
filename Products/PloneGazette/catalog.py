@@ -9,9 +9,11 @@ from Products.CMFCore.CatalogTool import CatalogTool
 
 from Products.PloneGazette.config import  PG_CATALOG
 
+
 class args:
     def __init__(self, **kw):
         self.__dict__.update(kw)
+
 
 class SubscribersCatalog(CatalogTool):
     """Subscribers catalog for PloneGazette"""
@@ -90,7 +92,6 @@ def manage_addSubscribersCatalog(self, REQUEST=None):
         ]
         )
 
-
     # Add indexes and metadatas
     for index_name, index_type in cat.enumerateIndexes():
         try:
@@ -109,4 +110,4 @@ def manage_addSubscribersCatalog(self, REQUEST=None):
             pass
 
     if REQUEST is not None:
-        return self.manage_main(self, REQUEST,update_menu=1)
+        return self.manage_main(self, REQUEST, update_menu=1)

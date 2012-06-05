@@ -6,6 +6,7 @@ from Products.PloneGazette.browser.interfaces import INewsletterBTreeView
 from Products.CMFPlone.interfaces import IPloneSiteRoot
 from Products.CMFCore.utils import getToolByName
 
+
 class NewsletterBTreeView(BrowserView):
     implements(INewsletterBTreeView)
 
@@ -16,11 +17,11 @@ class NewsletterBTreeView(BrowserView):
         result = []
         for s in subscribers:
             # process catalog brains
-            result.append({'url':s.getURL(),
-                           'email':s.email,
-                           'format':s.format,
-                           'id':s.id,
-                           'active':s.active,
+            result.append({'url': s.getURL(),
+                           'email': s.email,
+                           'format': s.format,
+                           'id': s.id,
+                           'active': s.active,
                            })
         return result
 
@@ -37,7 +38,6 @@ class NewsletterBTreeView(BrowserView):
         # Abort if we are at the root of the portal
         if IPloneSiteRoot.providedBy(self.context):
             return None
-
 
         # Get the parent. If we can't get it (unauthorized), use the portal
         parent = aq_parent(aq_inner(obj))

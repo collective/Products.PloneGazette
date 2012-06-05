@@ -23,9 +23,3 @@ def ownerOfObject(obj):
         else:
             user = user.__of__(udb)
     return user
-
-
-# def escPercent(text):
-#     """Replace '%' with '%%' except '%('"""
-#     pat = re.compile(r'%(?!\()')
-#     return pat.sub('%%', text)

@@ -23,13 +23,13 @@ class TestNewsletterTheme(IntegrationTestCase):
     def test__logCSVImportResult__empty(self):
         theme = self.createNewsletterTheme()
         self.assertEqual(theme._csv_import_log, '')
-        theme. _logCSVImportResult([],[])
+        theme. _logCSVImportResult([], [])
         self.assertEqual(theme._csv_import_log, '')
 
     def test__logCSVImportResult__not_empty(self):
         theme = self.createNewsletterTheme()
         self.assertEqual(theme._csv_import_log, '')
-        theme. _logCSVImportResult(['AAA'],['BBB'])
+        theme. _logCSVImportResult(['AAA'], ['BBB'])
         self.assertEqual(
             theme._csv_import_log,
             '<h2>Already subscribed</h2><p>BBB</p><h2>Not valid emails</h2><p>AAA</p>'

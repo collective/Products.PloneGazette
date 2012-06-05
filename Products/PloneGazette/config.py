@@ -2,4 +2,4 @@ PROJECTNAME = 'PloneGazette'
 
 product_globals = globals()
 
-PG_CATALOG='subscribers_catalog'
+PG_CATALOG = 'subscribers_catalog'

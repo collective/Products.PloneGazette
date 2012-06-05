@@ -39,24 +39,24 @@ def initialize(context):
 
     ContentInit(
         'Plone Gazette Newsletter Theme',
-        content_types = (NewsletterTheme.NewsletterTheme,),
-        permission = PNLPermissions.AddNewsletterTheme,
-        extra_constructors = (NewsletterTheme.addNewsletterTheme,),
-        fti = NewsletterTheme.NewsletterTheme.factory_type_information).initialize(context)
+        content_types=(NewsletterTheme.NewsletterTheme, ),
+        permission=PNLPermissions.AddNewsletterTheme,
+        extra_constructors=(NewsletterTheme.addNewsletterTheme, ),
+        fti=NewsletterTheme.NewsletterTheme.factory_type_information).initialize(context)
 
     ContentInit(
         'Plone Gazette Newsletter Section',
-        content_types = (Section.Section,),
-        permission = PNLPermissions.ChangeNewsletter,
-        extra_constructors = (Section.addSection,),
-        fti = Section.Section.factory_type_information).initialize(context)
+        content_types=(Section.Section,),
+        permission=PNLPermissions.ChangeNewsletter,
+        extra_constructors=(Section.addSection,),
+        fti=Section.Section.factory_type_information).initialize(context)
 
     ContentInit(
         'Plone Gazette resources',
-        content_types = contentClasses,
-        permission = permissions.AddPortalContent,
-        extra_constructors = contentConstructors,
-        fti = factoryTypes).initialize(context)
+        content_types=contentClasses,
+        permission=permissions.AddPortalContent,
+        extra_constructors=contentConstructors,
+        fti=factoryTypes).initialize(context)
 
     registerIcon(NewsletterTheme.NewsletterTheme, 'skins/PloneGazette/NewsletterTheme.gif', globals())
     registerIcon(Newsletter.Newsletter, 'skins/PloneGazette/Newsletter.gif', globals())
@@ -69,10 +69,10 @@ def initialize(context):
 
     ContentInit(
         PROJECTNAME + ' Content',
-        content_types = content_types,
-        permission = permissions.AddPortalContent,
-        extra_constructors = constructors,
-        fti = ftis,).initialize(context)
+        content_types=content_types,
+        permission=permissions.AddPortalContent,
+        extra_constructors=constructors,
+        fti=ftis,).initialize(context)
 
 # Plone 4 / TinyMCE compatability:
 #

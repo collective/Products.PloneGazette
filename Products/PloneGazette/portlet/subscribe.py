@@ -137,7 +137,6 @@ class SubscribeNewsletterForm(Form):
         if brains:
             return brains[0]
 
-
     def updateWidgets(self):
         super(self.__class__, self).updateWidgets()
 
@@ -158,7 +157,6 @@ class SubscribeNewsletterForm(Form):
             self.context.absolute_url(),
             path
         )
-
 
     @button.buttonAndHandler(_('Subscribe'), name='subscribe')
     def search(self, action):
@@ -199,7 +197,6 @@ class Renderer(base.Renderer):
         view.form_instance = form
         return view
 
-
     def newsletters(self):
         return self.form_wrapper.form_instance.newslettertheme()
 
@@ -219,7 +216,6 @@ class AddForm(base.AddForm):
 
     def __init__(self, context, request):
         super(AddForm, self).__init__(context, request)
-
 
     def create(self, data):
         return Assignment(**data)

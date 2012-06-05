@@ -11,7 +11,7 @@ def monkeyPatch(originalClass, patchingClass):
     * Overwrites/adds these attributes in original class
     """
     log("Monkeypatching class %s with class %s" %
-            (originalClass.__name__,patchingClass.__name__))
+            (originalClass.__name__, patchingClass.__name__))
 
     for name, newAttr in patchingClass.__dict__.items():
         # don't overwrite doc or module informations
@@ -25,7 +25,7 @@ def monkeyPatch(originalClass, patchingClass):
                 stored_orig = getattr(originalClass, stored_orig_name, None)
                 # don't double-patch on refresh!
                 if stored_orig is None:
-                    setattr(originalClass,stored_orig_name,orig)
+                    setattr(originalClass, stored_orig_name, orig)
             # overwrite or add the new attribute
             setattr(originalClass, name, newAttr)
 

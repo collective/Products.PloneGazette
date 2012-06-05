@@ -28,7 +28,7 @@ def importVarious(context):
                 # migrate attributes
                 if s._internalVersion == 1:
                     update_catalog = True
-                    s.email    = s.title
+                    s.email = s.title
                     s.fullname = ''
                     del s.title
                     s._internalVersion = 2

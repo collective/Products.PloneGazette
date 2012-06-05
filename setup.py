@@ -31,7 +31,7 @@ setup(
     description='A complete Newsletter product for Plone.',
     long_description=long_description,
     packages=find_packages(exclude=['ez_setup']),
-    include_package_data = True,
+    include_package_data=True,
     zip_safe=False,
     namespace_packages=['Products'],
     install_requires=[

@@ -23,5 +23,5 @@ if file_upload_id[-4:] != '.csv':
 ####################################
 
 result = context.createSubscribersFromCSV(file_upload)
-msg=context.safePortalMessage(result)
+msg = context.safePortalMessage(result)
 return redirect(context.absolute_url() + '/NewsletterTheme_importForm?portal_status_message=%s&import=1' % msg)

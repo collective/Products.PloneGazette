@@ -1,19 +1,5 @@
-#
-# $Id: Subscriber.py 247606 2011-12-29 12:18:10Z vincentfretin $
-#
-
-"""
-Subscriber main class
-"""
-
-# Standard Python imports
-
-# Zope core imports
-try:
-    from AccessControl.class_init import InitializeClass
-except ImportError:
-    from Globals import InitializeClass
 from AccessControl import ClassSecurityInfo
+from AccessControl.class_init import InitializeClass
 from zope.interface import implements
 
 # CMF/Plone imports
@@ -34,7 +20,8 @@ from Products.PloneGazette.interfaces import ISubscriber
 ## The factory ##
 #################
 
-def addSubscriber(self, id, email = '', REQUEST = {}):
+
+def addSubscriber(self, id, email='', REQUEST={}):
     """
     Factory method for a Subscriber object
     """
@@ -44,9 +31,11 @@ def addSubscriber(self, id, email = '', REQUEST = {}):
     if REQUEST.has_key('RESPONSE'):
         return REQUEST.RESPONSE.redirect(self.absolute_url() + '/manage_main')
 
+
 #################################
 ## The Subscriber content type ##
 #################################
+
 
 class Subscriber(PortalContent, DefaultDublinCoreImpl, PNLContentBase):
     """Subscriber class"""
@@ -83,8 +72,8 @@ class Subscriber(PortalContent, DefaultDublinCoreImpl, PNLContentBase):
                 'category': 'object',
                 },
             ),
-        'aliases' : {
-                'edit'       : 'Subscriber_editForm',
+        'aliases': {
+                'edit': 'Subscriber_editForm',
             },
     }
 
@@ -112,7 +101,7 @@ class Subscriber(PortalContent, DefaultDublinCoreImpl, PNLContentBase):
         #           - removes title attribute
         self._internalVersion = 2
         self.id = id
-        self.fullname = '' # not used in templates yet
+        self.fullname = ''  # not used in templates yet
         self.email = email
         self.format = 'HTML'
         self.active = False
@@ -174,9 +163,8 @@ class Subscriber(PortalContent, DefaultDublinCoreImpl, PNLContentBase):
             self.active = True
         return
 
-
     def checkMailAddress(self, mail):
-        return checkMailAddress(self,mail)
+        return checkMailAddress(self, mail)
 
     #####################
     ## Utility methods ##
