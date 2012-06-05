@@ -22,20 +22,22 @@ try:
 except ImportError:
     from Globals import InitializeClass
 from AccessControl import ClassSecurityInfo
-from AccessControl.requestmethod import postonly
 from AccessControl.SpecialUsers import nobody
+from AccessControl.requestmethod import postonly
 from DateTime import DateTime
-from OFS import Folder
 from DocumentTemplate.DT_Util import html_quote
+from OFS import Folder
+from zope.component import getUtility
 import logging
 
 # CMF/Plone imports
-from Products.CMFCore.permissions import View, ModifyPortalContent
+from Products.CMFCore.interfaces import ISiteRoot
 from Products.CMFCore.permissions import ListFolderContents
+from Products.CMFCore.permissions import View, ModifyPortalContent
+from Products.CMFCore.utils import getToolByName
 from Products.CMFDefault.DublinCore import DefaultDublinCoreImpl
 from Products.CMFDefault.SkinnedFolder import SkinnedFolder
 from Products.CMFPlone.PloneFolder import OrderedContainer
-from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import safe_unicode
 try:
     from zope.structuredtext import stx2html as format_stx
@@ -421,23 +423,21 @@ class Newsletter(SkinnedFolder, OrderedContainer, DefaultDublinCoreImpl, PNLCont
         if REQUEST is not None:
             # Called directly from the web; set content-type
             # The publisher will then re-encode for us
-            REQUEST.RESPONSE.setHeader('content-type',
-                                       'text/html; charset=%s' %
-                                       self.ploneCharset())
+            charset = getUtility(ISiteRoot).getProperty('email_charset', 'utf-8')
+            REQUEST.RESPONSE.setHeader(
+                'content-type',
+                'text/html; charset={0}'.format(charset)
+            )
 
         return data
-
-
-
 
     security.declarePublic('renderTextPlain')
     def renderTextPlain(self, force=False, footer_url=None, REQUEST=None):
         """Makes the text/plain part for MUA of the newsletter"""
-
         html = self.renderTextHTML(html=False, force=force, footer_url=footer_url)
-
+        charset = getUtility(ISiteRoot).getProperty('email_charset', 'utf-8')
         # portal_tranforms (at least lynx transform) requires encoded data
-        html = html.encode('utf8') # encodes everything, good enough
+        html = html.encode(charset) # encodes everything, good enough
 
         # Convert to text/html, preferring lynx_dump if available
         transform_tool = getToolByName(self, 'portal_transforms')
@@ -451,8 +451,8 @@ class Newsletter(SkinnedFolder, OrderedContainer, DefaultDublinCoreImpl, PNLCont
                 transform_tool.lynx_dump._load_transform()
             transform = transform_tool.lynx_dump._v_transform
             oldargs = transform.binaryArgs
-            transform.binaryArgs += ' -assume_charset=utf8'
-            transform.binaryArgs += ' -display_charset=utf8'
+            transform.binaryArgs += ' -assume_charset={0}'.format(charset)
+            transform.binaryArgs += ' -display_charset={0}'.format(charset)
 
             text = transform_tool('lynx_dump', html)
 
@@ -468,9 +468,10 @@ class Newsletter(SkinnedFolder, OrderedContainer, DefaultDublinCoreImpl, PNLCont
         if REQUEST is not None:
             # called directly from the web; set content-type
             # The publisher will then re-encode for us
-            REQUEST.RESPONSE.setHeader('Content-Type',
-                                       'text/plain; charset=%s' %
-                                       self.ploneCharset())
+            REQUEST.RESPONSE.setHeader(
+                'Content-Type',
+                'text/plain; charset={0}'.format(charset)
+            )
 
         return safe_unicode(text)
 
@@ -526,7 +527,7 @@ class Newsletter(SkinnedFolder, OrderedContainer, DefaultDublinCoreImpl, PNLCont
         plaintextTpl = self.renderTextPlain(force=force)
         theme = self.getTheme()
         mailFrom = theme.authorEmail
-        charset = self.ploneCharset()
+        charset = getUtility(ISiteRoot).getProperty('email_charset', 'utf-8')
         errors = []
 
         mailMethod = theme.sendmail

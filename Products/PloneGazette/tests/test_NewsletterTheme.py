@@ -20,20 +20,19 @@ class TestNewsletterTheme(IntegrationTestCase):
         theme.reindexObject()
         return theme
 
-    def test__email_charset__has_email_charset(self):
+    def test__logCSVImportResult__empty(self):
         theme = self.createNewsletterTheme()
-        self.portal.manage_changeProperties(email_charset='aaa')
-        self.assertEqual(
-            theme._email_charset(),
-            'aaa'
-        )
+        self.assertEqual(theme._csv_import_log, '')
+        theme. _logCSVImportResult([],[])
+        self.assertEqual(theme._csv_import_log, '')
 
-    def test__email_charset__no_email_charset(self):
+    def test__logCSVImportResult__not_empty(self):
         theme = self.createNewsletterTheme()
-        self.portal.manage_delProperties(ids=['email_charset'])
+        self.assertEqual(theme._csv_import_log, '')
+        theme. _logCSVImportResult(['AAA'],['BBB'])
         self.assertEqual(
-            theme._email_charset(),
-            'utf-8'
+            theme._csv_import_log,
+            '<h2>Already subscribed</h2><p>BBB</p><h2>Not valid emails</h2><p>AAA</p>'
         )
 
     def test_subscribeFormProcess(self):

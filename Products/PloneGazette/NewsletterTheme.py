@@ -30,14 +30,19 @@ try:
     from zope.tales.tales import CompilerError
 except ImportError:
     from Products.PageTemplates.TALES import CompilerError
+from zope.component import getUtility
+
+
 # CMF/Plone imports
-from Products.CMFCore.permissions import View
-from Products.CMFCore.permissions import ListFolderContents
-from Products.CMFDefault.DublinCore import DefaultDublinCoreImpl
 from Products.CMFCore.CMFCatalogAware import CMFCatalogAware
+from Products.CMFCore.interfaces import ISiteRoot
+from Products.CMFCore.permissions import ListFolderContents
+from Products.CMFCore.permissions import View
 from Products.CMFCore.utils import getToolByName
 from Products.CMFDefault import SkinnedFolder
+from Products.CMFDefault.DublinCore import DefaultDublinCoreImpl
 from Products.CMFPlone.utils import base_hasattr, safe_unicode
+from Products.CMFPlone.utils import getSiteEncoding
 
 # Product specific imports
 from PNLPermissions import *
@@ -327,7 +332,8 @@ class NewsletterTheme(SkinnedFolder.SkinnedFolder, DefaultDublinCoreImpl, PNLCon
             REQUEST = self.REQUEST
         errors = {}
         data = {}
-        charset = self.ploneCharset()
+        # charset = self.ploneCharset()
+        charset = getUtility(ISiteRoot).getProperty('email_charset', 'utf-8')
         if REQUEST.form.has_key('email'):
             # Form submitted
             emailaddress = REQUEST.form.get('email', '').strip()
@@ -373,7 +379,7 @@ class NewsletterTheme(SkinnedFolder.SkinnedFolder, DefaultDublinCoreImpl, PNLCon
                 mailMsg=email.Message.Message()
                 mailMsg["To"]=data['email']
                 mailMsg["From"]=self.authorEmail
-                mailMsg["Subject"]=str(Header(safe_unicode(self.activationMailSubject), 'utf8'))
+                mailMsg["Subject"]=str(Header(safe_unicode(self.activationMailSubject), charset))
                 mailMsg["Date"]=email.Utils.formatdate(localtime=1)
                 mailMsg["Message-ID"]=email.Utils.make_msgid()
                 mailMsg["Mime-version"]="1.0"
@@ -415,7 +421,7 @@ class NewsletterTheme(SkinnedFolder.SkinnedFolder, DefaultDublinCoreImpl, PNLCon
                     mailMsg=email.Message.Message()
                     mailMsg["To"]=self.testEmail
                     mailMsg["From"]=self.authorEmail
-                    mailMsg["Subject"]=str(Header(safe_unicode(subject), 'utf8'))
+                    mailMsg["Subject"]=str(Header(safe_unicode(subject), charset))
                     mailMsg["Date"]=email.Utils.formatdate(localtime=1)
                     mailMsg["Message-ID"]=email.Utils.make_msgid()
                     mailMsg["Mime-version"]="1.0"
@@ -731,9 +737,7 @@ class NewsletterTheme(SkinnedFolder.SkinnedFolder, DefaultDublinCoreImpl, PNLCon
         if len(not_valid):
             msg += '%s emails were not valid. ' % len(not_valid)
 
-        properties = getToolByName(self, 'portal_properties')
-        site_properties = getattr(properties, 'site_properties')
-        charset = site_properties.getProperty('default_charset', 'utf-8')
+        charset = getSiteEncoding(self)
         return msg.encode(charset)
 
     security.declareProtected(ChangeNewsletterTheme, 'getCSVImportLogs')
@@ -820,10 +824,6 @@ class NewsletterTheme(SkinnedFolder.SkinnedFolder, DefaultDublinCoreImpl, PNLCon
             batch = Batch(contents, b_size, int(b_start), orphan=0)
             return batch
         return contents
-
-    def _email_charset(self):
-        portal = getToolByName(self, 'portal_url').getPortalObject()
-        return portal.getProperty('email_charset', 'utf-8')
 
 
 # Class instanciation
