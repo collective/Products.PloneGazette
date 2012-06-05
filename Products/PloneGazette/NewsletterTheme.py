@@ -53,7 +53,7 @@ from Products.PloneGazette.catalog import manage_addSubscribersCatalog
 from Products.PloneGazette.config import PG_CATALOG
 from Products.PloneGazette.interfaces import INewsletterTheme
 
-from Products.PloneGazette import PloneGazetteFactory as _
+from Products.PloneGazette import _
 
 
 DEFAULT_ACTIVATION_SUBJECT = """Please activate your newsletter account"""
@@ -78,7 +78,9 @@ DEFAULT_NEWSLETTER_STYLE = ''
 #################
 ## The factory ##
 #################
-def addNewsletterTheme(self, id, title = '', REQUEST = {}):
+
+
+def addNewsletterTheme(self, id, title='', REQUEST={}):
     """
     Factory method for a NewsletterTheme object
     """
@@ -92,6 +94,7 @@ def addNewsletterTheme(self, id, title = '', REQUEST = {}):
 ########################################
 ## The NewsletterCentral content type ##
 ########################################
+
 
 class NewsletterTheme(SkinnedFolder.SkinnedFolder, DefaultDublinCoreImpl, PNLContentBase):
     """NewsletterTheme class
@@ -123,28 +126,28 @@ class NewsletterTheme(SkinnedFolder.SkinnedFolder, DefaultDublinCoreImpl, PNLCon
              'action': 'string:${object_url}/NewsletterTheme_subscribeForm',
              'permissions': (View,)},
 
-            {'id' : 'infos',
-             'name' : 'Informations',
-             'action' : 'string:${object_url}/subscribers_infos',
-             'permissions' : (ChangeNewsletterTheme,)},
+            {'id': 'infos',
+             'name': 'Informations',
+             'action': 'string:${object_url}/subscribers_infos',
+             'permissions': (ChangeNewsletterTheme,)},
 
             {'id': 'edit',
              'name': 'Edit',
              'action': 'string:${object_url}/NewsletterTheme_editForm',
              'permissions': (ChangeNewsletterTheme,)},
 
-            {'id' : 'NewsletterTheme_importForm',
-             'name' : 'Import',
-             'action' : 'string:${object_url}/NewsletterTheme_importForm',
-             'permissions' : (ChangeNewsletterTheme,)},
+            {'id': 'NewsletterTheme_importForm',
+             'name': 'Import',
+             'action': 'string:${object_url}/NewsletterTheme_importForm',
+             'permissions': (ChangeNewsletterTheme,)},
             ),
-        'aliases' : {
-                '(Default)'  : 'NewsletterTheme_view',
-                'view'       : 'NewsletterTheme_view',
-                'index.html' : '',
-                'edit'       : 'base_edit',
-                'properties' : 'base_metadata',
-                'sharing'    : 'folder_localrole_form',
+        'aliases': {
+                '(Default)': 'NewsletterTheme_view',
+                'view': 'NewsletterTheme_view',
+                'index.html': '',
+                'edit': 'base_edit',
+                'properties': 'base_metadata',
+                'sharing': 'folder_localrole_form',
         },
         }
 
@@ -253,7 +256,7 @@ class NewsletterTheme(SkinnedFolder.SkinnedFolder, DefaultDublinCoreImpl, PNLCon
                 parent.manage_renameObject(self.id, newid)
                 self._setId(newid)
 
-        self._new_object=False
+        self._new_object = False
 
         self.reindexObject()
         self.subscriber_folder_id = subscriber_folder_id
@@ -267,7 +270,7 @@ class NewsletterTheme(SkinnedFolder.SkinnedFolder, DefaultDublinCoreImpl, PNLCon
         """
         mtool = getToolByName(self, 'portal_membership')
         checkPermission = mtool.checkPermission
-        result = [ x for x in self.objectValues('Newsletter') if checkPermission('View', x)]
+        result = [x for x in self.objectValues('Newsletter') if checkPermission('View', x)]
         return result
 
     security.declarePublic('createSubscriberObject')
@@ -339,7 +342,7 @@ class NewsletterTheme(SkinnedFolder.SkinnedFolder, DefaultDublinCoreImpl, PNLCon
             emailaddress = REQUEST.form.get('email', '').strip()
             data['email'] = emailaddress
 
-            if not checkMailAddress(self,emailaddress):
+            if not checkMailAddress(self, emailaddress):
                 errors['email'] = _('This is not a valid mail address')
                 return data, errors
             format = REQUEST.form.get('format', self.default_format)
@@ -376,25 +379,25 @@ class NewsletterTheme(SkinnedFolder.SkinnedFolder, DefaultDublinCoreImpl, PNLCon
                 mailBody += self.activationMailTemplate % {'url': self.absolute_url() + '?active=%s&format=%s' % (newId, format), 'email': emailaddress}
 
                 """
-                mailMsg=email.Message.Message()
-                mailMsg["To"]=data['email']
-                mailMsg["From"]=self.authorEmail
-                mailMsg["Subject"]=str(Header(safe_unicode(self.activationMailSubject), charset))
-                mailMsg["Date"]=email.Utils.formatdate(localtime=1)
-                mailMsg["Message-ID"]=email.Utils.make_msgid()
-                mailMsg["Mime-version"]="1.0"
+                mailMsg = email.Message.Message()
+                mailMsg["To"] = data['email']
+                mailMsg["From"] = self.authorEmail
+                mailMsg["Subject"] = str(Header(safe_unicode(self.activationMailSubject), charset))
+                mailMsg["Date"] = email.Utils.formatdate(localtime=1)
+                mailMsg["Message-ID"] = email.Utils.make_msgid()
+                mailMsg["Mime-version"] = "1.0"
 
                 bodyText = self.activationMailTemplate % {'url': self.absolute_url() + '?active=%s&format=%s' % (newId, format), 'email': emailaddress}
-                mailMsg["Content-type"]="text/plain"
+                mailMsg["Content-type"] = "text/plain"
                 mailMsg.set_payload(safe_unicode(bodyText).encode(charset), charset)
                 #mailMsg.preamble="Mime message\n"
-                mailMsg.epilogue="\n" # To ensure that message ends with newline
+                mailMsg.epilogue = "\n"  # To ensure that message ends with newline
 
                 try:
-                    self.sendmail(self.authorEmail, (emailaddress,), mailMsg, subject = mailMsg['subject'])
+                    self.sendmail(self.authorEmail, (emailaddress,), mailMsg, subject=mailMsg['subject'])
                 except Exception, e:
                     # The email could not be sent, probably the specified address doesn't exist
-                    errors['email'] = translate('Email could not be sent. Error message is: ${error}', mapping={'error':str(e)}, context=REQUEST)
+                    errors['email'] = translate('Email could not be sent. Error message is: ${error}', mapping={'error': str(e)}, context=REQUEST)
                     data['email'] = emailaddress
                     data['format'] = self.default_format
                     transaction.abort()
@@ -418,24 +421,22 @@ class NewsletterTheme(SkinnedFolder.SkinnedFolder, DefaultDublinCoreImpl, PNLCon
                     """
                     subject = "%s : %s" % (self.title,
                                            translate("Newsletter new subscriber", domain='plonegazette', context=REQUEST))
-                    mailMsg=email.Message.Message()
-                    mailMsg["To"]=self.testEmail
-                    mailMsg["From"]=self.authorEmail
-                    mailMsg["Subject"]=str(Header(safe_unicode(subject), charset))
-                    mailMsg["Date"]=email.Utils.formatdate(localtime=1)
-                    mailMsg["Message-ID"]=email.Utils.make_msgid()
-                    mailMsg["Mime-version"]="1.0"
+                    mailMsg = email.Message.Message()
+                    mailMsg["To"] = self.testEmail
+                    mailMsg["From"] = self.authorEmail
+                    mailMsg["Subject"] = str(Header(safe_unicode(subject), charset))
+                    mailMsg["Date"] = email.Utils.formatdate(localtime=1)
+                    mailMsg["Message-ID"] = email.Utils.make_msgid()
+                    mailMsg["Mime-version"] = "1.0"
 
                     bodyText = "%s\n%s" % (translate("See the new account at...", context=REQUEST, domain='plonegazette'),
                                            subscriberEditUrl)
-                    mailMsg["Content-type"]="text/plain"
+                    mailMsg["Content-type"] = "text/plain"
                     mailMsg.set_payload(safe_unicode(bodyText).encode(charset), charset)
                     #mailMsg.preamble="Mime message\n"
-                    mailMsg.epilogue="\n" # To ensure that message ends with newline
+                    mailMsg.epilogue = "\n"  # To ensure that message ends with newline
 
-
-
-                    self.sendmail(self.authorEmail, (self.testEmail,), mailMsg, subject = mailMsg['subject'])
+                    self.sendmail(self.authorEmail, (self.testEmail,), mailMsg, subject=mailMsg['subject'])
                 data['success'] = 1
         else:
             # First entry in the form
@@ -450,7 +451,7 @@ class NewsletterTheme(SkinnedFolder.SkinnedFolder, DefaultDublinCoreImpl, PNLCon
         subscriber = self.getSubscriberById(subscriber_id)
         if subscriber is not None:
             parent = subscriber.aq_parent
-            parent.manage_delObjects([subscriber_id,])
+            parent.manage_delObjects([subscriber_id, ])
 
         newSecurityManager(REQUEST, ownerOfObject(self))
         if REQUEST is not None:
@@ -458,8 +459,7 @@ class NewsletterTheme(SkinnedFolder.SkinnedFolder, DefaultDublinCoreImpl, PNLCon
         return
 
     def checkMailAddress(self, mail):
-        return  checkMailAddress(self,mail)
-
+        return  checkMailAddress(self, mail)
 
     def checkTalExpressions(self, talExpressions, state=None, errors=None):
         """
@@ -472,7 +472,7 @@ class NewsletterTheme(SkinnedFolder.SkinnedFolder, DefaultDublinCoreImpl, PNLCon
             try:
                 dummy = talEngine.compile(value)
             except CompilerError, e:
-                msg = _('TALES compilation error: ${error}', mapping={'error':str(e)})
+                msg = _('TALES compilation error: ${error}', mapping={'error': str(e)})
                 if state is not None:
                     state.setError(fieldId, msg)
                 if errors is not None:
@@ -495,7 +495,7 @@ class NewsletterTheme(SkinnedFolder.SkinnedFolder, DefaultDublinCoreImpl, PNLCon
         return not not catalog(email=email)
 
     security.declarePublic('sendmail')
-    def sendmail(self, mailfrom, mailto, mailBody, subject = None):
+    def sendmail(self, mailfrom, mailto, mailBody, subject=None):
         """"""
         portal = getToolByName(self, 'portal_url').getPortalObject()
         mailhost_id = os.environ.get('PLONEGAZETTE_MAILHOST_ID', 'MailHost')
@@ -582,7 +582,7 @@ class NewsletterTheme(SkinnedFolder.SkinnedFolder, DefaultDublinCoreImpl, PNLCon
         url = getattr(subscriber, 'getURL', subscriber.absolute_url)()
         # the same dict is generated in newsletterbtree_view browser class, so change in this
         # dict has to be propagated to the newsletterbtree view class too.
-        listing.append({'email' : subscriber.email, 'id':subscriber.id, 'url' : url, 'active' : active, 'format' : format})
+        listing.append({'email': subscriber.email, 'id': subscriber.id, 'url': url, 'active': active, 'format': format})
 
         return (stats, listing)
 
@@ -590,20 +590,19 @@ class NewsletterTheme(SkinnedFolder.SkinnedFolder, DefaultDublinCoreImpl, PNLCon
     def subscriberStats(self):
         """Returns a dict with statistics about subscribers"""
         def checkfilter(subscriber, email, active, format):
-            if email!='':
+            if email != '':
                 emailOk = email in subscriber.email
             else:
                 emailOk = True
-            if active!=-1:
-                activeOk = active==subscriber.active
+            if active != -1:
+                activeOk = active == subscriber.active
             else:
                 activeOk = True
-            if format!='':
+            if format != '':
                 formatOk = format in subscriber.format
             else:
                 formatOk = True
             return emailOk and activeOk and formatOk
-
 
         listing = []
         stats = {'total': 0,
@@ -679,7 +678,7 @@ class NewsletterTheme(SkinnedFolder.SkinnedFolder, DefaultDublinCoreImpl, PNLCon
 
         # remove headers
         first_row = reader.next()
-        if first_row['email']!='email':
+        if first_row['email'] != 'email':
             return "You must add headers to the csv file : email, active, format ('email' at least)"
 
         # for each row, create a subscriber object
@@ -690,17 +689,17 @@ class NewsletterTheme(SkinnedFolder.SkinnedFolder, DefaultDublinCoreImpl, PNLCon
         for row in reader:
 
             # get the field value, or the default value
-            if row['active']=='1':
+            if row['active'] == '1':
                 active = True
-            elif row['active']=='0':
+            elif row['active'] == '0':
                 active = False
             else:
                 active = False
 
             if row['format']:
-                if row['format'].lower()=='html':
+                if row['format'].lower() == 'html':
                     format = 'HTML'
-                elif row['format'].lower()=='text':
+                elif row['format'].lower() == 'text':
                     format = 'Text'
                 else:
                     format = default_format
@@ -711,7 +710,7 @@ class NewsletterTheme(SkinnedFolder.SkinnedFolder, DefaultDublinCoreImpl, PNLCon
             email = email.strip()
 
             # check mail address validity
-            if not checkMailAddress(self,email):
+            if not checkMailAddress(self, email):
                 not_valid.append(email)
             else:
 
@@ -798,7 +797,7 @@ class NewsletterTheme(SkinnedFolder.SkinnedFolder, DefaultDublinCoreImpl, PNLCon
         return catalog
 
     security.declareProtected(ListFolderContents, 'listFolderContents')
-    def listFolderContents( self, spec=None, contentFilter=None, suppressHiddenFiles=0 ):
+    def listFolderContents(self, spec=None, contentFilter=None, suppressHiddenFiles=0):
         """
         Hook around 'contentValues' to let 'folder_contents'
         be protected.  Duplicating skip_unauthorized behavior of dtml-in.
@@ -809,13 +808,13 @@ class NewsletterTheme(SkinnedFolder.SkinnedFolder, DefaultDublinCoreImpl, PNLCon
 
         """
         ctool = getToolByName(self, 'portal_catalog')
-        items = ctool(path={'query':'/'.join(self.getPhysicalPath()), 'depth':1},
+        items = ctool(path={'query': '/'.join(self.getPhysicalPath()), 'depth': 1},
                       sort_on='sortable_title')
         return items
 
     # For plone 2.1+ to show unindexed content
     security.declareProtected(ChangeNewsletterTheme, 'getFolderContents')
-    def getFolderContents(self, contentFilter=None,batch=False,b_size=100,full_objects=False):
+    def getFolderContents(self, contentFilter=None, batch=False, b_size=100, full_objects=False):
         """Override getFolderContents to show all objects"""
         contents = self.listFolderContents(contentFilter=contentFilter)
         if batch:

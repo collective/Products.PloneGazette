@@ -1,16 +1,13 @@
-#
-# $Id: PNLUtils.py 54384 2007-11-24 18:35:03Z naro $
-#
-
 """Misc utilities"""
+from AccessControl import SpecialUsers
 
 import re
 
-def checkMailAddress(obj,someAddr):
+
+def checkMailAddress(obj, someAddr):
     """Checks the validity of a mail address"""
     return obj.plone_utils.validateSingleEmailAddress(someAddr)
 
-from AccessControl import SpecialUsers
 
 def ownerOfObject(obj):
     """Provides acl_user acquisition wrapped owner of object"""
@@ -27,7 +24,8 @@ def ownerOfObject(obj):
             user = user.__of__(udb)
     return user
 
-def escPercent(text):
-    """Replace '%' with '%%' except '%('"""
-    pat = re.compile(r'%(?!\()')
-    return pat.sub('%%', text)
+
+# def escPercent(text):
+#     """Replace '%' with '%%' except '%('"""
+#     pat = re.compile(r'%(?!\()')
+#     return pat.sub('%%', text)

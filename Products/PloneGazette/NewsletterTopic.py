@@ -1,34 +1,20 @@
-
-"""
-NewsletterTopic main class
-"""
-
-# Standard Python imports
-
-# Zope core imports
-try:
-    from AccessControl.class_init import InitializeClass
-except ImportError:
-    from Globals import InitializeClass
 from AccessControl import ClassSecurityInfo
 from AccessControl.SpecialUsers import nobody
-from zope.interface import implements
-
-# CMF/Plone imports
-from Products.CMFCore.permissions import View, ModifyPortalContent
-from Products.CMFDefault.DublinCore import DefaultDublinCoreImpl
+from AccessControl.class_init import InitializeClass
+from PNLBase import PNLContentBase
 from Products.CMFCore.PortalContent import PortalContent
 from Products.CMFCore.interfaces import IContentish
+from Products.CMFCore.permissions import View, ModifyPortalContent
 from Products.CMFCore.utils import getToolByName
-
-# Product specific imports
-from PNLBase import PNLContentBase
+from Products.CMFDefault.DublinCore import DefaultDublinCoreImpl
+from zope.interface import implements
 
 #################
 ## The factory ##
 #################
 
-def addNewsletterTopic(self, id, title = '', REQUEST = {}):
+
+def addNewsletterTopic(self, id, title='', REQUEST={}):
     """
     Factory method for a NewsletterTopic object
     """
@@ -41,6 +27,7 @@ def addNewsletterTopic(self, id, title = '', REQUEST = {}):
 #################################
 ## The Subscriber content type ##
 #################################
+
 
 class NewsletterTopic(PortalContent, DefaultDublinCoreImpl, PNLContentBase):
     """NewsletterTopic class"""
@@ -169,10 +156,9 @@ class NewsletterTopic(PortalContent, DefaultDublinCoreImpl, PNLContentBase):
 
         dateEmitted = self.getNewsletter().dateEmitted
         if dateEmitted:
-            query['effective'] = {'query' : dateEmitted,
-                                 'range' : 'max' }
+            query['effective'] = {'query': dateEmitted,
+                                 'range': 'max'}
         return query
-
 
     security.declarePublic('getAvailableTypes')
     def getAvailableTypes(self):
@@ -209,7 +195,7 @@ class NewsletterTopic(PortalContent, DefaultDublinCoreImpl, PNLContentBase):
         if self.max_objects:
             max_objects = int(self.max_objects)
             if len(objects) > max_objects:
-                objects =  objects[:max_objects]
+                objects = objects[:max_objects]
 
         return objects
 

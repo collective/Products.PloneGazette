@@ -1,29 +1,23 @@
-#
-# $Id: __init__.py 248031 2012-01-28 14:03:32Z morphex $
-#
-
-"""Newsletter Plone"""
-
-__version__ = "$Revision: 248031 $" [11:-2]
-
-## Archetypes import
-from Products.Archetypes.public import *
 from Products.Archetypes import listTypes
-
-## CMF imports
-
-from Products.CMFCore.utils import ContentInit
+from Products.Archetypes.public import *
 from Products.CMFCore import permissions
+from Products.CMFCore.utils import ContentInit
 from Products.CMFCore.utils import registerIcon
-
-
 from zope.i18nmessageid import MessageFactory
-PloneGazetteFactory = MessageFactory('plonegazette')
-
-## App imports
-import NewsletterTheme, Newsletter, Subscriber, Section, NewsletterTopic
 from config import PROJECTNAME
 from config import product_globals
+
+
+_ = MessageFactory('plonegazette')
+
+
+## App imports
+import Newsletter
+import NewsletterTheme
+import NewsletterTopic
+import Section
+import Subscriber
+
 
 ## Types to register
 
@@ -79,8 +73,6 @@ def initialize(context):
         permission = permissions.AddPortalContent,
         extra_constructors = constructors,
         fti = ftis,).initialize(context)
-
-    return
 
 # Plone 4 / TinyMCE compatability:
 #

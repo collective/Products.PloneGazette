@@ -1,20 +1,19 @@
-from zope.interface import implements
-
+from AccessControl import ClassSecurityInfo
+from PNLBase import PNLContentBase
+from PNLPermissions import *
 from Products.Archetypes.atapi import BaseBTreeFolder, BaseBTreeFolderSchema
 from Products.Archetypes.atapi import registerType
-from AccessControl import ClassSecurityInfo
-from PNLPermissions import *
-from PNLBase import PNLContentBase
 from Products.CMFCore.permissions import ListFolderContents
 from Products.PloneGazette.interfaces import INewsletterBTree
-
 from config import PROJECTNAME
+from zope.interface import implements
+
 
 class NewsletterBTree(BaseBTreeFolder, PNLContentBase):
     implements(INewsletterBTree)
 
     portal_type = meta_type = 'NewsletterBTree'
-    archetype_name = 'Newsletter Large Folder'   #this name appears in the 'add' box
+    archetype_name = 'Newsletter Large Folder'  # this name appears in the 'add' box
 
     default_view = 'newsletterbtree_view'
 
@@ -49,7 +48,7 @@ class NewsletterBTree(BaseBTreeFolder, PNLContentBase):
             REQUEST = self.REQUEST
         if RESPONSE is None:
             RESPONSE = REQUEST.RESPONSE
-        return RESPONSE.redirect(self.absolute_url()+'/view')
+        return RESPONSE.redirect(self.absolute_url() + '/view')
 
 
 registerType(NewsletterBTree, PROJECTNAME)

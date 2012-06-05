@@ -1,7 +1,7 @@
 from Acquisition import aq_inner
 from Products.CMFPlone.utils import getToolByName
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from Products.PloneGazette import PloneGazetteFactory as _
+from Products.PloneGazette import _
 from Products.PloneGazette.interfaces import INewsletterTheme
 from plone.app.portlets.portlets import base
 from plone.app.vocabularies.catalog import SearchableTextSourceBinder

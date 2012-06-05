@@ -46,9 +46,9 @@ except ImportError:
 
 try:
     from OFS.IOrderSupport import IOrderedContainer as IZopeOrderedContainer
-    hasZopeOrderedSupport=1
+    hasZopeOrderedSupport = 1
 except ImportError:
-    hasZopeOrderedSupport=0
+    hasZopeOrderedSupport = 0
 # from Products.CMFPlone.interfaces.OrderedContainer import IOrderedContainer
 from OFS.interfaces import IOrderedContainer
 
@@ -68,8 +68,9 @@ from Products.PloneGazette.interfaces import INewsletter
 
 from zope.interface import implements
 
-from Products.PloneGazette import PloneGazetteFactory as _
+# from Products.PloneGazette import PloneGazetteFactory as _
 
+from Products.PloneGazette import _
 
 logger = logging.getLogger('PloneGazette')
 
@@ -77,7 +78,8 @@ logger = logging.getLogger('PloneGazette')
 ## The factory ##
 #################
 
-def addNewsletter(self, id, title = '', REQUEST = {}):
+
+def addNewsletter(self, id, title='', REQUEST={}):
     """
     Factory method for a Newsletter object
     """
@@ -92,6 +94,7 @@ def addNewsletter(self, id, title = '', REQUEST = {}):
 #################################
 
 lynx_file_url = re.compile(r'file://localhost[^%]+%\(url\)s')
+
 
 class Newsletter(SkinnedFolder, OrderedContainer, DefaultDublinCoreImpl, PNLContentBase):
     """Newsletter class"""
@@ -148,13 +151,13 @@ class Newsletter(SkinnedFolder, OrderedContainer, DefaultDublinCoreImpl, PNLCont
                 'category': 'object'
                 },
             ),
-            'aliases' : {
-                '(Default)'  : 'Newsletter_view',
-                'view'       : 'Newsletter_view',
-                'index.html' : '',
-                'edit'       : 'base_edit',
-                'properties' : 'base_metadata',
-                'sharing'    : 'folder_localrole_form',
+            'aliases': {
+                '(Default)': 'Newsletter_view',
+                'view': 'Newsletter_view',
+                'index.html': '',
+                'edit': 'base_edit',
+                'properties': 'base_metadata',
+                'sharing': 'folder_localrole_form',
             },
         }
 
@@ -187,7 +190,7 @@ class Newsletter(SkinnedFolder, OrderedContainer, DefaultDublinCoreImpl, PNLCont
         self._edit(text=text, text_format=text_format)
         self.setFormat(text_format)
         self.dateEmitted = dateEmitted
-        self._new_object=True
+        self._new_object = True
         self._dynamic_content = None
         return
 
@@ -256,7 +259,7 @@ class Newsletter(SkinnedFolder, OrderedContainer, DefaultDublinCoreImpl, PNLCont
                 parent.manage_renameObject(self.id, newid)
                 self._setId(newid)
 
-        self._new_object=False
+        self._new_object = False
 
         # Reindex
         self.reindexObject()
@@ -296,7 +299,7 @@ class Newsletter(SkinnedFolder, OrderedContainer, DefaultDublinCoreImpl, PNLCont
         elif value == 'text/plain':
             if self.text_format not in ('structured-text', 'plain'):
                 self.text_format = 'structured-text'
-        elif value =='plain':
+        elif value == 'plain':
             self.text_format = 'plain'
         else:
             self.text_format = 'structured-text'
@@ -309,11 +312,10 @@ class Newsletter(SkinnedFolder, OrderedContainer, DefaultDublinCoreImpl, PNLCont
     def SearchableText(self):
         "Returns a concatination of all searchable text"
 
-        ret="%s %s %s" % (self.Title(),
+        ret = "%s %s %s" % (self.Title(),
                           self.Description(),
                           self.text)
         return ret
-
 
     ###################
     security.declarePrivate('changeRelativeToAbsolute')
@@ -345,18 +347,18 @@ class Newsletter(SkinnedFolder, OrderedContainer, DefaultDublinCoreImpl, PNLCont
                 if "href" in current_keys and ("class" in current_keys or linksToParent):
                     if x.attrib['class'] == "internal-link" or linksToParent:
                         href = x.attrib['href']
-                        relative_part = "/".join(parsed_url[2].split('/')[0:(len(parsed_url[2].split('/'))-len(href.split("../")))])
+                        relative_part = "/".join(parsed_url[2].split('/')[0:(len(parsed_url[2].split('/')) - len(href.split("../")))])
                         x.attrib['href'] = "%s://%s%s/%s" % (parsed_url[0], parsed_url[1], relative_part, href.split("../")[-1])
 
                 elif "href" in current_keys:
                     # plone 2.5 uses .# for anchors, so we replace this with #
                     if ".#" in x.attrib['href']:
-                        x.attrib['href'] = x.attrib['href'].replace('.#','#')
+                        x.attrib['href'] = x.attrib['href'].replace('.#', '#')
                     else:
                         # Plone 2.5. and later version does not mark internal links with internal-link class
                         href = x.attrib['href']
                         if href.find('http://') != 0:
-                            relative_part = "/".join(parsed_url[2].split('/')[0:(len(parsed_url[2].split('/'))-len(href.split("../")))])
+                            relative_part = "/".join(parsed_url[2].split('/')[0:(len(parsed_url[2].split('/')) - len(href.split("../")))])
                             x.attrib['href'] = "%s://%s%s/%s" % (parsed_url[0], parsed_url[1], relative_part, href.split("../")[-1])
 
             # fix images
@@ -366,10 +368,10 @@ class Newsletter(SkinnedFolder, OrderedContainer, DefaultDublinCoreImpl, PNLCont
 
                     # fix only relative links
                     if src.find('http://') != 0:
-                        relative_part = "/".join(parsed_url[2].split('/')[0:(len(parsed_url[2].split('/'))-len(src.split("../")))])
+                        relative_part = "/".join(parsed_url[2].split('/')[0:(len(parsed_url[2].split('/')) - len(src.split("../")))])
                         x.attrib['src'] = "%s://%s%s/%s" % (parsed_url[0], parsed_url[1], relative_part, src.split("../")[-1])
 
-        tree = ElementTree.ElementTree(rootnode);
+        tree = ElementTree.ElementTree(rootnode)
         output = StringIO.StringIO()
         try:
             tree.write(output)
@@ -437,7 +439,7 @@ class Newsletter(SkinnedFolder, OrderedContainer, DefaultDublinCoreImpl, PNLCont
         html = self.renderTextHTML(html=False, force=force, footer_url=footer_url)
         charset = getUtility(ISiteRoot).getProperty('email_charset', 'utf-8')
         # portal_tranforms (at least lynx transform) requires encoded data
-        html = html.encode(charset) # encodes everything, good enough
+        html = html.encode(charset)  # encodes everything, good enough
 
         # Convert to text/html, preferring lynx_dump if available
         transform_tool = getToolByName(self, 'portal_transforms')
@@ -483,7 +485,6 @@ class Newsletter(SkinnedFolder, OrderedContainer, DefaultDublinCoreImpl, PNLCont
     def renderTextPlainEncoded(self, html=True, force=False, footer_url=None, REQUEST=None):
         return self.renderTextPlain(html=html, force=force, footer_url=footer_url, REQUEST=REQUEST).encode(self.ploneCharset())
 
-
     security.declareProtected(ChangeNewsletter, 'testSendToMe')
     def testSendToMe(self, REQUEST=None):
         """Sends HTML/mixed and plain text newsletter to the author"""
@@ -500,7 +501,7 @@ class Newsletter(SkinnedFolder, OrderedContainer, DefaultDublinCoreImpl, PNLCont
                 # si is None if user is inactive
                 if si is not None:
                     editurl = si[2]
-                break;
+                break
 
         recipients = [(email, 'HTML', editurl), (email, 'Text', editurl)]
         # force fresh rendering of the template - do not use dynamic content stored in instance.
@@ -539,13 +540,13 @@ class Newsletter(SkinnedFolder, OrderedContainer, DefaultDublinCoreImpl, PNLCont
             if theme.alternative_portal_url:
                 editurl = editurl.replace(portal_url,
                                           theme.alternative_portal_url)
-            mainMsg=email.Message.Message()
-            mainMsg["To"]=mailTo
-            mainMsg["From"]=mailFrom
-            mainMsg["Subject"]=titleForMessage
-            mainMsg["Date"]=email.Utils.formatdate(localtime=1)
-            mainMsg["Message-ID"]=email.Utils.make_msgid()
-            mainMsg["Mime-version"]="1.0"
+            mainMsg = email.Message.Message()
+            mainMsg["To"] = mailTo
+            mainMsg["From"] = mailFrom
+            mainMsg["Subject"] = titleForMessage
+            mainMsg["Date"] = email.Utils.formatdate(localtime=1)
+            mainMsg["Message-ID"] = email.Utils.make_msgid()
+            mainMsg["Mime-version"] = "1.0"
 
             if format == 'HTML':
                 new_htmlTpl = htmlTpl
@@ -555,33 +556,33 @@ class Newsletter(SkinnedFolder, OrderedContainer, DefaultDublinCoreImpl, PNLCont
                 new_plaintextTpl = plaintextTpl
                 if hasurl:
                     new_plaintextTpl = new_plaintextTpl.replace('%(url)s', editurl)
-                mainMsg["Content-type"]="multipart/alternative"
+                mainMsg["Content-type"] = "multipart/alternative"
                 #mainMsg.preamble="This is the preamble.\n"
-                mainMsg.epilogue="\n" # To ensure that message ends with newline
+                mainMsg.epilogue = "\n"  # To ensure that message ends with newline
 
                 # plain
-                secondSubMsg=email.Message.Message()
-                secondSubMsg.add_header("Content-Type", "text/plain", charset= charset)
-                secondSubMsg["Content-Disposition"]="inline"
+                secondSubMsg = email.Message.Message()
+                secondSubMsg.add_header("Content-Type", "text/plain", charset=charset)
+                secondSubMsg["Content-Disposition"] = "inline"
                 secondSubMsg.set_payload(safe_unicode(new_plaintextTpl).encode(charset), charset)
                 mainMsg.attach(secondSubMsg)
                 # html
-                subMsg=email.Message.Message()
-                subMsg.add_header("Content-Type", "text/html", charset= charset)
-                subMsg["Content-Disposition"]="inline"
+                subMsg = email.Message.Message()
+                subMsg.add_header("Content-Type", "text/html", charset=charset)
+                subMsg["Content-Disposition"] = "inline"
                 subMsg.set_payload(safe_unicode(new_htmlTpl).encode(charset), charset)
                 mainMsg.attach(subMsg)
             else:
                 new_plaintextTpl = plaintextTpl
                 if hasurl:
                     new_plaintextTpl = new_plaintextTpl.replace('%(url)s', editurl)
-                mainMsg["Content-type"]="text/plain"
+                mainMsg["Content-type"] = "text/plain"
                 mainMsg.set_payload(safe_unicode(new_plaintextTpl).encode(charset), charset)
-                mainMsg.epilogue="\n" # To ensure that message ends with newline
+                mainMsg.epilogue = "\n"  # To ensure that message ends with newline
 
             try:
-                mailMethod(mailFrom, (mailTo,), mainMsg, subject = titleForMessage)
-            except Exception,e:
+                mailMethod(mailFrom, (mailTo,), mainMsg, subject=titleForMessage)
+            except Exception, e:
                 errors.append(mailTo)
                 tbfile = cStringIO.StringIO()
                 traceback.print_exc(file=tbfile)
@@ -596,14 +597,14 @@ class Newsletter(SkinnedFolder, OrderedContainer, DefaultDublinCoreImpl, PNLCont
         theme = self.getTheme()
         recipients = theme.mailingInfos()
         # we are sending to all recipients. Render dynamic content and store it persistently
-        self._dynamic_content=self.render_dynamic_content(html=True)
+        self._dynamic_content = self.render_dynamic_content(html=True)
         errors1 = self.sendToRecipients(recipients)
         recipients = theme.getExtraRecipients()
         errors2 = self.sendToRecipients(recipients)
         self.dateEmitted = DateTime()
         if REQUEST is not None:
             if errors1 or errors2:
-                statusMsg = translate(u'SMTP server related errors', domain='plonegazette', context=REQUEST) ##!: display recipient
+                statusMsg = translate(u'SMTP server related errors', domain='plonegazette', context=REQUEST)  # !: display recipient
             else:
                 statusMsg = translate(u'The newsletter has been sent.', domain='plonegazette', context=REQUEST)
             self.plone_utils.addPortalMessage(statusMsg)
@@ -620,8 +621,8 @@ class Newsletter(SkinnedFolder, OrderedContainer, DefaultDublinCoreImpl, PNLCont
         """
         """
         hasPermission = nobody.has_permission
-        objects = [object for object in self.objectValues(('Section','NewsletterTopic', 'NewsletterReference', 'NewsletterRichReference')) if hasPermission('View', object)]
-        objects.sort(lambda a,b:cmp(self.getObjectPosition(a.getId()), self.getObjectPosition(b.getId())))
+        objects = [object for object in self.objectValues(('Section', 'NewsletterTopic', 'NewsletterReference', 'NewsletterRichReference')) if hasPermission('View', object)]
+        objects.sort(lambda a, b: cmp(self.getObjectPosition(a.getId()), self.getObjectPosition(b.getId())))
         return objects
 
     security.declareProtected(View, 'renderedDynamicContent')
@@ -632,7 +633,7 @@ class Newsletter(SkinnedFolder, OrderedContainer, DefaultDublinCoreImpl, PNLCont
             return self._dynamic_content
 
     security.declareProtected(ListFolderContents, 'listFolderContents')
-    def listFolderContents( self, spec=None, contentFilter=None, suppressHiddenFiles=0 ):
+    def listFolderContents(self, spec=None, contentFilter=None, suppressHiddenFiles=0):
         """
         Hook around 'contentValues' to let 'folder_contents'
         be protected.  Duplicating skip_unauthorized behavior of dtml-in.
@@ -643,13 +644,13 @@ class Newsletter(SkinnedFolder, OrderedContainer, DefaultDublinCoreImpl, PNLCont
 
         """
         ctool = getToolByName(self, 'portal_catalog')
-        items = ctool(path={'query':'/'.join(self.getPhysicalPath()), 'depth':1},
+        items = ctool(path={'query': '/'.join(self.getPhysicalPath()), 'depth': 1},
                       sort_on='sortable_title')
         return items
 
     # For plone 2.1+ to show unindexed content
     security.declareProtected(ChangeNewsletterTheme, 'getFolderContents')
-    def getFolderContents(self, contentFilter=None,batch=False,b_size=100,full_objects=False):
+    def getFolderContents(self, contentFilter=None, batch=False, b_size=100, full_objects=False):
         """Override getFolderContents to show all objects"""
         contents = self.listFolderContents(contentFilter=contentFilter)
         if batch:
