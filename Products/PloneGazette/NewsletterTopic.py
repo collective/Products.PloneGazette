@@ -21,7 +21,7 @@ def addNewsletterTopic(self, id, title='', REQUEST={}):
     obj = NewsletterTopic(id, title)
     self._setObject(id, obj)
     getattr(self, id)._post_init()
-    if REQUEST.has_key('RESPONSE'):
+    if 'RESPONSE' in REQUEST:
         return REQUEST.RESPONSE.redirect(self.absolute_url() + '/manage_main')
 
 #################################

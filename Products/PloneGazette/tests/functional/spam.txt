@@ -1,0 +1,128 @@
+==================================================
+Check the appearance of fields for spam prevention
+==================================================
+
+Log in as the portal owner::
+
+    >>> from plone.app.testing import TEST_USER_NAME, TEST_USER_PASSWORD
+    >>> browser.login(TEST_USER_NAME, TEST_USER_PASSWORD)
+
+Add NewsletterTheme::
+
+    >>> browser.open('/createObject?type_name=NewsletterTheme')
+
+    >>> browser.getControl(name="title").value = 'NewsletterTheme01'
+    >>> browser.getControl(name="testEmail").value = 'test@email.com'
+    >>> browser.getControl(name="authorEmail").value = 'author@email.com'
+    >>> browser.getControl(name="form.button.Save").click()
+
+Check that there are not messages:
+
+    >>> len(messages)
+    0
+
+Click Subscribe::
+
+    >>> browser.getLink("Subscribe").click()
+
+There are no spam preventation::
+
+    >>> browser.bycss('.turhaSeOis')
+    ''
+
+Subscribe::
+
+    >>> browser.getControl(name="email").value = "aaa@aaa.aa"
+    >>> browser.getControl(name="Change").click()
+
+Check the message::
+
+    >>> len(messages)
+    1
+
+    >>> prink(messages[-1])
+    Date: ...
+    Message-ID: ...
+    Mime-version: 1.0
+    Content-Type: text/plain; charset="utf-8"
+    Content-Transfer-Encoding: quoted-printable
+    Cc: 
+    To: aaa@aaa.aa
+    From: author@email.com
+    Subject: Please activate your newsletter account
+    <BLANKLINE>
+    Dear subscriber,
+    <BLANKLINE>
+    We have received and recorded your newsletter subscription.
+    You must now activate your account to receive our newsletters.
+    To do this, just browse to this URL...
+    http://nohost/plone/newslettertheme01?active=...&format=3DHTML
+    Then you'll receive our next newsletters at aaa@aaa.aa
+    <BLANKLINE>
+    PLEASE DON'T REPLY TO THIS MAIL
+
+Enable spam prevention::
+
+    >>> browser.open('/portal_registry/edit/Products.PloneGazette.spam_prevention')
+    >>> browser.getControl(name="form.widgets.value:list").value = True
+    >>> browser.getControl(name="form.buttons.save").click()
+
+Go to Subscribe::
+
+    >>> browser.open('/newslettertheme01/NewsletterTheme_subscribeForm')
+
+    >>> print browser.bycss('.turhaSeOis')
+    --- 1 ---
+    <input class="turhaSeOis" type="text" name="title" value="">
+    --- 2 ---
+    <textarea class="turhaSeOis" rows="2" cols="20" name="message"></textarea>
+
+Subscribe::
+
+    >>> browser.getControl(name="email").value = "bbb@bbb.bb"
+    >>> browser.getControl(name="Change").click()
+
+Check the message::
+
+    >>> len(messages)
+    2
+
+Subscribe spam with title field::
+
+    >>> browser.open('/newslettertheme01/NewsletterTheme_subscribeForm')
+
+    >>> browser.getControl(name="email").value = "ccc@ccc.cc"
+    >>> browser.getControl(name="title").value = 'TITLE'
+    >>> browser.getControl(name="Change").click()
+
+Check the message::
+
+    >>> len(messages)
+    2
+
+Subscribe spam with message field::
+
+    >>> browser.open('/newslettertheme01/NewsletterTheme_subscribeForm')
+
+    >>> browser.getControl(name="email").value = "ddd@ddd.dd"
+    >>> browser.getControl(name="message").value = 'MESSAGE'
+    >>> browser.getControl(name="Change").click()
+
+Check the message::
+
+    >>> len(messages)
+    2
+
+Subscribe spam with title and message field::
+
+    >>> browser.open('/newslettertheme01/NewsletterTheme_subscribeForm')
+
+    >>> browser.getControl(name="email").value = "eee@eee.ee"
+    >>> browser.getControl(name="title").value = 'TITLE'
+    >>> browser.getControl(name="message").value = 'MESSAGE'
+    >>> browser.getControl(name="Change").click()
+
+Check the message::
+
+    >>> len(messages)
+    2

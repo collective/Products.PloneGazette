@@ -72,7 +72,7 @@ def addNewsletterTheme(self, id, title='', REQUEST={}):
     obj = NewsletterTheme(id, title)
     self._setObject(id, obj)
     getattr(self, id)._post_init()
-    if REQUEST.has_key('RESPONSE'):
+    if 'RESPONSE' in REQUEST:
         return REQUEST.RESPONSE.redirect('manage_main')
     return
 
@@ -327,9 +327,9 @@ class NewsletterTheme(SkinnedFolder.SkinnedFolder, DefaultDublinCoreImpl, PNLCon
         errors = {}
         data = {}
         charset = getUtility(ISiteRoot).getProperty('email_charset', 'utf-8')
-        if REQUEST.form.has_key('email'):
+        # if REQUEST.form.has_key('email'):
+        if 'email' in REQUEST.form:
             # Form submitted
-
             if self.spam_prevention() and (
                 REQUEST.get('message') != '' or REQUEST.get('title') != ''
             ):

@@ -24,7 +24,7 @@ def addSubscriber(self, id, email='', REQUEST={}):
     obj = Subscriber(id, email)
     self._setObject(id, obj)
     getattr(self, id)._post_init()
-    if REQUEST.has_key('RESPONSE'):
+    if 'RESPONSE' in REQUEST:
         return REQUEST.RESPONSE.redirect(self.absolute_url() + '/manage_main')
 
 

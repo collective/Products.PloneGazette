@@ -4,6 +4,9 @@ from plone.app.testing import TEST_USER_ID
 from plone.app.testing import setRoles
 from plone.testing import layered
 from zope.testing import renormalizing
+from Products.CMFPlone.tests.utils import MockMailHost
+from Products.MailHost.interfaces import IMailHost
+from zope.component import getSiteManager
 
 import doctest
 import manuel.codeblock
@@ -19,6 +22,10 @@ CHECKER = renormalizing.RENormalizing([
     # Normalize the generated UUID values to always compare equal.
     (re.compile(r'[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'), '<UUID>'),
 ])
+
+
+def prink(e):
+    print eval('"""{0}"""'.format(str(e)))
 
 
 def setUp(self):
@@ -40,9 +47,13 @@ def setUp(self):
 
     setRoles(portal, TEST_USER_ID, ['Manager'])
 
-    data_path = '/'.join(__file__.split('/')[:-1] + ['files', 'data.csv'])
-    self.globs['data_path'] = data_path
-    self.globs['data_file'] = open(data_path)
+    # portal._original_MailHost = portal.MailHost
+    portal.MailHost = mailhost = MockMailHost('MailHost')
+    sm = getSiteManager(context=portal)
+    sm.unregisterUtility(provided=IMailHost)
+    sm.registerUtility(mailhost, provided=IMailHost)
+    self.globs['messages'] = mailhost.messages
+    self.globs['prink'] = prink
 
     transaction.commit()
 
@@ -74,7 +85,5 @@ def DocFileSuite(testfile, flags=FLAGS, setUp=setUp, layer=FUNCTIONAL_TESTING):
 
 def test_suite():
     return unittest.TestSuite([
-        DocFileSuite('functional/browser.txt'),
-        DocFileSuite('functional/import.txt'),
-        DocFileSuite('functional/portlet.txt'),
+        DocFileSuite('functional/spam.txt'),
         ])
