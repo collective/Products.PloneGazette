@@ -327,7 +327,6 @@ class NewsletterTheme(SkinnedFolder.SkinnedFolder, DefaultDublinCoreImpl, PNLCon
         errors = {}
         data = {}
         charset = getUtility(ISiteRoot).getProperty('email_charset', 'utf-8')
-        # if REQUEST.form.has_key('email'):
         if 'email' in REQUEST.form:
             # Form submitted
             if self.spam_prevention() and (

@@ -126,3 +126,12 @@ Check the message::
 
     >>> len(messages)
     2
+
+Add Subscribe Newsletter Portlet::
+
+    >>> browser.open('/++contextportlets++plone.leftcolumn/+/portlets.SubscribeNewsletter')
+    >>> browser.getControl(name="form.actions.save").click()
+
+Go to portal to check portlet::
+
+    >>> browser.open(portal_url)

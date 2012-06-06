@@ -16,6 +16,7 @@ from zope.formlib import form
 from zope.interface import Interface
 from zope.interface import implements
 from zope.schema import Choice
+from zope.schema import Text
 from zope.schema import TextLine
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
@@ -86,6 +87,14 @@ class ISubscribeNewsletterForm(Interface):
         title=_(u"Format"),
         required=True,
         vocabulary=formats,
+    )
+
+    title = TextLine(
+        required=False,
+    )
+
+    message = Text(
+        required=False,
     )
 
 
