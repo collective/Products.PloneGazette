@@ -17,6 +17,10 @@ class TestCase(IntegrationTestCase):
         from plone.browserlayer import utils
         self.failUnless(IPloneGazetteLayer in utils.registered_layers())
 
+    def test_cssregistry(self):
+        css = getToolByName(self.portal, 'portal_css')
+        self.failUnless(css.getResource("++resource++PloneGazette.stylesheets/style.css"))
+
     def test_registry__spam_prevention__value(self):
         from zope.component import getUtility
         from plone.registry.interfaces import IRegistry
@@ -80,6 +84,12 @@ class TestCase(IntegrationTestCase):
         from Products.PloneGazette.browser.interfaces import IPloneGazetteLayer
         from plone.browserlayer import utils
         self.failIf(IPloneGazetteLayer in utils.registered_layers())
+
+    def test_uninstall__cssregistry(self):
+        installer = getToolByName(self.portal, 'portal_quickinstaller')
+        installer.uninstallProducts(['PloneGazette'])
+        css = getToolByName(self.portal, 'portal_css')
+        self.failIf(css.getResource("++resource++PloneGazette.stylesheets/style.css"))
 
     def test_uninstall__registry__spam_prevention(self):
         installer = getToolByName(self.portal, 'portal_quickinstaller')

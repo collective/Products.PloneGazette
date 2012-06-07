@@ -4,6 +4,12 @@
  xmlns="http://namespaces.zope.org/zope"
  >
 
+  <browser:resourceDirectory
+    directory="stylesheets"
+    layer=".interfaces.IPloneGazetteLayer"
+    name="PloneGazette.stylesheets"
+    />
+
   <browser:page
     allowed_interface=".interfaces.INewsletterBTreeView"
     class=".newsletterbtree.NewsletterBTreeView"
