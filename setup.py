@@ -36,6 +36,7 @@ setup(
     namespace_packages=['Products'],
     install_requires=[
         'hexagonit.testing',
+        'plone.directives.form',
         'setuptools',
         'zope.i18nmessageid',
     ],

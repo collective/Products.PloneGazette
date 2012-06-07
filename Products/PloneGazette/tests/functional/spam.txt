@@ -132,6 +132,89 @@ Add Subscribe Newsletter Portlet::
     >>> browser.open('/++contextportlets++plone.leftcolumn/+/portlets.SubscribeNewsletter')
     >>> browser.getControl(name="form.actions.save").click()
 
-Go to portal to check portlet::
+Subscribe without spam through the portlet::
 
     >>> browser.open(portal_url)
+    >>> browser.getControl(name="form.widgets.email").value = "fff@fff.ff"
+    >>> browser.getControl(name="form.buttons.subscribe").click()
+
+Check the message::
+
+    >>> len(messages)
+    3
+
+Subscribe spam with title field through the portlet::
+
+    >>> browser.open(portal_url)
+    >>> browser.getControl(name="form.widgets.email").value = "ggg@ggg.gg"
+    >>> browser.getControl(name="form.widgets.title").value = 'TITLE'
+    >>> browser.getControl(name="form.buttons.subscribe").click()
+
+Check the message::
+
+    >>> len(messages)
+    3
+
+Subscribe spam with message field through the portlet::
+
+    >>> browser.getControl(name="form.widgets.email").value = "hhh@hhh.hh"
+    >>> browser.getControl(name="form.widgets.message").value = 'MESSAGE'
+    >>> browser.getControl(name="form.buttons.subscribe").click()
+
+Check the message::
+
+    >>> len(messages)
+    3
+
+Subscribe spam with message field through the portlet::
+
+    >>> browser.getControl(name="form.widgets.email").value = "iii@iii.ii"
+    >>> browser.getControl(name="form.widgets.title").value = 'TITLE'
+    >>> browser.getControl(name="form.widgets.message").value = 'MESSAGE'
+    >>> browser.getControl(name="form.buttons.subscribe").click()
+
+Check the message::
+
+    >>> len(messages)
+    3
+
+Disable spam prevention::
+
+    >>> browser.open('/portal_registry/edit/Products.PloneGazette.spam_prevention')
+    >>> browser.getControl(name="form.widgets.value:list").value = False
+    >>> browser.getControl(name="form.buttons.save").click()
+
+Subscribe spam with title field through the portlet::
+
+    >>> browser.open(portal_url)
+    >>> browser.getControl(name="form.widgets.email").value = "jjj@jjj.jj"
+    >>> browser.getControl(name="form.widgets.title").value = 'TITLE'
+    >>> browser.getControl(name="form.buttons.subscribe").click()
+
+Check the message::
+
+    >>> len(messages)
+    4
+
+Subscribe spam with message field through the portlet::
+
+    >>> browser.getControl(name="form.widgets.email").value = "kkk@kkk.kk"
+    >>> browser.getControl(name="form.widgets.message").value = 'MESSAGE'
+    >>> browser.getControl(name="form.buttons.subscribe").click()
+
+Check the message::
+
+    >>> len(messages)
+    5
+
+Subscribe spam with message field through the portlet::
+
+    >>> browser.getControl(name="form.widgets.email").value = "lll@lll.ll"
+    >>> browser.getControl(name="form.widgets.title").value = 'TITLE'
+    >>> browser.getControl(name="form.widgets.message").value = 'MESSAGE'
+    >>> browser.getControl(name="form.buttons.subscribe").click()
+
+Check the message::
+
+    >>> len(messages)
+    6

@@ -5,15 +5,15 @@ from Products.PloneGazette import _
 from Products.PloneGazette.interfaces import INewsletterTheme
 from plone.app.portlets.portlets import base
 from plone.app.vocabularies.catalog import SearchableTextSourceBinder
+from plone.directives.form import Form
+from plone.directives.form import Schema
 from plone.portlets.interfaces import IPortletDataProvider
 from plone.z3cform.layout import FormWrapper
 from z3c.form import button
 from z3c.form.field import Fields
-from z3c.form.form import Form
 from zope import schema
 from zope.component import getMultiAdapter
 from zope.formlib import form
-from zope.interface import Interface
 from zope.interface import implements
 from zope.schema import Choice
 from zope.schema import Text
@@ -76,7 +76,7 @@ formats = SimpleVocabulary(
 )
 
 
-class ISubscribeNewsletterForm(Interface):
+class ISubscribeNewsletterForm(Schema):
 
     email = TextLine(
         title=_(u"E-mail address"),
@@ -104,17 +104,10 @@ class SubscribeNewsletterForm(Form):
     ignoreContext = True
     label = _(u"")
 
-    def __init__(self, context, request, returnURLHint=None, full=True, data=None):
+    def __init__(self, context, request, data=None):
         """
-
-        @param returnURLHint: Should we enforce return URL for this form
-
-        @param full: Show all available fields or just required ones.
         """
-        Form.__init__(self, context, request)
-        self.all_fields = full
-
-        self.returnURLHint = returnURLHint
+        super(Form, self).__init__(context, request)
 
         self.data = data
 
@@ -189,24 +182,22 @@ class Renderer(base.Renderer):
     def createForm(self):
         """ Create a form instance.
 
-        @return: z3c.form wrapped for Plone 3 view
+        @return: z3c.form wrapped for Plone view
         """
 
         context = aq_inner(self.context)
 
-        returnURL = context.absolute_url()
-
-        # Create a compact version of the contact form
-        # (not all fields visible)
-        form = SubscribeNewsletterForm(context, self.request, returnURLHint=returnURL, full=False, data=self.data)
+        form = SubscribeNewsletterForm(context, self.request, data=self.data)
 
         # Wrap a form in Plone view
         view = PortletFormView(context, self.request)
         view = view.__of__(context)  # Make sure acquisition chain is respected
         view.form_instance = form
         return view
+        # return form
 
     def newsletters(self):
+        # return self.form_wrapper.newslettertheme()
         return self.form_wrapper.form_instance.newslettertheme()
 
     @property
