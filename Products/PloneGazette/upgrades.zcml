@@ -1,0 +1,17 @@
+<configure
+  i18n_domain="Products.PloneGazette"
+  xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+  xmlns="http://namespaces.zope.org/zope"
+  >
+
+  <genericsetup:upgradeStep
+    description=""
+    destination="34"
+    handler="Products.PloneGazette.upgrades.upgrade_33_to_34"
+    profile="Products.PloneGazette:default"
+    sortkey="1"
+    source="3.3"
+    title="Import cssregistry.xml and registry.xml"
+    />
+
+</configure>

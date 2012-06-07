@@ -15,6 +15,7 @@
   <include package=".portlet" />
   <include file="adapters.zcml" />
   <include file="skins.zcml" />
+  <include file="upgrades.zcml" />
 
   <genericsetup:registerProfile
     description=""

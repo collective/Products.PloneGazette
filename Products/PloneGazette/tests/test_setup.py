@@ -21,6 +21,13 @@ class TestCase(IntegrationTestCase):
         css = getToolByName(self.portal, 'portal_css')
         self.failUnless(css.getResource("++resource++PloneGazette.stylesheets/style.css"))
 
+    def test_metadata__version(self):
+        setup = getToolByName(self.portal, 'portal_setup')
+        self.assertEqual(
+            setup.getVersionForProfile('profile-Products.PloneGazette:default'),
+            u'34'
+        )
+
     def test_registry__spam_prevention__value(self):
         from zope.component import getUtility
         from plone.registry.interfaces import IRegistry
