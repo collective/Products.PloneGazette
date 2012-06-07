@@ -35,6 +35,7 @@ setup(
     zip_safe=False,
     namespace_packages=['Products'],
     install_requires=[
+        'Products.OrderableReferenceField',
         'hexagonit.testing',
         'plone.directives.form',
         'setuptools',
