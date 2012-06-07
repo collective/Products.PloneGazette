@@ -6,9 +6,8 @@ import os
 
 long_description = (
     open(os.path.join("Products", "PloneGazette", "docs", "README.rst")).read() + "\n" +
-    open(os.path.join("Products", "PloneGazette", "docs", "INSTALL.rst")).read() + "\n" +
-    open(os.path.join("Products", "PloneGazette", "docs", "UPGRADE.rst")).read() + "\n" +
-    open(os.path.join("Products", "PloneGazette", "docs", "HISTORY.rst")).read()
+    open(os.path.join("Products", "PloneGazette", "docs", "HISTORY.rst")).read() + "\n" +
+    open(os.path.join("Products", "PloneGazette", "docs", "CONTRIBUTORS.rst")).read()
 )
 
 
