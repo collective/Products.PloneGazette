@@ -89,20 +89,25 @@ def initialize(context):
 # Handles import and attribute exceptions in case backwards
 # compatability without TinyMCE is needed or TinyMCE is there
 # but doesn't have getContentType defined
+#
+# Update 2012-08-16: Plone 4.1.6/TinyMCE 1.2.12 has a different implementation
+# of the TineMCE.getContentType method which is not compatible with the monkey
+# patch below. I'm simply disabling the monkey patch for now. It may be revisited
+# if it's still needed.
 
-try:
-    from Products.TinyMCE.utility import TinyMCE
+# try:
+#     from Products.TinyMCE.utility import TinyMCE
 
-    old_getContentType = TinyMCE.getContentType.im_func
+#     old_getContentType = TinyMCE.getContentType.im_func
 
-    def getContentType(self, object=None, fieldname=None):
-        if getattr(object, 'meta_type', None) == 'Newsletter':
-            return "text/html"
-        else:
-            return old_getContentType(self, object=object, fieldname=fieldname)
+#     def getContentType(self, object=None, fieldname=None):
+#         if getattr(object, 'meta_type', None) == 'Newsletter':
+#             return "text/html"
+#         else:
+#             return old_getContentType(self, object=object, fieldname=fieldname)
 
-    TinyMCE.getContentType = getContentType
-except ImportError:
-    pass
-except AttributeError:
-    pass
+#     TinyMCE.getContentType = getContentType
+# except ImportError:
+#     pass
+# except AttributeError:
+#     pass
