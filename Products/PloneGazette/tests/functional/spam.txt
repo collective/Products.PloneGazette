@@ -132,7 +132,7 @@ Add Subscribe Newsletter Portlet::
 
 Subscribe without spam through the portlet::
 
-    >>> browser.open(portal_url)
+    >>> browser.open('/')
     >>> browser.getControl(name="form.widgets.email").value = "fff@fff.ff"
     >>> browser.getControl(name="form.buttons.subscribe").click()
 
@@ -143,7 +143,7 @@ Check the message::
 
 Subscribe spam with title field through the portlet::
 
-    >>> browser.open(portal_url)
+    >>> browser.open('/')
     >>> browser.getControl(name="form.widgets.email").value = "ggg@ggg.gg"
     >>> browser.getControl(name="form.widgets.title").value = 'TITLE'
     >>> browser.getControl(name="form.buttons.subscribe").click()
@@ -184,7 +184,7 @@ Disable spam prevention::
 
 Subscribe spam with title field through the portlet::
 
-    >>> browser.open(portal_url)
+    >>> browser.open('/')
     >>> browser.getControl(name="form.widgets.email").value = "jjj@jjj.jj"
     >>> browser.getControl(name="form.widgets.title").value = 'TITLE'
     >>> browser.getControl(name="form.buttons.subscribe").click()
