@@ -2,15 +2,13 @@
 Check the appearance of fields for spam prevention
 ==================================================
 
-Log in as the portal owner::
+Log in as Manager::
 
-    >>> from plone.app.testing import TEST_USER_NAME, TEST_USER_PASSWORD
     >>> browser.login(TEST_USER_NAME, TEST_USER_PASSWORD)
 
 Add NewsletterTheme::
 
     >>> browser.open('/createObject?type_name=NewsletterTheme')
-
     >>> browser.getControl(name="title").value = 'NewsletterTheme01'
     >>> browser.getControl(name="testEmail").value = 'test@email.com'
     >>> browser.getControl(name="authorEmail").value = 'author@email.com'
@@ -46,7 +44,7 @@ Check the message::
     Mime-version: 1.0
     Content-Type: text/plain; charset="utf-8"
     Content-Transfer-Encoding: quoted-printable
-    Cc: 
+    Cc:
     To: aaa@aaa.aa
     From: author@email.com
     Subject: Please activate your newsletter account
