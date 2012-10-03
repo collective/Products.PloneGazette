@@ -497,11 +497,7 @@ class NewsletterTheme(SkinnedFolder.SkinnedFolder, DefaultDublinCoreImpl, PNLCon
         """"""
         mailhost_id = os.environ.get('PLONEGAZETTE_MAILHOST_ID', 'MailHost')
         mail_host = getattr(self, mailhost_id)
-        send = getattr(mail_host, 'secureSend', None)
-        if send is None:
-            send = getattr(mail_host, 'send')
-            mailBody = mailBody.as_string()
-        send(mailBody, mailto, mailfrom, subject=subject)
+        mail_host.send(mailBody.as_string(), mailto, mailfrom, subject=subject)
 
     security.declarePublic('getRenderTemplate')
     def getRenderTemplate(self, recompile=0):
