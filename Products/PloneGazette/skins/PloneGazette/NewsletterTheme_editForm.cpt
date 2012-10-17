@@ -270,7 +270,7 @@ $Id: NewsletterTheme_editForm.cpt 248253 2012-02-08 13:41:46Z vincentfretin $
 
   <div class="field"
       tal:define="error errors/newsletterStyle|nothing;
-                  newsletterStyle request/newsletterStyle | here/newsletterStyle"
+                  newsletterStyle request/newsletterStyle | here/newsletterStyle | nothing"
       tal:attributes="class python:test(error, 'field error', 'field')">
 
    <label i18n:translate="label_newsletterStyle">Newsletter body style</label>
@@ -296,7 +296,7 @@ $Id: NewsletterTheme_editForm.cpt 248253 2012-02-08 13:41:46Z vincentfretin $
 
   <div class="field"
       tal:define="error errors/newsletterHeader|nothing;
-                  newsletterHeader request/newsletterHeader | here/newsletterHeader"
+                  newsletterHeader request/newsletterHeader | here/newsletterHeader | nothing"
       tal:attributes="class python:test(error, 'field error', 'field')">
 
    <label i18n:translate="label_newsletterHeader">Newsletter header text</label>
