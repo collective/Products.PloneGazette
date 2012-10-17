@@ -341,12 +341,13 @@ class NewsletterTheme(SkinnedFolder.SkinnedFolder, DefaultDublinCoreImpl, PNLCon
             data['email'] = emailaddress
 
             if not checkMailAddress(self, emailaddress):
-                errors['email'] = _('This is not a valid mail address')
+                errors['email'] = self.translate('This is not a valid mail address', domain='plonegazette', context=self.REQUEST)
                 return data, errors
             format = REQUEST.form.get('format', self.default_format)
             data['format'] = format
             if self.alreadySubscriber(emailaddress):
-                errors['email'] = _('There is already a subscriber with this address')
+                errors['email'] = self.translate('There is already a subscriber with this address',
+                                                 domain='plonegazette', context=self.REQUEST)
             if not errors:
                 # Creating the new account
                 self._subscribersCount += 1
