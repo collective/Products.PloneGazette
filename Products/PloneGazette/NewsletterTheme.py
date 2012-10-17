@@ -315,7 +315,12 @@ class NewsletterTheme(SkinnedFolder.SkinnedFolder, DefaultDublinCoreImpl, PNLCon
     security.declarePublic('spam_prevention')
     def spam_prevention(self):
         """Returns True if spam_prevention is on."""
-        registry = getUtility(IRegistry)
+        # context/spam_prevention | nothing fails with ComponentLookupError                                                                                                                                  
+        # shouldn't it just fail silently?                                                                                                                                                                   
+        try:
+            registry = getUtility(IRegistry)
+        except:
+            return False
         return registry['Products.PloneGazette.spam_prevention']
 
     security.declarePublic('subscribeFormProcess')
