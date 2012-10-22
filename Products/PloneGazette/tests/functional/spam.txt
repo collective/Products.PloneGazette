@@ -39,15 +39,14 @@ Check the message::
     1
 
     >>> prink(messages[-1])
+    To: aaa@aaa.aa
     Date: ...
     Message-ID: ...
     Mime-version: 1.0
     Content-Type: text/plain; charset="utf-8"
     Content-Transfer-Encoding: quoted-printable
-    Cc:
-    To: aaa@aaa.aa
+    Subject: =?utf-8?q?Please_activate_your_newsletter_account?=
     From: author@email.com
-    Subject: Please activate your newsletter account
     <BLANKLINE>
     Dear subscriber,
     <BLANKLINE>
