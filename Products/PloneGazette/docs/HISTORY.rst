@@ -4,6 +4,7 @@ Changelog
 X.X (2012-XX-XX)
 ================
 
+- Dropped support for Products.SecureMailHost in favor of Products.MailHost [dokai]
 - Subscribe Newsletter Portlet added. [taito]
 - UnicodeDecodeError while previewing plain text newsletter fixed. [taito]
 - Locales related files moved to locales directory. [taito]
