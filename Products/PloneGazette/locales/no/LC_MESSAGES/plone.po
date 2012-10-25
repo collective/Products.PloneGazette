@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PloneGazette 1.0\n"
 "POT-Creation-Date: 2004-03-04 14:03+CET\n"
 "PO-Revision-Date: 2007-02-07 14:03+CET\n"
-"Last-Translator: Geir Bækholt <baekholt@plonesolutions.com>\n"
+"Last-Translator: Morten W. Petersen <morten@nidelven-it.no\>n"
 "Language-Team: Jerome Sandarnaud <jerome.sandarnaud@pilotsystems.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -30,3 +30,16 @@ msgstr "Abonnér"
 
 msgid "Unsubscribe"
 msgstr "Meld ut av abonnement"
+
+# Needed for drop-down menu
+msgid "NewsletterTheme"
+msgstr "Nyhetsbrev-mappe"
+
+msgid "Newsletter"
+msgstr "Nyhetsbrev"
+
+msgid "Newsletter Large Folder"
+msgstr "Nyhetsbrev Stor Mappe"
+
+msgid "Subscriber"
+msgstr "Abonnent"
