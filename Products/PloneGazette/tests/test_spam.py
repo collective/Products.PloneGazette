@@ -1,3 +1,5 @@
+from Products.CMFPlone.tests.utils import MockMailHost
+from Products.MailHost.interfaces import IMailHost
 from Products.PloneGazette.tests.base import FUNCTIONAL_TESTING
 from hexagonit.testing.browser import Browser
 from plone.app.testing import TEST_USER_ID
@@ -5,10 +7,8 @@ from plone.app.testing import TEST_USER_NAME
 from plone.app.testing import TEST_USER_PASSWORD
 from plone.app.testing import setRoles
 from plone.testing import layered
-from zope.testing import renormalizing
-from Products.CMFPlone.tests.utils import MockMailHost
-from Products.MailHost.interfaces import IMailHost
 from zope.component import getSiteManager
+from zope.testing import renormalizing
 
 import doctest
 import manuel.codeblock
@@ -85,6 +85,4 @@ def DocFileSuite(testfile, flags=FLAGS, setUp=setUp, layer=FUNCTIONAL_TESTING):
 
 
 def test_suite():
-    return unittest.TestSuite([
-        DocFileSuite('functional/spam.txt'),
-        ])
+    return unittest.TestSuite([DocFileSuite('functional/spam.txt')])

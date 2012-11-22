@@ -1,8 +1,8 @@
 Changelog
 ---------
 
-X.X (2012-XX-XX)
-================
+3.2.0.1 (2012-11-22)
+====================
 
 - Dropped support for Products.SecureMailHost in favor of Products.MailHost [dokai]
 - Subscribe Newsletter Portlet added. [taito]
@@ -10,6 +10,7 @@ X.X (2012-XX-XX)
 - Locales related files moved to locales directory. [taito]
 - Spam prevention added. [dokai, taito]
 - ReferenceField updated to ordered one. [dokai, taito]
+- Release for Plone-4.2.2. [taito]
 
 3.2 (2012-02-09)
 ================
