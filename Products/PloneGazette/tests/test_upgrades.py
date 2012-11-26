@@ -1,5 +1,5 @@
-from Products.PloneGazette.tests.base import IntegrationTestCase
 from Products.CMFCore.utils import getToolByName
+from Products.PloneGazette.tests.base import IntegrationTestCase
 
 
 class TestCase(IntegrationTestCase):

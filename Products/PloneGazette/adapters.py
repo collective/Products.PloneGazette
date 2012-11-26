@@ -11,3 +11,6 @@ class NewsletterConversation(object):
 
     def getComments(self):
         return []
+
+    def objectIds(self):
+        return []

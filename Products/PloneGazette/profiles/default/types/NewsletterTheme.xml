@@ -3,8 +3,7 @@
   i18n:domain="plonegazette"
   meta_type="Factory-based Type Information"
   name="NewsletterTheme"
-  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-  >
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n">
   <property name="title" i18n:translate="">NewsletterTheme</property>
   <property name="description" i18n:translate="">Manage your newsletters with this</property>
   <property name="content_icon">NewsletterTheme.gif</property>

@@ -1,6 +1,5 @@
-Log in as the portal owner::
+Log in as Manager::
 
-    >>> from plone.app.testing import TEST_USER_NAME, TEST_USER_PASSWORD
     >>> browser.login(TEST_USER_NAME, TEST_USER_PASSWORD)
 
 Go to add portlet.SubscribeNewsletter::
@@ -19,7 +18,7 @@ Go to add portlet.SubscribeNewsletter::
 
 The portlet should not be available::
 
-    >>> browser.open(portal_url)
+    >>> browser.open('/')
     >>> 'Our newsletter' in browser.contents
     False
 
@@ -67,7 +66,7 @@ Go to edit portlet::
 
     >>> browser.getControl(name="form.actions.save").click()
 
-    >>> browser.open(portal_url)
+    >>> browser.open('/')
 
     >>> print browser.bycss('.portletFooter')
     --- 1 ---
@@ -75,7 +74,7 @@ Go to edit portlet::
     <span class="portletBottomLeft"></span>
     <a alt="Description of NewsletterTheme02" href="http://nohost/plone/newslettertheme02" title="NewsletterTheme02">Visit our archives</a>
     <span class="portletBottomRight"></span>
-    </dd>  
+    </dd>
 
     >>> 'path=/plone/newslettertheme02' in browser.contents
     True
