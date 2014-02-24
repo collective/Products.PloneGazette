@@ -34,10 +34,16 @@ setup(
     install_requires=[
         'Plone>=4.2',
         'Products.OrderableReferenceField',
-        'hexagonit.testing',
         'plone.directives.form',
         'setuptools',
+        'elementtree',
         'zope.i18nmessageid'],
+    extras_require={
+        'test': [
+            'plone.app.testing',
+            'hexagonit.testing',
+        ],
+    },
     entry_points="""
     # -*- Entry points: -*-
 
