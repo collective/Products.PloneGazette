@@ -28,12 +28,14 @@ Add Subscriber::
     <div id="content">
     <div>
     <h1>
-	Your subscriber account for
-	test01@test.mail
-	</h1>
-    <ul><li>Your newsletter subscription is <strong>not activated</strong>.</li>
+    Your subscriber account for
+    test01@test.mail
+    </h1>
+    <ul>
+    <li>Your newsletter subscription is <strong>not activated</strong>.</li>
     <li>You will receive <strong>HTML</strong> newsletters.</li>
-    </ul></div>
+    </ul>
+    </div>
     </div>
 
 Unsubscribe::
@@ -41,13 +43,14 @@ Unsubscribe::
     >>> browser.getLink('Unsubscribe').click()
     >>> print browser.bycss('.portalMessage')
     --- 1 ---
-    <dl class="portalMessage info" id="kssPortalMessage" style="display:none"><dt>Info</dt>
+    <dl class="portalMessage info" id="kssPortalMessage" style="display:none">
+    <dt>Info</dt>
     <dd></dd>
     </dl>
     --- 2 ---
     <div class="portalMessage">
-	You have been successfully unsubscribed from this newsletter.
-	</div>
+    You have been successfully unsubscribed from this newsletter.
+    </div>
 
 Create Newsletter::
 

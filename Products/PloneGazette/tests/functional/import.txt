@@ -32,11 +32,15 @@ Import csv file::
     >>> browser.open('/newslettertheme01/subscriberfolder')
     >>> print browser.bycss('.listing')
     --- 1 ---
-    <table class="listing"><tr><th>E-mail</th>
+    <table class="listing">
+    <tr>
+    <th>E-mail</th>
     <th>Format</th>
     <th>Account activation</th>
     <th>Delete subscriber</th>
-    </tr><tr class="odd"><td>
+    </tr>
+    <tr class="odd">
+    <td>
     <a href="http://nohost/plone/newslettertheme01/subscribers/.../Subscriber_editForm">zzz@zzz.zz</a>
     </td>
     <td>Text</td>
@@ -46,7 +50,9 @@ Import csv file::
     <td>
     <a href="http://nohost/plone/newslettertheme01/subscribers/.../unSubscribe?subscriber_id=...">delete</a>
     </td>
-    </tr><tr class="even"><td>
+    </tr>
+    <tr class="even">
+    <td>
     <a href="http://nohost/plone/newslettertheme01/subscribers/.../Subscriber_editForm">yyy@yyy.yy</a>
     </td>
     <td>HTML</td>
@@ -56,7 +62,9 @@ Import csv file::
     <td>
     <a href="http://nohost/plone/newslettertheme01/subscribers/.../unSubscribe?subscriber_id=...">delete</a>
     </td>
-    </tr><tr class="odd"><td>
+    </tr>
+    <tr class="odd">
+    <td>
     <a href="http://nohost/plone/newslettertheme01/subscribers/.../Subscriber_editForm">xxx@xxx.xx</a>
     </td>
     <td>HTML</td>
@@ -65,7 +73,8 @@ Import csv file::
     <td>
     <a href="http://nohost/plone/newslettertheme01/subscribers/.../unSubscribe?subscriber_id=...">delete</a>
     </td>
-    </tr></table>
+    </tr>
+    </table>
 
     # >>> browser.open('/newslettertheme01/subscribers')
     # Traceback (most recent call last):
