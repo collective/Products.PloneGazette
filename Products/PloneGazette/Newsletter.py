@@ -333,7 +333,7 @@ class Newsletter(SkinnedFolder, OrderedContainer, DefaultDublinCoreImpl, PNLCont
                     src = x.attrib['src']
 
                     # fix only relative links
-                    if src.find('http://') != 0 and not href.find('https://') == 0:
+                    if src.find('http://') != 0 and not src.find('https://') == 0:
                         relative_part = "/".join(parsed_url[2].split('/')[0:(len(parsed_url[2].split('/')) - len(src.split("../")))])
                         x.attrib['src'] = "%s://%s%s/%s" % (parsed_url[0], parsed_url[1], relative_part, src.split("../")[-1])
 
