@@ -1,7 +1,7 @@
 Changelog
 ---------
 
-3.2.1 (unreleased)
+3.2.1 (2014-02-25)
 ==================
 
 - Avoid errors for links without href or class [mpeeters]
