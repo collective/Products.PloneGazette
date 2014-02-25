@@ -39,7 +39,9 @@ Add NewsletterTheme to make the portlet available::
     --- 1 ---
     <dd class="portletFooter">
     <span class="portletBottomLeft"></span>
-    <a alt="Description of NewsletterTheme01" href="http://nohost/plone/newslettertheme01" title="NewsletterTheme01">Visit our archives</a>
+    <a alt="Description of NewsletterTheme01" href="http://nohost/plone/newslettertheme01" title="NewsletterTheme01">
+	Visit our archives
+	</a>
     <span class="portletBottomRight"></span>
     </dd>
 
@@ -72,7 +74,9 @@ Go to edit portlet::
     --- 1 ---
     <dd class="portletFooter">
     <span class="portletBottomLeft"></span>
-    <a alt="Description of NewsletterTheme02" href="http://nohost/plone/newslettertheme02" title="NewsletterTheme02">Visit our archives</a>
+    <a alt="Description of NewsletterTheme02" href="http://nohost/plone/newslettertheme02" title="NewsletterTheme02">
+	Visit our archives
+	</a>
     <span class="portletBottomRight"></span>
     </dd>
 

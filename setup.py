@@ -12,7 +12,7 @@ long_description = (
 
 setup(
     name='Products.PloneGazette',
-    version='3.2.0.1',
+    version='3.2.1.dev0',
     author='Pilot Systems, Nidelven IT LTD and others',
     author_email='',
     maintainer='Morten W. Petersen',
@@ -34,10 +34,16 @@ setup(
     install_requires=[
         'Plone>=4.2',
         'Products.OrderableReferenceField',
-        'hexagonit.testing',
         'plone.directives.form',
         'setuptools',
+        'elementtree',
         'zope.i18nmessageid'],
+    extras_require={
+        'test': [
+            'plone.app.testing',
+            'hexagonit.testing',
+        ],
+    },
     entry_points="""
     # -*- Entry points: -*-
 

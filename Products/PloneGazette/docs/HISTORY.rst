@@ -1,6 +1,16 @@
 Changelog
 ---------
 
+3.2.1 (unreleased)
+==================
+
+- Avoid errors for links without href or class [mpeeters]
+
+- Do not break the mailto links [mpeeters]
+
+- Adding support for external https links [morphex]
+
+
 3.2.0.1 (2012-11-22)
 ====================
 

@@ -27,7 +27,10 @@ Add Subscriber::
     --- 1 ---
     <div id="content">
     <div>
-    <h1>Your subscriber account for test01@test.mail</h1>
+    <h1>
+	Your subscriber account for
+	test01@test.mail
+	</h1>
     <ul><li>Your newsletter subscription is <strong>not activated</strong>.</li>
     <li>You will receive <strong>HTML</strong> newsletters.</li>
     </ul></div>
@@ -42,7 +45,9 @@ Unsubscribe::
     <dd></dd>
     </dl>
     --- 2 ---
-    <div class="portalMessage">You have been successfully unsubscribed from this newsletter.</div>
+    <div class="portalMessage">
+	You have been successfully unsubscribed from this newsletter.
+	</div>
 
 Create Newsletter::
 
