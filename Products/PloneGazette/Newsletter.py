@@ -306,6 +306,9 @@ class Newsletter(SkinnedFolder, OrderedContainer, DefaultDublinCoreImpl, PNLCont
             current_keys = x.keys()
             # fix links and anchors
             if x.tag == "a" and 'href' in current_keys:
+                # Ignore mailto links
+                if x.attrib['href'].startswith('mailto:'):
+                    continue
                 # internal-link is not always set as a class on internal-links..
                 # Or, there was a period where it wasn't set by everything at least.
                 if "href" in current_keys:
