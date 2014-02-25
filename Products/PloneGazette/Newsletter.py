@@ -305,13 +305,13 @@ class Newsletter(SkinnedFolder, OrderedContainer, DefaultDublinCoreImpl, PNLCont
         for x in rootnode.getiterator():
             current_keys = x.keys()
             # fix links and anchors
-            if x.tag == "a":
+            if x.tag == "a" and 'href' in current_keys:
                 # internal-link is not always set as a class on internal-links..
                 # Or, there was a period where it wasn't set by everything at least.
                 if "href" in current_keys:
                     linksToParent = x.attrib['href'].startswith('../')
                 if "href" in current_keys and ("class" in current_keys or linksToParent):
-                    if x.attrib['class'] == "internal-link" or linksToParent:
+                    if linksToParent or x.attrib['class'] == "internal-link":
                         href = x.attrib['href']
                         relative_part = "/".join(parsed_url[2].split('/')[0:(len(parsed_url[2].split('/')) - len(href.split("../")))])
                         x.attrib['href'] = "%s://%s%s/%s" % (parsed_url[0], parsed_url[1], relative_part, href.split("../")[-1])
