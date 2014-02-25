@@ -2,8 +2,15 @@
 *.mo
 *.pyc
 *.pyo
+.installed.cfg
+.mr.developer.cfg
 *~
 .DS_Store
 .long-description.html
 Products/PloneGazette/docs/_build/*
 dist
+bin/
+develop-eggs/
+include/
+lib/
+parts/
