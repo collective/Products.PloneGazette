@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from AccessControl import ClassSecurityInfo
 from AccessControl.class_init import InitializeClass
 from Products.CMFCore.utils import getToolByName
@@ -15,10 +16,13 @@ class PNLContentBase(object):
         obj = self
         while 1:
             obj = obj.aq_parent
-            if obj.meta_type == 'NewsletterTheme':
-                return obj
+            meta = getattr(obj, 'meta_type', None)
+            if not meta:
+                return None
             if not obj:
                 return None
+            if obj.meta_type == 'NewsletterTheme':
+                return obj
         return
 
     security.declarePublic('getNewsletter')
