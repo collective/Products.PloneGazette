@@ -15,11 +15,11 @@ class PNLContentBase(object):
 
         obj = self
         while 1:
-            obj = obj.aq_parent
+            obj = getattr(obj, 'aq_parent', None)
+            if not obj:
+                return None
             meta = getattr(obj, 'meta_type', None)
             if not meta:
-                return None
-            if not obj:
                 return None
             if obj.meta_type == 'NewsletterTheme':
                 return obj
