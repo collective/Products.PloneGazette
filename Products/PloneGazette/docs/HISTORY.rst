@@ -1,7 +1,7 @@
 Changelog
 ---------
 
-3.2.2 (unreleased)
+3.2.2 (2015-01-22)
 ==================
 
 - Nothing changed yet.
