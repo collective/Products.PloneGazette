@@ -18,6 +18,7 @@ from Products.CMFDefault.DublinCore import DefaultDublinCoreImpl
 from Products.CMFDefault.SkinnedFolder import SkinnedFolder
 from Products.CMFPlone.PloneFolder import OrderedContainer
 from Products.CMFPlone.utils import safe_unicode
+from plone.dexterity.utils import safe_utf8
 from Products.PloneGazette import _
 from Products.PloneGazette.interfaces import INewsletter
 from elementtree import ElementTree
@@ -502,7 +503,7 @@ class Newsletter(SkinnedFolder, OrderedContainer, DefaultDublinCoreImpl, PNLCont
 
         mailMethod = theme.sendmail
 
-        titleForMessage = str(Header(safe_unicode(self.title), charset))
+        titleForMessage = safe_utf8(self.title)
 
         portal_url = getToolByName(self, 'portal_url')()
         for mailTo, format, editurl in recipients:
