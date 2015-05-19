@@ -1,2 +1,2 @@
 graft Products
-include *.cfg *.rst *.in
+include *.cfg *.rst *.in *.py
