@@ -33,6 +33,7 @@ setup(
     namespace_packages=['Products'],
     install_requires=[
         'Plone>=4.2',
+        'plone.dexterity>=2.2.1',
         'Products.OrderableReferenceField',
         'plone.directives.form',
         'setuptools',
