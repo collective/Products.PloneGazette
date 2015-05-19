@@ -1,7 +1,13 @@
 Changelog
 ---------
 
-3.2.3 (unreleased)
+3.2.4 (unreleased)
+==================
+
+- Nothing changed yet.
+
+
+3.2.3 (2015-05-19)
 ==================
 
 - Nothing changed yet.
