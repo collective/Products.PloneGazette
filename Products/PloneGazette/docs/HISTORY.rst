@@ -1,7 +1,7 @@
 Changelog
 ---------
 
-3.2.4 (unreleased)
+3.2.4 (2015-05-21)
 ==================
 
 - Add plone.dexterity >=2.2.1 dependency in setup.py (to use safe_utf8 method).
