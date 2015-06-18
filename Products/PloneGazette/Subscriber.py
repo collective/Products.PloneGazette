@@ -79,6 +79,9 @@ class Subscriber(PortalContent, DefaultDublinCoreImpl, PNLContentBase):
 
     implements(IContentish, ISubscriber)
 
+    fullname = ''
+    email = ''
+    
     meta_type = factory_type_information['meta_type']
     portal_type = factory_type_information['portal_type']
 
@@ -98,7 +101,6 @@ class Subscriber(PortalContent, DefaultDublinCoreImpl, PNLContentBase):
         self._internalVersion = 2
         self.id = id
         self.fullname = ''  # not used in templates yet
-        self.email = email
         self.format = 'HTML'
         self.active = False
         return
@@ -147,6 +149,9 @@ class Subscriber(PortalContent, DefaultDublinCoreImpl, PNLContentBase):
 
     security.declarePublic('SearchableText')
     def SearchableText(self):
+        # test to avoid error when import old NewsletterBTree "abonnes" .zexp
+        if self.email == '':
+            self.email = self.title
         return ' '.join([self.fullname, self.email])
 
     security.declarePublic('activateOnFirstTime')
