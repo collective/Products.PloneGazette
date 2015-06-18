@@ -101,6 +101,7 @@ class Subscriber(PortalContent, DefaultDublinCoreImpl, PNLContentBase):
         self._internalVersion = 2
         self.id = id
         self.fullname = ''  # not used in templates yet
+        self.email = email
         self.format = 'HTML'
         self.active = False
         return
