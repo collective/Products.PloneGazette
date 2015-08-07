@@ -1,7 +1,7 @@
 Changelog
 ---------
 
-3.2.5 (unreleased)
+3.2.5 (2015-08-07)
 ==================
 
 - Update Subscriber.py to avoid errors when importing .zexp NewsletterBTree.
