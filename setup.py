@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from setuptools import find_packages
 from setuptools import setup
 
@@ -6,7 +7,7 @@ import os
 
 long_description = (
     open(os.path.join("Products", "PloneGazette", "docs", "README.rst")).read() + "\n" +
-    open(os.path.join("Products", "PloneGazette", "docs", "HISTORY.rst")).read() + "\n" +
+    open(os.path.join("CHANGES.rst")).read() + "\n" +
     open(os.path.join("Products", "PloneGazette", "docs", "CONTRIBUTORS.rst")).read())
 
 

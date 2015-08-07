@@ -4,25 +4,22 @@ Changelog
 3.2.5 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Update Subscriber.py to avoid errors when importing .zexp NewsletterBTree.
+  [boulch]
 
 
 3.2.4 (2015-05-21)
 ==================
 
 - Add plone.dexterity >=2.2.1 dependency in setup.py (to use safe_utf8 method).
-
-
-3.2.3 (2015-05-19)
-==================
-
-- Nothing changed yet.
+  [boulch]
 
 
 3.2.2 (2015-01-22)
 ==================
 
-- Nothing changed yet.
+- Fix error if obj has no meta_type.
+  [bsuttor]
 
 
 3.2.1 (2014-02-25)
