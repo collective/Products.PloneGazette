@@ -4,7 +4,8 @@ Changelog
 3.2.6 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Add GDPR checkbox to subribers form.
+  [bsuttor]
 
 
 3.2.5 (2015-08-07)

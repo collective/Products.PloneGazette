@@ -19,7 +19,7 @@ class Miscellaneous(BrowserView):
         nlpath = form.get('path', None)
         if nlpath is not None:
             nlcentral = context.restrictedTraverse(nlpath)
-            if nlcentral.spam_prevention() and (
+            if getattr(nlcentral, 'spam_prevention', False) and (
                 form.get('form.widgets.message') != '' or form.get('form.widgets.title') != ''
             ):
                 log.warn('HONEYPOT FILLED. SUBSCRIBE REQUEST REJECTED')

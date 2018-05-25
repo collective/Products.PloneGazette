@@ -1,3 +1,18 @@
+<script>
+$(document).ready(function() {
+  $('#form-buttons-subscribe:input[type="submit"]').prop('disabled', true);
+  $('#form-buttons-subscribe:input[type="submit"]').attr('style', 'background: #dddddd;');
+  $("#form-widgets-gdpr-0").change(function() {
+    if(this.checked) {
+      $('#form-buttons-subscribe:input[type="submit"]').prop('disabled', false);
+      $('#form-buttons-subscribe:input[type="submit"]').removeAttr('style');
+    } else {
+      $('#form-buttons-subscribe:input[type="submit"]').prop('disabled', true);
+      $('#form-buttons-subscribe:input[type="submit"]').attr('style', 'background: #dddddd;');
+    }
+  });
+});
+</script>
 <tal:block i18n:domain="plonegazette">
   <dl class="portlet portletsSubscribeNewsletter">
     <dt class="portletHeader">
@@ -17,7 +32,7 @@
       tal:define="newsletters view/newsletters"
       >
       <span class="portletBottomLeft"></span>
-      <a 
+      <a
         tal:attributes="
           alt newsletters/Description;
           href newsletters/getURL;

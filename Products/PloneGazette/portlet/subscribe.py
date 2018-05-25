@@ -1,14 +1,14 @@
 from Acquisition import aq_inner
-from Products.CMFPlone.utils import getToolByName
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from Products.PloneGazette import _
-from Products.PloneGazette.interfaces import INewsletterTheme
 from plone.app.portlets.portlets import base
 from plone.app.vocabularies.catalog import SearchableTextSourceBinder
 from plone.directives.form import Form
 from plone.directives.form import Schema
 from plone.portlets.interfaces import IPortletDataProvider
 from plone.z3cform.layout import FormWrapper
+from Products.CMFPlone.utils import getToolByName
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from Products.PloneGazette import _
+from Products.PloneGazette.interfaces import INewsletterTheme
 from z3c.form import button
 from z3c.form.field import Fields
 from zope import schema
@@ -46,8 +46,9 @@ class ISubscribeNewsletterPortlet(IPortletDataProvider):
 class Assignment(base.Assignment):
     implements(ISubscribeNewsletterPortlet)
 
-    def __init__(self, name=u'', newsletters=None):
+    def __init__(self, name=u'', gdpr=False, newsletters=None):
         self.name = name
+        self.gdpr = gdpr
         self.newsletters = newsletters
 
     def title(self):
@@ -83,6 +84,12 @@ class ISubscribeNewsletterForm(Schema):
         required=True,
     )
 
+    gdpr = schema.Bool(
+        title=_(u'En cochant la case, vous acceptez que les informations que vous fournissez seront trai&eactues;es conformément &agrave; notre <a href="politique-de-confidentialite">politique de confidentialit&eactues;</a>'),
+        default=False,
+        required=True
+    )
+
     format = Choice(
         title=_(u"Format"),
         required=True,
@@ -108,7 +115,6 @@ class SubscribeNewsletterForm(Form):
         """
         """
         super(Form, self).__init__(context, request)
-
         self.data = data
 
     def newslettertheme(self):
@@ -186,7 +192,8 @@ class Renderer(base.Renderer):
         """
 
         context = aq_inner(self.context)
-
+        # import pdb; pdb.set_trace()
+        # self.data.gdpr = False
         form = SubscribeNewsletterForm(context, self.request, data=self.data)
 
         # Wrap a form in Plone view

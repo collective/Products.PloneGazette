@@ -7,6 +7,23 @@ $Id: NewsletterTheme_subscribeForm.pt 247584 2011-12-28 16:27:10Z vincentfretin 
       xmlns="http://www.w3.org/1999/xhtml"
       xml:lang="en-US"
       lang="en-US">
+<metal:slot fill-slot="javascript_head_slot">
+<script>
+$(document).ready(function() {
+  $('.context:input[type="submit"]').prop('disabled', true);
+  $('.context:input[type="submit"]').attr('style', 'background: #dddddd;');
+  $("#RGPDCheck").change(function() {
+    if(this.checked) {
+      $('.context:input[type="submit"]').prop('disabled', false);
+      $('.context:input[type="submit"]').removeAttr('style');
+    } else {
+      $('.context:input[type="submit"]').prop('disabled', true);
+      $('.context:input[type="submit"]').attr('style', 'background: #dddddd;');
+    }
+  });
+});
+</script>
+</metal:slot>
 <body>
 
 <div metal:fill-slot="main"
@@ -84,6 +101,12 @@ $Id: NewsletterTheme_subscribeForm.pt 247584 2011-12-28 16:27:10Z vincentfretin 
     <textarea class="turhaSeOis" rows="2" cols="20" name="message"></textarea>
   </tal:spamprevention>
 
+
+  <!-- RGPD -->
+  <input type="checkbox" id="RGPDCheck" name="subscribe" i18n:translate="rgpd_text">
+  <label for="RGPDCheck">En cochant la case, vous acceptez que les informations que vous fournissez seront trai&eactues;es conformément &agrave; notre
+    <a href="politique-de-confidentialite">politique de confidentialit&eactues;</a></label>
+
   <!-- HTML mode Field -->
 
   <div class="field">
@@ -113,6 +136,7 @@ $Id: NewsletterTheme_subscribeForm.pt 247584 2011-12-28 16:27:10Z vincentfretin 
            type="submit"
            name="Change"
            value="Save"
+           disabled=""
            i18n:attributes="value" />
   </div>
 
