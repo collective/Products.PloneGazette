@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from Acquisition import aq_inner
 from plone.app.portlets.portlets import base
 from plone.app.vocabularies.catalog import SearchableTextSourceBinder
@@ -85,7 +86,8 @@ class ISubscribeNewsletterForm(Schema):
     )
 
     gdpr = schema.Bool(
-        title=_(u'En cochant la case, vous acceptez que les informations que vous fournissez seront trai&eactues;es conformément &agrave; notre <a href="politique-de-confidentialite">politique de confidentialit&eactues;</a>'),
+        title=_('GDPR')
+        description=_(u'En cochant la case, vous acceptez que les informations que vous fournissez seront trai&eacute;es conformément &agrave; notre <a href="politique-de-confidentialite">politique de confidentialit&eacute;</a>'),
         default=False,
         required=True
     )
