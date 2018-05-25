@@ -192,8 +192,6 @@ class Renderer(base.Renderer):
         """
 
         context = aq_inner(self.context)
-        # import pdb; pdb.set_trace()
-        # self.data.gdpr = False
         form = SubscribeNewsletterForm(context, self.request, data=self.data)
 
         # Wrap a form in Plone view
