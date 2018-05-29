@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from Acquisition import aq_inner
 from Acquisition import aq_parent
 from Products.CMFCore.utils import getToolByName
@@ -24,10 +25,14 @@ class Miscellaneous(BrowserView):
             ):
                 log.warn('HONEYPOT FILLED. SUBSCRIBE REQUEST REJECTED')
                 return self.request.response.redirect(context.absolute_url())
+
             format = form.get('form.widgets.format')[0]
             email = form.get('form.widgets.email')
             portal_actions = getToolByName(context, 'portal_actions')
-            actions = portal_actions.listFilteredActionsFor(object=nlcentral)
+            try:
+                actions = portal_actions.listFilteredActionsFor(object=nlcentral)
+            except AttributeError:
+                return self.request.response.redirect(context.absolute_url())
             url = [action['url'] for action in actions['object']
                    if action['id'] == 'subscribe'][0]
             query_url = '{0}?email={1}&format={2}'.format(url, url_quote(email), format)

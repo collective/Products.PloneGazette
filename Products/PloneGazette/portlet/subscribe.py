@@ -86,7 +86,7 @@ class ISubscribeNewsletterForm(Schema):
     )
 
     gdpr = schema.Bool(
-        title=_('GDPR')
+        title=_('GDPR'),
         description=_(u'En cochant la case, vous acceptez que les informations que vous fournissez seront trai&eacute;es conformément &agrave; notre <a href="politique-de-confidentialite">politique de confidentialit&eacute;</a>'),
         default=False,
         required=True
