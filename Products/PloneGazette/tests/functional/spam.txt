@@ -191,7 +191,7 @@ Subscribe spam with title field through the portlet::
 Check the message::
 
     >>> len(messages)
-    4
+    3
 
 Subscribe spam with message field through the portlet::
 
@@ -202,7 +202,7 @@ Subscribe spam with message field through the portlet::
 Check the message::
 
     >>> len(messages)
-    5
+    3
 
 Subscribe spam with message field through the portlet::
 
@@ -214,4 +214,4 @@ Subscribe spam with message field through the portlet::
 Check the message::
 
     >>> len(messages)
-    6
+    3
