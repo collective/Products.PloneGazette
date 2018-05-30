@@ -34,7 +34,7 @@ msgstr ""
 
 #: ./portlet/subscribe.py:83
 msgid "E-mail address"
-msgstr ""
+msgstr "Adresse courriel"
 
 #: ./portlet/subscribe.py:232
 msgid "Edit Subscribe Newsletter Portlet"
