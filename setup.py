@@ -44,6 +44,7 @@ setup(
         'test': [
             'plone.app.testing',
             'hexagonit.testing',
+            'cssselect',
         ],
     },
     entry_points="""
